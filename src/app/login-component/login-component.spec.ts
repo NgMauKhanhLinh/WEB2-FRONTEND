@@ -45,7 +45,7 @@ describe('LoginComponent', () => {
   });
 
   it('submits Pet Clinic credentials including the remember preference', () => {
-    const navigate = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+    const navigate = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
     component.loginForm.setValue({
       account: '0912345678',
       password: 'password',
@@ -59,7 +59,7 @@ describe('LoginComponent', () => {
       password: 'password',
       remember: true,
     });
-    expect(navigate).toHaveBeenCalledWith(['/thong-tin-nguoi-dung']);
+    expect(navigate).toHaveBeenCalledWith('/thong-tin-nguoi-dung');
   });
 
   it('trims spaces around the login identifier before sending credentials', () => {
