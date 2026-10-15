@@ -4,8 +4,11 @@ import {
   HttpInterceptorFn,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { HttpContextToken } from '@angular/common/http';
 import { catchError, switchMap, throwError } from 'rxjs';
 import { AuthService } from '../services/auth-service';
+
+const AUTH_RETRY = new HttpContextToken<boolean>(() => false);
 
 const AUTH_ENDPOINTS_WITHOUT_REFRESH = [
   '/login',
@@ -33,17 +36,15 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
       }
 
       const isAuthEndpoint = AUTH_ENDPOINTS_WITHOUT_REFRESH.some((path) => request.url.includes(path));
-      const alreadyRetried = request.headers.has('X-Auth-Retry');
+      const alreadyRetried = request.context.get(AUTH_RETRY);
       if (isAuthEndpoint || alreadyRetried || !auth.getAccessToken()) {
         return throwError(() => error);
       }
 
       return auth.refreshAccessToken().pipe(
         switchMap((newToken) => next(request.clone({
-          setHeaders: {
-            Authorization: `Bearer ${newToken}`,
-            'X-Auth-Retry': '1',
-          },
+          setHeaders: { Authorization: `Bearer ${newToken}` },
+          context: request.context.set(AUTH_RETRY, true),
           withCredentials: true,
         }))),
         catchError((refreshError: unknown) => {
