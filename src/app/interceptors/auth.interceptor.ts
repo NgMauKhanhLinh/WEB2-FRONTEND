@@ -20,12 +20,15 @@ const AUTH_ENDPOINTS_WITHOUT_REFRESH = [
   '/refresh',
 ];
 
+const isAuthEndpointUrl = (url: string): boolean =>
+  AUTH_ENDPOINTS_WITHOUT_REFRESH.some((path) => url.includes(path));
+
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
   const auth = inject(AuthService);
   const router = inject(Router);
   const token = auth.getAccessToken();
 
-  const requestWithToken = token
+  const requestWithToken = token && !isAuthEndpointUrl(request.url)
     ? request.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
     : request;
 
@@ -35,7 +38,7 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
         return throwError(() => error);
       }
 
-      const isAuthEndpoint = AUTH_ENDPOINTS_WITHOUT_REFRESH.some((path) => request.url.includes(path));
+      const isAuthEndpoint = isAuthEndpointUrl(request.url);
       const alreadyRetried = request.context.get(AUTH_RETRY);
       if (isAuthEndpoint || alreadyRetried || !auth.getAccessToken()) {
         return throwError(() => error);
