@@ -227,6 +227,27 @@ export class AuthService {
     try { return storage.getItem(key); } catch { return null; }
   }
 
+  refreshAccessToken(): Observable<string> {
+    return this.http.post<LoginResponse | ApiResponse<LoginResponse> | { access_token?: string; DT?: { access_token?: string } }>(
+      `${this.baseUrl}/refresh`,
+      {},
+      { withCredentials: true },
+    ).pipe(
+      map((response: any) => {
+        const payload = response && typeof response === 'object' && 'DT' in response ? response.DT : response;
+        const token = payload?.access_token;
+        if (!token) throw new Error('Không thể làm mới phiên đăng nhập.');
+        return String(token);
+      }),
+      tap((token) => {
+        this.tokenSignal.set(token);
+        const storage = this.getActiveStorage();
+        storage.setItem('accessToken', token);
+      }),
+      catchError((error) => throwError(() => this.toAuthError(error, 'Phiên đăng nhập đã hết hạn.'))),
+    );
+  }
+
   private postAuthRequest<T = unknown>(path: string, body: object): Observable<T> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
