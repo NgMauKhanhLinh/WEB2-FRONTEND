@@ -54,9 +54,9 @@ const routes: Routes = [
   { path: 'thu-cung-cua-toi/:id/chinh-sua', loadComponent: petManagementPage , canActivate: [authGuard] },
   { path: 'thu-cung-cua-toi/:id', loadComponent: petManagementPage , canActivate: [authGuard] },
   { path: 'thu-cung-cua-toi', loadComponent: petManagementPage , canActivate: [authGuard] },
-  { path: 'lich-su-dat-lich', loadComponent: petClinicPage, data: { title: 'Lịch sử đặt lịch', summary: 'Theo dõi lịch hẹn chăm sóc thú cưng.' , canActivate: [authGuard] } },
-  { path: 'don-hang-cua-toi/:orderId', loadComponent: petClinicPage, data: { title: 'Chi tiết đơn hàng', summary: 'Thông tin và trạng thái đơn hàng.' , canActivate: [authGuard] } },
-  { path: 'don-hang-cua-toi', loadComponent: petClinicPage, data: { title: 'Đơn hàng của tôi', summary: 'Theo dõi các đơn hàng của bạn.' , canActivate: [authGuard] } },
+  { path: 'lich-su-dat-lich', loadComponent: petClinicPage, data: { title: 'Lịch sử đặt lịch', summary: 'Theo dõi lịch hẹn chăm sóc thú cưng.' }, canActivate: [authGuard] },
+  { path: 'don-hang-cua-toi/:orderId', loadComponent: petClinicPage, data: { title: 'Chi tiết đơn hàng', summary: 'Thông tin và trạng thái đơn hàng.' }, canActivate: [authGuard] },
+  { path: 'don-hang-cua-toi', loadComponent: petClinicPage, data: { title: 'Đơn hàng của tôi', summary: 'Theo dõi các đơn hàng của bạn.' }, canActivate: [authGuard] },
   { path: '**', loadComponent: petClinicPage, data: { title: 'Không tìm thấy trang', summary: 'Đường dẫn này không tồn tại hoặc đã được thay đổi.' } },
 ];
 
