@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth-service';
 
 type AuthScreen = 'login' | 'register' | 'forgot' | 'resetOtp' | 'registerOtp' | 'reset' | 'success';
@@ -79,6 +79,7 @@ export class AuthModalComponent {
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
+    private readonly route: ActivatedRoute,
   ) {}
 
   @HostListener('document:keydown.escape')
@@ -175,7 +176,11 @@ export class AuthModalComponent {
     this.authService.loginPetClinic({ loginId: account.trim(), password, remember }).subscribe({
       next: () => {
         this.submitting = false;
-        void this.router.navigate(['/thong-tin-nguoi-dung']);
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        const target = returnUrl?.startsWith('/') && !returnUrl.startsWith('//')
+          ? returnUrl
+          : '/thong-tin-nguoi-dung';
+        void this.router.navigateByUrl(target);
       },
       error: (error: Error) => {
         this.submitting = false;
