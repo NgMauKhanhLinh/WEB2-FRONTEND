@@ -1,0 +1,94 @@
+{
+  "COMMUNITY_POSTS": [
+    {
+      "id": "hoang-nam-question",
+      "author": "Hoàng Nam",
+      "initials": "H",
+      "time": "5 giờ trước",
+      "type": "Hỏi đáp",
+      "title": "Mèo biếng ăn phải làm sao?",
+      "content": "Bé mèo nhà mình bỗng nhiên lười ăn, nhưng vẫn chơi bình thường. Mọi người có kinh nghiệm nào chia sẻ không ạ?",
+      "tags": [
+        "#MEOAN",
+        "#SUCKHOETHUCUNG"
+      ],
+      "likes": 217,
+      "comments": 26
+    },
+    {
+      "id": "mai-anh-tip",
+      "author": "Mai Anh",
+      "initials": "MA",
+      "time": "2 giờ trước",
+      "type": "Mẹo vặt",
+      "title": "Cách giữ nhà luôn thơm tho khi nuôi thú cưng",
+      "content": "Nhà mình nuôi 2 bé cún nên mùi khá là nồng. Sau một thời gian tìm hiểu mình phát hiện ra dùng máy lọc không khí kết hợp với tinh dầu tự nhiên rất hiệu quả.",
+      "tags": [
+        "#MEOVAT",
+        "#NHACOTHUCUNG"
+      ],
+      "likes": "1K",
+      "comments": 227
+    },
+    {
+      "id": "quoc-bao-question",
+      "author": "Quốc Bảo",
+      "initials": "QB",
+      "time": "10 giờ trước",
+      "type": "Hỏi đáp",
+      "title": "Cún con bị nấc cụt sau khi ăn có sao không?",
+      "content": "Bé Poodle nhà mình 3 tháng tuổi, cứ ăn xong là bị nấc cụt tầm 5-10 phút. Có cần phải đưa đi bác sĩ không hay là do bé ăn quá nhanh?",
+      "tags": [
+        "#HOIDAP",
+        "#SUCKHOECUN"
+      ],
+      "likes": 62,
+      "comments": 58
+    },
+    {
+      "id": "anh-tu-photo",
+      "author": "Anh Tú",
+      "initials": "AT",
+      "time": "4 giờ trước",
+      "type": "Khoảnh khắc",
+      "content": "Góc ngủ bá đạo của bé Miu nhà em. Mọi người có ảnh dìm hàng boss không ạ?",
+      "image": "/assets/images/blog/community-dog-park.png",
+      "likes": 89,
+      "comments": 12
+    }
+  ],
+  "FEATURED_COMMUNITY_POST": {
+    "id": "drpet-weekend-walk",
+    "author": "Dr.Pet’s House",
+    "time": "2 giờ trước",
+    "avatar": "/assets/images/blog/community-author.png",
+    "title": "Cuối tuần dạo chơi cùng bé Cún",
+    "paragraphs": [
+      "Thời tiết đẹp quá mọi người ạ! Nhớ mang theo nước uống đầy đủ cho các bé khi ra ngoài nhé.",
+      "Dr.Pet’s House gợi ý nên đi dạo sau 5h chiều để tránh nắng nóng ảnh hưởng đến bàn chân của bé."
+    ],
+    "image": "/assets/images/blog/community-dog-park.png",
+    "likes": "1.2K",
+    "comments": 124
+  },
+  "INITIAL_COMMUNITY_COMMENTS": [
+    {
+      "id": 1,
+      "author": "Nguyễn Văn A",
+      "content": "Bé dễ thương quá! Nhìn cưng xỉu luôn.",
+      "time": "Vừa xong"
+    },
+    {
+      "id": 2,
+      "author": "Trần Thị B",
+      "content": "Cảm ơn thông tin hữu ích của Dr.Pet’s House nhé, mình cũng hay dẫn bé đi dạo buổi chiều.",
+      "time": "1 phút trước"
+    },
+    {
+      "id": 3,
+      "author": "Lê Văn C",
+      "content": "Hình chụp đẹp quá bạn ơi!",
+      "time": "2 phút trước"
+    }
+  ]
+}

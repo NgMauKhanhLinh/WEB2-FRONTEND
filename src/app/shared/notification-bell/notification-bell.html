@@ -1,0 +1,29 @@
+<div class="notification-root" *ngIf="isAuthenticated()">
+  <button class="notification-trigger" type="button" [attr.aria-expanded]="isOpen()" aria-haspopup="dialog" [attr.aria-label]="'Thông báo' + (unreadCount() ? ', ' + unreadCount() + ' chưa đọc' : '')" (click)="toggle()">
+    <img src="/assets/images/navbar/notification.svg" alt="" />
+    <span class="notification-count" *ngIf="unreadCount()">{{ unreadCount() > 9 ? '9+' : unreadCount() }}</span>
+  </button>
+  <section class="notification-panel" *ngIf="isOpen()" role="dialog" aria-label="Thông báo">
+    <header class="notification-header">
+      <h2>Thông báo</h2>
+      <button type="button" (click)="markAllRead()" [disabled]="!unreadCount()">Đánh dấu tất cả là đã đọc</button>
+      <button type="button" aria-label="Đóng thông báo" (click)="close()">×</button>
+    </header>
+    <label class="notification-search"><span class="visually-hidden">Tìm thông báo</span><input name="notificationSearch" [ngModel]="searchValue" (ngModelChange)="setSearch($event)" placeholder="Tìm tên thú cưng..." /></label>
+    <nav class="notification-filters" aria-label="Lọc thông báo">
+      <button type="button" [class.active]="activeFilter === 'all'" (click)="setFilter('all')">Tất cả</button>
+      <button type="button" [class.active]="activeFilter === 'unread'" (click)="setFilter('unread')">Chưa đọc</button>
+      <button type="button" [class.active]="activeFilter === 'read'" (click)="setFilter('read')">Đã đọc</button>
+    </nav>
+    <p class="notification-feedback" *ngIf="loading()">Đang tải thông báo...</p>
+    <p class="notification-feedback error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+    <div class="notification-list" *ngIf="!loading() && !errorMessage()">
+      <button type="button" class="notification-item" *ngFor="let item of visibleNotifications" [class.unread]="!item.read" (click)="markRead(item)">
+        <img [src]="item.icon" alt="" />
+        <span><strong *ngIf="item.petName">{{ item.petName }} · </strong>{{ item.content || item.title || item.searchableText }}<small>{{ item.createdAt | date:'HH:mm dd/MM/yyyy' }}</small></span>
+        <i *ngIf="!item.read" aria-label="Chưa đọc"></i>
+      </button>
+      <p class="notification-feedback" *ngIf="!visibleNotifications.length">Không có thông báo phù hợp.</p>
+    </div>
+  </section>
+</div>

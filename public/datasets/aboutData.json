@@ -1,0 +1,237 @@
+{
+  "aboutDecorations": {
+    "journeyConnector": "/assets/images/about/figma/journey-connector.png",
+    "journeyShapes": [
+      "/assets/images/about/figma/journey-shape-3.png",
+      "/assets/images/about/figma/journey-shape-4.png",
+      "/assets/images/about/figma/journey-shape-5.png",
+      "/assets/images/about/figma/journey-shape-6.png"
+    ],
+    "servicesWaveTop": "/assets/images/about/figma/services-wave-top.png",
+    "servicesWaveBottom": "/assets/images/about/figma/services-wave-bottom.png",
+    "servicesBone": "/assets/images/about/figma/services-decor-bone.png",
+    "servicesPaw": "/assets/images/about/figma/services-decor-paw.png",
+    "servicesBadgeIcon": "/assets/images/about/figma/services-badge-icon.svg",
+    "servicesCheckIcon": "/assets/images/about/figma/services-check-icon.svg",
+    "doctorsUnderline": "/assets/images/about/figma/doctors-underline.svg",
+    "doctorsShape": "/assets/images/about/figma/doctors-shape.png"
+  },
+  "aboutDoctors": [
+    {
+      "name": "Bs. Trần Văn Nhân",
+      "role": "Kinh nghiệm 20 năm",
+      "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+      "image": "/assets/images/about/figma/doctor-1.png"
+    },
+    {
+      "name": "Bs. Võ Công Nam",
+      "role": "Kinh nghiệm 14 năm",
+      "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+      "image": "/assets/images/about/figma/doctor-2.png"
+    },
+    {
+      "name": "Bs. Nguyễn Thu Hồng",
+      "role": "Kinh nghiệm 5 năm",
+      "school": "Tốt nghiệp Trường Đại học Công Nghệ TPHCM",
+      "image": "/assets/images/about/figma/doctor-3.png"
+    },
+    {
+      "name": "Bs. Trần Phương Trâm",
+      "role": "Kinh nghiệm 7 năm",
+      "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+      "image": "/assets/images/about/figma/doctor-4.png"
+    },
+    {
+      "name": "Bs. Đỗ Nhất Tâm",
+      "role": "Kinh nghiệm 7 năm",
+      "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+      "image": "/assets/images/about/figma/doctor-5.png"
+    },
+    {
+      "name": "Bs. Huỳnh Gia Khánh",
+      "role": "Kinh nghiệm 7 năm",
+      "school": "Tốt nghiệp Trường Đại học Công Nghệ TPHCM",
+      "image": "/assets/images/about/figma/doctor-6.png"
+    },
+    {
+      "name": "Bs. Nguyễn Phương Nhi",
+      "role": "Kinh nghiệm 5 năm",
+      "school": "Tốt nghiệp Trường Đại học Công Nghệ TPHCM",
+      "image": "/assets/images/about/figma/doctor-7.png"
+    },
+    {
+      "name": "Bs. Nguyễn Minh Anh",
+      "role": "Kinh nghiệm 10 năm",
+      "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+      "image": "/assets/images/about/figma/doctor-8.png"
+    }
+  ],
+  "aboutGallerySlides": [
+    {
+      "id": "lobby",
+      "title": "Khu vực tiền sảnh và quầy lễ tân",
+      "images": [
+        "/assets/images/about/lobby-main.png",
+        "/assets/images/about/lobby-thumb1.png",
+        "/assets/images/about/lobby-thumb2.png",
+        "/assets/images/about/lobby-thumb3.png"
+      ],
+      "paragraphs": [
+        "Dr.Pet’s House cho bạn trải nghiệm cao cấp với mức giá bình dân.",
+        "Sảnh đón tiếp rộng và thoáng có thể tiếp nhận nhanh những chuyến xe cấp cứu.",
+        "Quầy lễ tân sẵn sàng đón tiếp bạn và thú cưng đến làm thủ tục. Check-in nhanh, thông tin bé được lưu sẵn.",
+        "Bạn có thể thưởng thức nước và bánh tại khu vực lễ tân trong lúc chờ đợi."
+      ]
+    },
+    {
+      "id": "shop",
+      "title": "Không gian mua sắm tiện lợi",
+      "images": [
+        "/assets/images/about/figma/shop-main.png",
+        "/assets/images/about/figma/shop-thumb-1.png",
+        "/assets/images/about/figma/shop-thumb-2.png",
+        "/assets/images/about/figma/shop-thumb-3.png"
+      ],
+      "paragraphs": [
+        "Không gian mua sắm tại Dr.Pet’s House mang đến trải nghiệm tiện lợi, dễ tìm kiếm nhờ hệ thống kệ tủ phân khu khoa học.",
+        "Chúng tôi cung cấp đa dạng sản phẩm với đầy đủ mặt hàng, mẫu mã được cập nhật liên tục. Thỏa sức mua sắm, vừa tiết kiệm thời gian, vừa an tâm về chất lượng.",
+        "Nhân viên luôn túc trực để tư vấn tận tình, giúp bạn nhanh chóng chọn được sản phẩm phù hợp với mức giá bình dân nhất."
+      ]
+    },
+    {
+      "id": "spa",
+      "title": "Không gian spa thư giãn",
+      "images": [
+        "/assets/images/about/figma/spa-main.png",
+        "/assets/images/about/figma/spa-thumb-1.png",
+        "/assets/images/about/figma/spa-thumb-2.png",
+        "/assets/images/about/figma/spa-thumb-3.png"
+      ],
+      "paragraphs": [
+        "Khu vực Spa & Grooming được thiết kế riêng giúp thú cưng cảm thấy bình tĩnh và thoải mái từ khoảnh khắc đầu tiên bước vào.",
+        "Không gian thoáng mát, sạch sẽ, không có tiếng ồn lớn. Mỗi bé đều được phục vụ riêng. Các Sen có thể quan sát toàn bộ quá trình làm đẹp từ bên ngoài. Bạn hoàn toàn có thể yên tâm rằng Boss nhà mình luôn có những phút giây thư giãn nhất tại Dr. Pet's House."
+      ]
+    },
+    {
+      "id": "clinic",
+      "title": "Không gian khám bệnh chuyên nghiệp",
+      "images": [
+        "/assets/images/about/figma/clinic-main.png",
+        "/assets/images/about/figma/clinic-thumb-1.png",
+        "/assets/images/about/figma/clinic-thumb-2.png",
+        "/assets/images/about/figma/clinic-thumb-3.png"
+      ],
+      "paragraphs": [
+        "Không gian khám và điều trị đạt tiêu chuẩn vô trùng y khoa và khử khuẩn nghiêm ngặt, tránh trường hợp lây nhiễm chéo. Mang lại sự an tâm tuyệt đối cho khách hàng.",
+        "Thiết kế cách âm yên tĩnh giúp Boss giảm sợ hãi, bớt căng thẳng.",
+        "Các Boss nhà mình sẽ được sử dụng các trang thiết bị máy móc hiện đại, dịch vụ y tế chuyên nghiệp, chẩn đoán chính xác, với một mức giá minh bạch & hợp lý."
+      ]
+    },
+    {
+      "id": "branches",
+      "title": "9 chi nhánh khác",
+      "images": [
+        "/assets/images/about/figma/branch-1.png",
+        "/assets/images/about/figma/branch-2.png",
+        "/assets/images/about/figma/branch-3.png",
+        "/assets/images/about/figma/branch-4.png",
+        "/assets/images/about/figma/branch-5.png",
+        "/assets/images/about/figma/branch-6.png",
+        "/assets/images/about/figma/branch-7.png",
+        "/assets/images/about/figma/branch-8.png",
+        "/assets/images/about/figma/branch-9.png"
+      ],
+      "paragraphs": [
+        "Đến năm 2026, hệ thống Dr.Pet’s House đã đạt cột mốc 10 chi nhánh và có mặt ở khắp các khu vực trong TP.HCM (Thủ Đức, Bình Dương, Vũng Tàu).",
+        "Điều này chứng tỏ có rất nhiều khách hàng tin dùng về chất lượng dịch vụ của Dr.Pet’s House. Nhờ sự ủng hộ của quý khách hàng, đã đóng góp rất lớn vào việc phát triển hệ thống Dr.Pet’s House lớn mạnh như ngày hôm nay."
+      ],
+      "layout": "grid"
+    }
+  ],
+  "aboutMilestones": [
+    {
+      "year": "2020",
+      "image": "/assets/images/about/timeline2020.png",
+      "copy": "Thành lập 2020, chúng tôi khởi đầu từ một cửa hàng, cung cấp dịch vụ khám & chữa bệnh cho thú cưng. Với các trang thiết bị hiện đại và đội ngũ bác sĩ giàu kinh nghiệm."
+    },
+    {
+      "year": "2021",
+      "image": "/assets/images/about/timeline2021.png",
+      "copy": "Năm 2021, chúng tôi kinh doanh thêm sản phẩm dành cho thú cưng. Khi có sự tin tưởng và ủng hộ của các khách hàng thân thiết, chúng tôi đã mở 10 cửa hàng trong chỉ trong 1 năm và có 3 cửa hàng."
+    },
+    {
+      "year": "2023",
+      "image": "/assets/images/about/timeline2023.png",
+      "copy": "Năm 2023, cung cấp thêm dịch vụ Spa & Grooming, đáp ứng nhu cầu làm đẹp và chăm sóc cho thú cưng của khách hàng. Ngoài ra chúng tôi nghiên cứu những ngành liên quan của mình. Mở rộng ra 6 cửa hàng."
+    },
+    {
+      "year": "2026",
+      "image": "/assets/images/about/timeline2026.png",
+      "copy": "Năm 2026, hệ thống Dr. Pet's House đã có 10 chi nhánh ở HCM. Hơn 10.000 ca chữa bệnh thành công với lượt đánh giá 98% khách hàng hài lòng."
+    }
+  ],
+  "aboutServices": [
+    {
+      "id": "medical",
+      "title": "KHÁM & ĐIỀU TRỊ",
+      "image": "/assets/images/about/service-medical.png",
+      "href": "/booking",
+      "copy": "Đội ngũ bác sĩ thú y giàu kinh nghiệm của chúng tôi cung cấp các dịch vụ từ kiểm tra sức khỏe định kỳ đến phẫu thuật chuyên sâu, đảm bảo thú cưng của bạn luôn trong trạng thái tốt nhất.",
+      "points": [
+        "Tiêm phòng và tẩy giun định kỳ",
+        "Chẩn đoán hình ảnh siêu âm, X-quang",
+        "Xét nghiệm máu và vi sinh"
+      ]
+    },
+    {
+      "id": "grooming",
+      "title": "GROOMING & SPA",
+      "image": "/assets/images/about/service-grooming.png",
+      "href": "/services/grooming-spa",
+      "copy": "Giúp thú cưng của bạn luôn sạch sẽ và xinh xắn với dịch vụ làm đẹp chuyên nghiệp. Chúng tôi sử dụng các sản phẩm cao cấp, an toàn cho làn da nhạy cảm của các bé.",
+      "points": [
+        "Tắm, sấy và vệ sinh tai móng",
+        "Cắt tỉa lông tạo kiểu chuyên nghiệp",
+        "Massage thư giãn cho thú cưng"
+      ]
+    },
+    {
+      "id": "shop",
+      "title": "PET SHOP",
+      "image": "/assets/images/about/service-shop.png",
+      "href": "/petshop",
+      "copy": "Cung cấp đầy đủ các nhu yếu phẩm chất lượng cao từ thức ăn dinh dưỡng, phụ kiện thời trang đến đồ chơi thông minh dành riêng cho chó và mèo.",
+      "points": [
+        "Thức ăn hạt và Pate nhập khẩu",
+        "Phụ kiện vòng cổ, chuồng và nệm",
+        "Vitamin và thực phẩm chức năng"
+      ]
+    }
+  ],
+  "commitmentBenefits": [
+    {
+      "label": "Đội ngũ có tay nghề cao",
+      "icon": "/assets/images/about/figma/commitment-icon-team.png"
+    },
+    {
+      "label": "Bác sĩ giàu kinh nghiệm",
+      "icon": "/assets/images/about/figma/commitment-icon-doctor.png"
+    },
+    {
+      "label": "Sản phẩm xuất xứ rõ ràng",
+      "icon": "/assets/images/about/figma/commitment-icon-food.png"
+    },
+    {
+      "label": "Thực phẩm chất lượng",
+      "icon": "/assets/images/about/figma/commitment-icon-treats.png"
+    },
+    {
+      "label": "Tư vấn tận tình",
+      "icon": "/assets/images/about/figma/commitment-icon-house.png"
+    },
+    {
+      "label": "Cấp cứu khẩn cấp",
+      "icon": "/assets/images/about/figma/commitment-icon-emergency.png"
+    }
+  ]
+}

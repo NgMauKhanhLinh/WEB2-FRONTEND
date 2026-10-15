@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="stitch-placeholder-300x300.svg" clip-path="url(#clip0_0_24)">
+<path id="Vector" d="M0 0H128V0V128V128H0V128V0V0V0" fill="var(--fill-0, #6056F0)" fill-opacity="0.15"/>
+<g id="Clip path group">
+<mask id="mask0_0_24" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="53" y="53" width="22" height="22">
+<path id="Vector_2" d="M53.76 53.76H74.24V53.76V74.24V74.24H53.76V74.24V53.76V53.76V53.76" fill="var(--fill-0, white)"/>
+</mask>
+<g mask="url(#mask0_0_24)">
+<path id="Vector_3" d="M58.7913 70.4C58.4713 70.4 58.1926 70.2814 57.9554 70.0446C57.7186 69.8074 57.6 69.5287 57.6 69.2087V58.7913C57.6 58.4713 57.7186 58.1926 57.9554 57.9554C58.1926 57.7186 58.4713 57.6 58.7913 57.6H69.2087C69.5287 57.6 69.8074 57.7186 70.0446 57.9554C70.2814 58.1926 70.4 58.4713 70.4 58.7913V69.2087C70.4 69.5287 70.2814 69.8074 70.0446 70.0446C69.8074 70.2814 69.5287 70.4 69.2087 70.4H58.7913V70.4M58.7913 69.2087H69.2087V58.7913H58.7913V69.2087V69.2087M59.68 67.5913H68.32L65.6887 64.0887L63.4133 67.0579L61.7779 64.8354L59.68 67.5913V67.5913M58.7913 69.2087V58.7913V69.2087V69.2087" fill="var(--fill-0, #7168F6)"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_24">
+<rect width="128" height="128" fill="white"/>
+</clipPath>
+</defs>
+</svg>

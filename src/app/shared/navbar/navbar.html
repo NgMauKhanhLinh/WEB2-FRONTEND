@@ -1,0 +1,109 @@
+<header class="site-header">
+  <a class="brand" routerLink="/" aria-label="Dr. Pet's House - Trang chủ" (click)="closeOverlays()">
+    <img [src]="logo" alt="Dr. Pet's House" />
+  </a>
+
+  <nav class="desktop-nav" aria-label="Menu chính">
+    <div class="nav-entry" *ngFor="let link of links">
+      <a
+        class="nav-link"
+        [routerLink]="link.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+      >{{ link.label }}</a>
+      <div class="nav-dropdown" *ngIf="link.children">
+        <ng-container *ngFor="let child of link.children">
+          <button
+            *ngIf="isCategoryLink(child); else routeLink"
+            type="button"
+            class="dropdown-link"
+            (click)="navigateCategory(categoryFor(child))"
+          >{{ child.label }}</button>
+          <ng-template #routeLink>
+            <a class="dropdown-link" [routerLink]="child.path">{{ child.label }}</a>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </nav>
+
+  <form class="desktop-search search-form" role="search" (ngSubmit)="submitSearch()">
+    <label class="search-box">
+      <span class="visually-hidden">Tìm kiếm</span>
+      <input
+        name="siteSearch"
+        [(ngModel)]="searchTerm"
+        (focus)="searchOpen = true"
+        placeholder="Bạn muốn tìm gì nè?"
+        autocomplete="off"
+      />
+      <button type="submit" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg>
+      </button>
+    </label>
+    <div class="search-suggestions" *ngIf="searchOpen && searchTerm.trim()">
+      <p>Gợi ý phù hợp</p>
+      <button type="button" *ngFor="let term of filteredSearchTerms" (click)="submitSearch(term)">{{ term }}</button>
+      <span *ngIf="filteredSearchTerms.length === 0">Tìm kiếm “{{ searchTerm.trim() }}”</span>
+      <button type="button" class="see-all" (click)="submitSearch()">Xem tất cả kết quả →</button>
+    </div>
+  </form>
+
+  <a class="appointment-button" routerLink="/dat-lich">ĐẶT LỊCH</a>
+
+  <a class="cart-button" routerLink="/cart" aria-label="Giỏ hàng">
+    <img src="/assets/images/navbar/cart-yellow.svg" alt="" />
+  </a>
+
+  <app-notification-bell></app-notification-bell>
+
+  <a *ngIf="!isAuthenticated()" class="login-button" routerLink="/login">ĐĂNG NHẬP</a>
+  <div *ngIf="isAuthenticated()" class="account-menu">
+    <button type="button" class="avatar-button" aria-label="Menu tài khoản" aria-haspopup="true" [attr.aria-expanded]="accountMenuOpen" (click)="toggleAccountMenu()">
+      <img [src]="avatar" alt="" />
+    </button>
+    <div class="account-dropdown" *ngIf="accountMenuOpen">
+      <p class="account-name">{{ currentUser()?.fullName || 'Tài khoản của tôi' }}</p>
+      <a *ngFor="let link of accountLinks" [routerLink]="link.path" (click)="closeOverlays()">{{ link.label }}</a>
+      <button type="button" class="logout-link" (click)="logout()">Đăng xuất</button>
+    </div>
+  </div>
+
+  <button class="mobile-icon search-toggle" type="button" aria-label="Tìm kiếm" [attr.aria-expanded]="searchOpen" (click)="toggleSearch()">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg>
+  </button>
+  <button class="mobile-icon menu-toggle" type="button" aria-label="Mở menu" [attr.aria-expanded]="mobileMenuOpen" (click)="toggleMobileMenu()">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h18"></path></svg>
+  </button>
+
+  <form class="mobile-search search-form" *ngIf="searchOpen" role="search" (ngSubmit)="submitSearch()">
+    <label class="search-box">
+      <span class="visually-hidden">Tìm kiếm</span>
+      <input name="mobileSearch" [(ngModel)]="searchTerm" placeholder="Bạn muốn tìm gì nè?" autocomplete="off" autofocus />
+      <button type="submit" aria-label="Tìm kiếm">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg>
+      </button>
+    </label>
+    <div class="search-suggestions" *ngIf="searchTerm.trim()">
+      <p>Gợi ý phù hợp</p>
+      <button type="button" *ngFor="let term of filteredSearchTerms" (click)="submitSearch(term)">{{ term }}</button>
+      <span *ngIf="filteredSearchTerms.length === 0">Tìm kiếm “{{ searchTerm.trim() }}”</span>
+      <button type="button" class="see-all" (click)="submitSearch()">Xem tất cả kết quả →</button>
+    </div>
+  </form>
+
+  <nav class="mobile-nav" *ngIf="mobileMenuOpen" aria-label="Menu mobile">
+    <div class="mobile-nav-entry" *ngFor="let link of links">
+      <div class="mobile-nav-row">
+        <a [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: link.path === '/' }" (click)="link.children ? null : closeOverlays()">{{ link.label }}</a>
+        <button *ngIf="link.children" type="button" [attr.aria-label]="(expandedMenu === link.label ? 'Thu gọn ' : 'Mở rộng ') + link.label" [attr.aria-expanded]="expandedMenu === link.label" (click)="toggleExpandedMenu(link.label)">›</button>
+      </div>
+      <div class="mobile-submenu" *ngIf="link.children && expandedMenu === link.label">
+        <ng-container *ngFor="let child of link.children">
+          <button *ngIf="isCategoryLink(child); else mobileRouteLink" type="button" (click)="navigateCategory(categoryFor(child))">{{ child.label }}</button>
+          <ng-template #mobileRouteLink><a [routerLink]="child.path" (click)="closeOverlays()">{{ child.label }}</a></ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </nav>
+</header>

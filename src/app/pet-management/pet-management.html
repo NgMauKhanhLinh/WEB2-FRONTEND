@@ -1,0 +1,73 @@
+<main class="pet-page">
+  <app-sidebar></app-sidebar>
+  <section class="pet-content">
+    <ng-container *ngIf="mode === 'list'">
+      <header class="pet-heading">
+        <div><h1>Danh sách hồ sơ thú cưng</h1><p>Quản lý và theo dõi hồ sơ sức khỏe của các bé.</p></div>
+        <a class="pet-button primary" routerLink="/thu-cung-cua-toi/them-moi">＋ Tạo mới</a>
+      </header>
+      <nav class="pet-status-filters" aria-label="Lọc theo tình trạng sức khỏe">
+        <button type="button" *ngFor="let status of statuses" [class.active]="selectedStatus === status" (click)="selectedStatus = status">{{ status }} ({{ countFor(status) }})</button>
+      </nav>
+      <div class="pet-list-tools">
+        <input aria-label="Tìm kiếm thú cưng" [(ngModel)]="searchText" placeholder="Tìm theo tên hoặc giống..." />
+        <select aria-label="Sắp xếp hồ sơ" [(ngModel)]="sortBy"><option value="name">Tên A-Z</option><option value="age">Tuổi giảm dần</option></select>
+      </div>
+      <p class="pet-feedback" *ngIf="loading()">Đang tải hồ sơ thú cưng...</p>
+      <p class="pet-feedback error" *ngIf="errorMessage()" role="alert">{{ errorMessage() }}</p>
+      <div class="pet-card-grid" *ngIf="!loading() && !errorMessage()">
+        <article class="pet-card" *ngFor="let item of filteredPets">
+          <a [routerLink]="['/thu-cung-cua-toi', item.id]" class="pet-card-image">
+            <img *ngIf="item.avatar; else petPlaceholder" [src]="item.avatar" [alt]="item.name" />
+            <ng-template #petPlaceholder><span aria-hidden="true">🐾</span></ng-template>
+            <span class="pet-status">{{ item.healthStatus }}</span>
+          </a>
+          <div class="pet-card-info">
+            <h2><a [routerLink]="['/thu-cung-cua-toi', item.id]">{{ item.name }}</a></h2>
+            <p>{{ item.species }}<span *ngIf="item.breed"> · {{ item.breed }}</span></p>
+            <p>Khám gần nhất: {{ item.lastCheckup || 'Chưa khám' }}</p>
+            <a class="pet-text-link" [routerLink]="['/thu-cung-cua-toi', item.id]">Xem hồ sơ →</a>
+          </div>
+        </article>
+        <p class="pet-feedback" *ngIf="!filteredPets.length">Chưa có hồ sơ phù hợp. Hãy tạo hồ sơ thú cưng mới.</p>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="mode === 'detail'">
+      <p class="pet-feedback" *ngIf="loading()">Đang tải hồ sơ...</p>
+      <p class="pet-feedback error" *ngIf="errorMessage()" role="alert">{{ errorMessage() }}</p>
+      <ng-container *ngIf="pet && !loading()">
+        <header class="pet-heading">
+          <div><a class="pet-text-link" routerLink="/thu-cung-cua-toi">← Danh sách thú cưng</a><h1>{{ pet.name }}</h1><p>{{ pet.species }}<span *ngIf="pet.breed"> · {{ pet.breed }}</span></p></div>
+          <a class="pet-button primary" [routerLink]="['/thu-cung-cua-toi', pet.id, 'chinh-sua']">Chỉnh sửa</a>
+        </header>
+        <article class="pet-detail-card">
+          <img *ngIf="pet.avatar" [src]="pet.avatar" [alt]="pet.name" />
+          <dl><dt>Tình trạng sức khỏe</dt><dd>{{ pet.healthStatus }}</dd><dt>Tuổi</dt><dd>{{ pet.age || 'Chưa cập nhật' }}</dd><dt>Giới tính</dt><dd>{{ pet.gender || 'Chưa cập nhật' }}</dd><dt>Cân nặng</dt><dd>{{ pet.weightKg ?? 'Chưa cập nhật' }}<span *ngIf="pet.weightKg !== null"> kg</span></dd><dt>Ghi chú sức khỏe</dt><dd>{{ pet.medicalNotes || 'Chưa có ghi chú.' }}</dd></dl>
+        </article>
+        <section class="pet-records"><h2>Lịch sử khám bệnh</h2><p *ngIf="!records.length">Chưa có bệnh án được lưu.</p>
+          <article class="pet-record" *ngFor="let record of records"><div><h3>{{ record.condition }}</h3><p>{{ record.date }} · {{ record.doctor }}</p><p>{{ record.notes }}</p></div><a *ngIf="record.fileUrl" [href]="record.fileUrl" target="_blank" rel="noopener">Mở {{ record.fileName || 'tệp đính kèm' }}</a></article>
+        </section>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="mode === 'create' || mode === 'edit'">
+      <header class="pet-heading"><div><a class="pet-text-link" routerLink="/thu-cung-cua-toi">← Danh sách thú cưng</a><h1>{{ mode === 'edit' ? 'Cập nhật hồ sơ thú cưng' : 'Tạo hồ sơ thú cưng' }}</h1><p>Thông tin giúp bác sĩ chăm sóc bé phù hợp hơn.</p></div></header>
+      <p class="pet-feedback" *ngIf="loading()">Đang tải dữ liệu hồ sơ...</p>
+      <p class="pet-feedback error" *ngIf="errorMessage()" role="alert">{{ errorMessage() }}</p>
+      <form class="pet-form" *ngIf="!loading()" (ngSubmit)="savePet()">
+        <label>Tên thú cưng<input name="name" [(ngModel)]="form.name" required maxlength="100" /></label>
+        <label>Loài<select name="species" [ngModel]="form.speciesId" (ngModelChange)="selectSpecies($event)" required><option value="">Chọn loài</option><option *ngFor="let item of species" [value]="item.id">{{ item.name }}</option></select></label>
+        <label>Giống<input name="breed" [(ngModel)]="form.breed" maxlength="100" /></label>
+        <label>Giới tính<select name="gender" [(ngModel)]="form.gender"><option value="">Chưa cập nhật</option><option value="male">Đực</option><option value="female">Cái</option><option value="unknown">Khác</option></select></label>
+        <label>Ngày sinh<input name="birthDate" type="date" [(ngModel)]="form.birthDate" /></label>
+        <label>Tuổi<input name="age" type="text" [(ngModel)]="form.age" placeholder="Ví dụ: 2 tuổi" /></label>
+        <label>Cân nặng (kg)<input name="weight" type="number" min="0" step="0.1" [(ngModel)]="form.weightKg" /></label>
+        <label>Tình trạng sức khỏe<select name="healthStatus" [(ngModel)]="form.healthStatus"><option>Bình thường</option><option>Đang điều trị</option><option>Cần tái khám</option><option>Có bệnh nền</option></select></label>
+        <label class="wide">Ghi chú sức khỏe<textarea name="medicalNotes" rows="4" [(ngModel)]="form.medicalNotes"></textarea></label>
+        <div class="pet-form-actions"><button class="pet-button" type="button" routerLink="/thu-cung-cua-toi">Hủy</button><button class="pet-button primary" type="submit" [disabled]="saving">{{ saving ? 'Đang lưu...' : 'Lưu hồ sơ' }}</button></div>
+      </form>
+      <button *ngIf="mode === 'edit' && pet" type="button" class="pet-delete" (click)="deletePet()" [disabled]="saving">Xóa hồ sơ thú cưng</button>
+    </ng-container>
+  </section>
+</main>

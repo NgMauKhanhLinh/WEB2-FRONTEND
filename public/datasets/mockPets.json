@@ -1,0 +1,174 @@
+{
+  "MOCK_PETS": [
+    {
+      "id": "buddy_id_123",
+      "name": "Buddy",
+      "species": "Chó",
+      "breed": "Beagle",
+      "age": "3 tuổi",
+      "gender": "♂",
+      "weight": "12.5 kg",
+      "healthStatus": "Đang điều trị",
+      "medicalNotes": "Dị ứng nặng với các loại sữa tắm có hương liệu nhân tạo. Da nhạy cảm, dễ mẩn đỏ.",
+      "lastCheckup": "12/07/2026",
+      "avatar": null,
+      "medicalRecords": [
+        {
+          "id": "record_b1",
+          "date": "12/07/2026",
+          "condition": "Viêm da dị ứng cấp tính",
+          "doctor": "Nguyễn Văn Minh",
+          "notes": "Vùng bụng và bẹn bị nổi mẩn đỏ do kích ứng với xà phòng tắm. Đã tiến hành sát trùng bôi thuốc Cortisone làm dịu da. Yêu cầu chủ nuôi đổi sang sữa tắm thảo dược dịu nhẹ và đeo loa chống liếm.",
+          "name": "Don-thuoc-da-lieu-1210.pdf",
+          "size": "340 KB",
+          "fileUrl": "#"
+        },
+        {
+          "id": "record_b2",
+          "date": "24/07/2026",
+          "condition": "Tiêm phòng dại định kỳ",
+          "doctor": "Trần Thị Lan",
+          "notes": "Tiêm chủng vaccine ngừa bệnh dại định kỳ năm 2026. Bé hợp tác tốt, kiểm tra sau tiêm 30 phút không có dấu hiệu sốt phản vệ hay sưng đau.",
+          "name": "Giay-chung-nhan-tiem-phong.pdf",
+          "size": "520 KB",
+          "fileUrl": "#"
+        },
+        {
+          "id": "record_b3",
+          "date": "15/07/2026",
+          "condition": "Cạo vôi răng & Vệ sinh khoang miệng",
+          "doctor": "Lê Hoàng Nam",
+          "notes": "Răng hàm dưới tích tụ nhiều mảng bám và cao răng gây hôi miệng nhẹ. Đã tiến hành cạo vôi răng bằng sóng siêu âm siêu sạch và đánh bóng bề mặt răng.",
+          "name": "Phieu-dich-vu-nha-khoa.pdf",
+          "size": "210 KB",
+          "fileUrl": "#"
+        }
+      ]
+    },
+    {
+      "id": "luna_id_456",
+      "name": "Luna",
+      "species": "Mèo",
+      "breed": "Mèo đen",
+      "age": "2 tuổi",
+      "gender": "♀",
+      "weight": "4.2 kg",
+      "healthStatus": "Bình thường",
+      "medicalNotes": "Bé ngoan, sức khỏe ổn định. Thích ăn hạt sấy khô, cần chú ý bổ sung nước để tránh sỏi thận.",
+      "lastCheckup": "05/07/2026",
+      "avatar": null,
+      "medicalRecords": [
+        {
+          "id": "record_l1",
+          "date": "05/07/2026",
+          "condition": "Khám sức khỏe tổng quát",
+          "doctor": "Trần Văn B",
+          "notes": "Kiểm tra định kỳ toàn diện. Bé có thể trạng tốt, cơ bắp săn chắc, lông mượt. Các chỉ số sinh hóa trong xét nghiệm máu đều nằm trong ngưỡng an toàn tuyệt đối.",
+          "name": "Ket-qua-xet-nghiem-tong-quat.pdf",
+          "size": "1.5 MB",
+          "fileUrl": "#"
+        },
+        {
+          "id": "record_l2",
+          "date": "12/07/2026",
+          "condition": "Tẩy giun & Nhỏ gáy ngừa rận tai",
+          "doctor": "Nguyễn Thị C",
+          "notes": "Sử dụng thuốc nhỏ gáy Revolution phòng ngừa nội ngoại ký sinh trùng. Kiểm tra tai sạch, không phát hiện vi nấm hay ve rận.",
+          "name": "So-theo-doi-ky-sinh-trung.pdf",
+          "size": "180 KB",
+          "fileUrl": "#"
+        }
+      ]
+    },
+    {
+      "id": "max_id_789",
+      "name": "Max",
+      "species": "Chó",
+      "breed": "Golden Retriever",
+      "age": "6 tháng",
+      "gender": "♂",
+      "weight": "18.2 kg",
+      "healthStatus": "Bình thường",
+      "medicalNotes": "Đang trong giai đoạn phát triển xương khớp mạnh mẽ. Cần bổ sung thêm Canxi và tránh vận động quá nặng.",
+      "lastCheckup": "20/07/2026",
+      "avatar": null,
+      "medicalRecords": [
+        {
+          "id": "record_m1",
+          "date": "20/07/2026",
+          "condition": "Tiêm chủng vaccine mũi 3 (5 bệnh)",
+          "doctor": "Hoàng Đức Long",
+          "notes": "Tiêm mũi nhắc lại cuối cùng trong liệu trình sơ sinh. Bé phát triển đúng chuẩn cân nặng của giống Golden 6 tháng tuổi. Hẹn lịch tiêm nhắc lại sau 1 năm.",
+          "name": "So-tiem-chung-Max.pdf",
+          "size": "890 KB",
+          "fileUrl": "#"
+        },
+        {
+          "id": "record_m2",
+          "date": "15/07/2026",
+          "condition": "Rối loạn tiêu hóa cấp tính",
+          "doctor": "Lê Thị Mai",
+          "notes": "Bé bị tiêu chảy nhẹ và nôn mửa do ăn phải thức ăn lạ (đồ ăn thừa của người). Đã tiến hành truyền dịch bù nước, kê men vi sinh Enterogermina và thuốc hỗ trợ niêm mạc ruột.",
+          "name": "Don-thuoc-tieu-hoa.pdf",
+          "size": "310 KB",
+          "fileUrl": "#"
+        },
+        {
+          "id": "record_m3",
+          "date": "01/07/2026",
+          "condition": "Khám sàng lọc sơ sinh & Tẩy giun",
+          "doctor": "Hoàng Đức Long",
+          "notes": "Kiểm tra sức khỏe đầu đời cho cún con. Bé hơi nhút nhát nhưng tim phổi khỏe mạnh, không dị tật bẩm sinh. Đã uống thuốc tẩy giun định kỳ lần đầu.",
+          "name": "Phieu-kham-so-sinh.pdf",
+          "size": "250 KB",
+          "fileUrl": "#"
+        }
+      ]
+    },
+    {
+      "id": "snow_id_999",
+      "name": "Snow",
+      "species": "Mèo",
+      "breed": "Mèo Ba Tư",
+      "age": "4 tuổi",
+      "gender": "♀",
+      "weight": "3.5 kg",
+      "healthStatus": "Cần tái khám",
+      "medicalNotes": "Tuyến nước mắt hoạt động mạnh gây ố lông quanh mắt. Cần vệ sinh vùng mắt hàng ngày bằng dung dịch chuyên dụng.",
+      "lastCheckup": "15/07/2026",
+      "avatar": null,
+      "medicalRecords": [
+        {
+          "id": "record_s1",
+          "date": "15/07/2026",
+          "condition": "Viêm kết mạc mắt trái nghiêm trọng",
+          "doctor": "Đặng Minh Tuấn",
+          "notes": "Mắt trái sưng húp, chảy mủ nhẹ do dị vật (sợi lông) cọ xát lâu ngày gây tổn thương. Đã gắp dị vật, rửa mắt bằng nước muối sinh lý và kê thuốc nhỏ mắt Tobradex đặc trị. Bắt buộc đeo loa chống liếm 24/7 để tránh nhiễm trùng thêm.",
+          "name": "Phieu-dieu-tri-nhan-khoa.pdf",
+          "size": "420 KB",
+          "fileUrl": "#"
+        },
+        {
+          "id": "record_s2",
+          "date": "10/07/2026",
+          "condition": "Gỡ lông rối & Điều trị nấm da (Microsporum)",
+          "doctor": "Nguyễn Thị C",
+          "notes": "Lông vùng bụng bị bết vón cục nặng tạo độ ẩm cao dẫn đến nhiễm nấm da. Đã cắt bỏ phần lông rối, vệ sinh vùng da tổn thương và bôi cồn đỏ sát trùng kết hợp kem Nizoral.",
+          "name": "Ket-qua-soi-nam-da.pdf",
+          "size": "610 KB",
+          "fileUrl": "#"
+        },
+        {
+          "id": "record_s3",
+          "date": "22/07/2026",
+          "condition": "Tiêm chủng định kỳ 4 bệnh cho mèo",
+          "doctor": "Trần Văn B",
+          "notes": "Tiêm chủng nhắc lại hàng năm phòng các bệnh nguy hiểm (Feline Calicivirus, Rhinotracheitis, Panleukopenia, Chlamydia). Thể trạng tốt.",
+          "name": "Chung-nhan-tiem-phong-mèo.pdf",
+          "size": "380 KB",
+          "fileUrl": "#"
+        }
+      ]
+    }
+  ]
+}

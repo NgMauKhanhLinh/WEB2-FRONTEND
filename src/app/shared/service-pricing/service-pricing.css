@@ -1,0 +1,230 @@
+:host {
+  display: contents;
+}
+
+.pricing-backdrop {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 32px 24px;
+  background: rgb(0 0 0 / 35%);
+}
+
+.pricing-dialog {
+  position: relative;
+  display: flex;
+  width: min(1280px, 100%);
+  max-height: calc(100vh - 64px);
+  flex-direction: column;
+  overflow: hidden;
+  padding: 36px 32px 28px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 20px 35px rgb(13 71 161 / 18%);
+}
+
+.pricing-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff9c4;
+  color: #0d47a1;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pricing-close:hover {
+  background: #fdd835;
+}
+
+.pricing-heading {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.pricing-heading h2 {
+  margin: 0;
+  color: #0d47a1;
+  font-size: clamp(28px, 5vw, 54px);
+  line-height: 1.15;
+}
+
+.pricing-heading h2 span {
+  color: #e5ad00;
+}
+
+.pricing-heading p {
+  margin: 8px 0 20px;
+  color: #526070;
+}
+
+.pricing-table-scroll {
+  min-height: 0;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 1080px;
+  border-collapse: separate;
+  border-spacing: 8px 10px;
+  table-layout: fixed;
+}
+
+thead th {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  padding: 8px 4px;
+  border: 1px solid #d7e3f3;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 13px;
+}
+
+thead th.primary,
+.price-pill.primary {
+  border-color: #0d47a1;
+  color: #0d47a1;
+}
+
+thead th.secondary,
+.price-pill.secondary {
+  border-color: #fbc02d;
+  color: #b17c00;
+}
+
+thead th.info,
+.price-pill.info {
+  border-color: #0288d1;
+  color: #0288d1;
+}
+
+.service-heading {
+  width: 240px;
+}
+
+.service-heading label {
+  display: block;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.service-heading select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+  background: #fff176;
+  color: #20262e;
+  font: inherit;
+}
+
+tbody th,
+tbody td {
+  padding: 8px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+tbody th {
+  min-width: 220px;
+  background: #f4f7fb;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+}
+
+tbody td {
+  background: #f8fafc;
+}
+
+.service-mark {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+  place-items: center;
+  border-radius: 9px;
+}
+
+.price-pill {
+  display: inline-flex;
+  min-width: 68px;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 13px;
+  background: #fff;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.price-pill.contact-price {
+  color: #0288d1;
+}
+
+.pricing-error,
+.pricing-loading {
+  margin: 0 0 8px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.pricing-error {
+  background: #fff4e5;
+  color: #8a4b08;
+}
+
+.pricing-loading {
+  background: #eef6ff;
+  color: #0d47a1;
+}
+
+.empty-pricing {
+  padding: 28px;
+  color: #667085;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .pricing-backdrop {
+    padding: 12px;
+  }
+
+  .pricing-dialog {
+    max-height: calc(100vh - 24px);
+    padding: 32px 14px 16px;
+    border-radius: 16px;
+  }
+
+  .pricing-close {
+    top: 8px;
+    right: 8px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .pricing-heading {
+    padding: 12px 25px 0;
+  }
+
+  .pricing-heading p {
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+
+  table {
+    border-spacing: 5px 8px;
+  }
+}

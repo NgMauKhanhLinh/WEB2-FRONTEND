@@ -1,0 +1,195 @@
+{
+  "MOCK_APPOINTMENTS": [
+    {
+      "id": "apt-001",
+      "code": "PET-20241024-001",
+      "status": "pending_payment",
+      "paymentMethod": "vnpay",
+      "paymentStatus": "unpaid",
+      "paymentExpiresAt": "2026-10-14T16:34:59.760Z",
+      "canCancel": false,
+      "canReschedule": false,
+      "canReview": false,
+      "canRebook": false,
+      "reviewed": false,
+      "freeChangeDaysLeft": 0,
+      "owner": {
+        "name": "Nguyễn Ngọc Quỳnh Như",
+        "phone": "0974 200 606",
+        "address": "Hiệp Bình Chánh"
+      },
+      "pet": {
+        "name": "Lu Lu",
+        "breed": "Poodle",
+        "age": "3 năm",
+        "gender": "Cái",
+        "weight": "5.2kg",
+        "image": "/assets/images/appointment/pet-lulu.png",
+        "healthBadge": "Dị ứng nhẹ",
+        "note": "Lu Lu hơi nhạy cảm với tiếng máy sấy."
+      },
+      "service": {
+        "id": "general-checkup",
+        "name": "General Checkup",
+        "description": "Khám sức khỏe tổng quát",
+        "date": "Oct 24, 2023",
+        "dateText": "24/10/2024",
+        "time": "10:00 AM",
+        "timeRange": "10:00 - 11:00",
+        "price": 350000
+      }
+    },
+    {
+      "id": "apt-002",
+      "code": "PET-20241012-0042",
+      "status": "confirmed",
+      "paymentMethod": "pay_at_clinic",
+      "paymentStatus": "unpaid",
+      "canCancel": true,
+      "canReschedule": true,
+      "canReview": false,
+      "canRebook": false,
+      "reviewed": false,
+      "freeChangeDaysLeft": 2,
+      "owner": {
+        "name": "Nguyễn Ngọc Quỳnh Như",
+        "phone": "0974 200 606",
+        "address": "Hiệp Bình Chánh"
+      },
+      "pet": {
+        "name": "Bốp",
+        "breed": "Beagle",
+        "age": "2 năm",
+        "gender": "Đực",
+        "weight": "4.5kg",
+        "image": "/assets/images/appointment/pet-bop.png",
+        "healthBadge": "Có bệnh nền",
+        "note": "Max hay cắn khi sấy tóc."
+      },
+      "service": {
+        "id": "grooming-spa",
+        "name": "Grooming & Spa",
+        "description": "Cắt tỉa lông tạo kiểu chuyên sâu",
+        "date": "Oct 26, 2023",
+        "dateText": "12/10/2024",
+        "time": "09:00 AM",
+        "timeRange": "13:30 - 14:30",
+        "price": 250000
+      }
+    },
+    {
+      "id": "apt-003",
+      "code": "PET-20241020-008",
+      "status": "completed",
+      "paymentMethod": "card",
+      "paymentStatus": "paid",
+      "canCancel": false,
+      "canReschedule": false,
+      "canReview": true,
+      "canRebook": true,
+      "reviewed": false,
+      "freeChangeDaysLeft": 0,
+      "owner": {
+        "name": "Nguyễn Ngọc Quỳnh Như",
+        "phone": "0974 200 606",
+        "address": "Hiệp Bình Chánh"
+      },
+      "pet": {
+        "name": "Kem",
+        "breed": "Maltese",
+        "age": "4 năm",
+        "gender": "Cái",
+        "weight": "3.8kg",
+        "image": "/assets/images/appointment/pet-kem.png",
+        "healthBadge": "",
+        "note": "Kem cần nghỉ 5 phút sau mỗi bước grooming."
+      },
+      "service": {
+        "id": "surgery-recovery",
+        "name": "Surgery Recovery",
+        "description": "Chăm sóc phục hồi sau phẫu thuật",
+        "date": "Oct 20, 2023",
+        "dateText": "20/10/2024",
+        "time": "11:00 AM",
+        "timeRange": "11:00 - 12:00",
+        "price": 1200000
+      }
+    },
+    {
+      "id": "apt-004",
+      "code": "PET-20241015-003",
+      "status": "cancelled",
+      "paymentMethod": "cash",
+      "paymentStatus": "unpaid",
+      "canCancel": false,
+      "canReschedule": false,
+      "canReview": false,
+      "canRebook": true,
+      "reviewed": false,
+      "freeChangeDaysLeft": 0,
+      "owner": {
+        "name": "Nguyễn Ngọc Quỳnh Như",
+        "phone": "0974 200 606",
+        "address": "Hiệp Bình Chánh"
+      },
+      "pet": {
+        "name": "Lucky",
+        "breed": "Poodle",
+        "age": "1 năm",
+        "gender": "Đực",
+        "weight": "4.1kg",
+        "image": "/assets/images/appointment/pet-lucky.png",
+        "healthBadge": "",
+        "note": ""
+      },
+      "service": {
+        "id": "dental-care",
+        "name": "Dental Care",
+        "description": "Cạo vôi răng và vệ sinh khoang miệng",
+        "date": "Oct 15, 2023",
+        "dateText": "15/10/2024",
+        "time": "03:00 PM",
+        "timeRange": "15:00 - 16:00",
+        "price": 450000
+      }
+    },
+    {
+      "id": "apt-005",
+      "code": "PET-20241025-009",
+      "status": "no_show",
+      "paymentMethod": "pay_at_clinic",
+      "paymentStatus": "unpaid",
+      "canCancel": false,
+      "canReschedule": false,
+      "canReview": false,
+      "canRebook": true,
+      "reviewed": false,
+      "freeChangeDaysLeft": 0,
+      "owner": {
+        "name": "Nguyễn Ngọc Quỳnh Như",
+        "phone": "0974 200 606",
+        "address": "Hiệp Bình Chánh"
+      },
+      "pet": {
+        "name": "Mimi",
+        "breed": "British Shorthair",
+        "age": "2 năm",
+        "gender": "Cái",
+        "weight": "4.7kg",
+        "image": "/assets/images/appointment/pet-mimi.png",
+        "healthBadge": "",
+        "note": ""
+      },
+      "service": {
+        "id": "vaccination",
+        "name": "Vaccination",
+        "description": "Tiêm phòng định kỳ",
+        "date": "Oct 25, 2023",
+        "dateText": "25/10/2024",
+        "time": "02:30 PM",
+        "timeRange": "14:30 - 15:00",
+        "price": 500000
+      }
+    }
+  ]
+}

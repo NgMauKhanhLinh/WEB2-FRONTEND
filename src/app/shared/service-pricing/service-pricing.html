@@ -1,0 +1,42 @@
+<div class="pricing-backdrop" *ngIf="open" (click)="close()" (keydown.escape)="close()">
+  <section class="pricing-dialog" role="dialog" aria-modal="true" aria-labelledby="pricing-title" (click)="$event.stopPropagation()">
+    <button type="button" class="pricing-close" aria-label="Đóng bảng giá" (click)="close()">×</button>
+    <header class="pricing-heading">
+      <h2 id="pricing-title">Bảng giá dịch vụ <span>Dr.Pet’s House</span></h2>
+      <p>Chi phí tham khảo theo cân nặng của thú cưng</p>
+    </header>
+
+    <p class="pricing-error" role="alert" *ngIf="errorMessage()">{{ errorMessage() }} Đang hiển thị bảng giá tham khảo.</p>
+    <p class="pricing-loading" role="status" *ngIf="isLoading()">Đang cập nhật bảng giá...</p>
+
+    <div class="pricing-table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th class="service-heading">
+              <label for="pricing-filter">Loại dịch vụ</label>
+              <select id="pricing-filter" [value]="selectedFilter()" (change)="selectFilter($any($event.target).value)">
+                <option *ngFor="let filter of filters" [value]="filter.value">{{ filter.label }}</option>
+              </select>
+            </th>
+            <th *ngFor="let column of columns()" [class]="column.tone">{{ column.label }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows()">
+            <th scope="row">
+              <span class="service-mark" [style.color]="row.iconColor" [style.background]="row.background" aria-hidden="true">✦</span>
+              {{ row.title }}
+            </th>
+            <td *ngFor="let price of row.prices; let index = index">
+              <span class="price-pill" [class.contact-price]="price === 'Liên hệ'" [class]="columns()[index].tone">{{ price }}</span>
+            </td>
+          </tr>
+          <tr *ngIf="!rows().length">
+            <td class="empty-pricing" colspan="10">Chưa có dữ liệu giá cho nhóm dịch vụ này.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

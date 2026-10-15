@@ -1,6 +1,6 @@
-# Web2
+# Dr. Pet's House (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.7.
+Angular 22 workspace for the Dr. Pet's House frontend. The current migration includes the shared site shell, a responsive home page, the existing API-backed login screen, and route coverage for Pet Clinic sections. Section-specific React pages and workflow behavior are still being migrated; routes without a dedicated Angular page use a shared content view.
 
 ## Development server
 

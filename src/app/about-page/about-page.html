@@ -1,0 +1,143 @@
+<main class="about-page">
+  <section class="about-hero">
+    <img class="hero-vector" [src]="figma('hero-vector-2.svg')" alt="" aria-hidden="true" />
+    <div class="hero-content">
+      <p class="hero-kicker">TRUNG TÂM CHĂM SÓC THÚ CƯNG</p>
+      <img class="hero-logo" src="/assets/images/home/hero-logo.png" alt="Dr. Pet's House" />
+      <p class="hero-copy">Một nơi mà thú cưng được thăm khám đúng nghĩa — với dịch vụ chăm sóc thú y, làm đẹp chuyên nghiệp, thế giới mua sắm đa dạng và rất nhiều tình yêu thương.</p>
+      <div class="hero-actions">
+        <a class="primary-button" routerLink="/dat-lich">ĐẶT LỊCH NGAY</a>
+        <a class="secondary-button" href="#services">DỊCH VỤ NỔI BẬT</a>
+      </div>
+      <img class="hero-pets" [src]="image('hero-pets.png')" alt="Các thú cưng tại Dr. Pet's House" />
+    </div>
+    <div class="stats">
+      <article><strong>5+</strong><span>NĂM KINH NGHIỆM</span></article>
+      <article><strong>24/7</strong><span>CẤP CỨU MỌI LÚC, HỖ TRỢ TẬN TÂM</span></article>
+      <article><strong>10k+</strong><span>KHÁCH HÀNG HÀI LÒNG</span></article>
+    </div>
+  </section>
+
+  <section class="commitment content-width">
+    <h2 class="section-title"><span>Cam kết</span> của chúng tôi</h2>
+    <div class="commitment-grid">
+      <div class="commitment-copy">
+        <h3>Đặt sức khỏe của<br />thú cưng lên đầu</h3>
+        <p>Trong hơn 5 năm, chúng tôi đã nỗ lực để mỗi lần các bé thú cưng thăm khám, khỏe mạnh hơn và nhận được nhiều yêu thương hơn. Bởi vì thú cưng không chỉ là người bạn, mà còn là gia đình.</p>
+        <p>Ở Dr. Pet's House chúng tôi có:</p>
+        <div class="benefit-grid">
+          <span *ngFor="let benefit of benefits"><i><img [src]="figma(benefit.icon)" alt="" /></i>{{ benefit.label }}</span>
+        </div>
+      </div>
+      <img class="commitment-photo" [src]="image('commitment.png')" alt="Bác sĩ tận tâm chăm sóc thú cưng" />
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="content-width">
+      <h2 class="section-title">Khám phá <span>không gian bên trong</span> nào!</h2>
+      <div class="gallery-card" [class.branch-gallery]="activeGallery.grid">
+        <div class="gallery-photos">
+          <div class="branch-grid" *ngIf="activeGallery.grid; else featuredGallery">
+            <button *ngFor="let src of activeGallery.images; let index = index" type="button" (click)="openPreview(index)" [attr.aria-label]="'Phóng to ảnh chi nhánh ' + (index + 1)">
+              <img [src]="src" [alt]="'Chi nhánh Dr. Pet số ' + (index + 1)" />
+            </button>
+          </div>
+          <ng-template #featuredGallery>
+            <button class="featured-photo" type="button" (click)="openPreview(0)" [attr.aria-label]="'Phóng to ' + activeGallery.title">
+              <img [src]="activeGallery.images[0]" [alt]="activeGallery.title" />
+            </button>
+            <div class="thumbnail-row">
+              <button *ngFor="let src of activeGallery.images.slice(1); let index = index" type="button" (click)="openPreview(index + 1)" [attr.aria-label]="'Phóng to ảnh ' + (index + 2) + ' của ' + activeGallery.title">
+                <img [src]="src" alt="" />
+              </button>
+            </div>
+          </ng-template>
+        </div>
+        <div class="gallery-description">
+          <div class="gallery-controls">
+            <button type="button" aria-label="Không gian trước" (click)="moveGallery(-1)">‹</button>
+            <button type="button" aria-label="Không gian tiếp theo" (click)="moveGallery(1)">›</button>
+          </div>
+          <h3>{{ activeGallery.title }}</h3>
+          <p *ngFor="let paragraph of activeGallery.paragraphs">{{ paragraph }}</p>
+          <a class="primary-button" routerLink="/lien-he#branches">DANH SÁCH CHI NHÁNH <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="journey content-width">
+    <h2 class="section-title">Hành trình <span>phát triển</span></h2>
+    <div class="milestone-grid">
+      <article *ngFor="let milestone of milestones">
+        <strong class="year">{{ milestone.year }}</strong>
+        <img class="connector" [src]="figma('journey-connector.png')" alt="" />
+        <img class="milestone-image" [src]="image(milestone.image)" [alt]="'Dr. Pet’s House năm ' + milestone.year" />
+        <p>{{ milestone.copy }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="services-section" id="services">
+    <img class="services-wave-top" [src]="figma('services-wave-top.png')" alt="" aria-hidden="true" />
+    <div class="content-width services-content">
+      <h2 class="section-title service-title"><span>Dịch vụ</span><br />chúng tôi cung cấp</h2>
+      <article class="service-row" *ngFor="let service of services; let index = index" [class.reverse]="index % 2 === 1">
+        <div class="service-photo" [class.photo-one]="index === 0" [class.photo-two]="index === 1" [class.photo-three]="index === 2">
+          <img [src]="image(service.image)" [alt]="service.title" />
+          <span class="doctor-badge" *ngIf="index === 0"><img [src]="figma('services-badge-icon.svg')" alt="" /><span><strong>Bác sĩ chuyên khoa</strong>Sẵn sàng 24/7</span></span>
+        </div>
+        <div class="service-copy">
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.copy }}</p>
+          <ul><li *ngFor="let point of service.points"><img [src]="figma('services-check-icon.svg')" alt="" />{{ point }}</li></ul>
+          <a class="primary-button" [routerLink]="service.href">TÌM HIỂU THÊM <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+    <img class="services-wave-bottom" [src]="figma('services-wave-bottom.png')" alt="" aria-hidden="true" />
+  </section>
+
+  <section class="doctors-section content-width">
+    <h2 class="section-title">Đội ngũ <span>bác sĩ thú y</span></h2>
+    <p class="doctors-intro">Đội ngũ bác sĩ tại Dr. Pet's House luôn đặt sức khỏe và sự an toàn của thú cưng lên hàng đầu. Với kiến thức chuyên môn cùng sự tận tình trong chăm sóc, chúng tôi mang đến trải nghiệm thăm khám đáng tin cậy cho mọi khách hàng.</p>
+    <a class="primary-button doctors-cta" routerLink="/dat-lich">ĐẶT LỊCH NGAY</a>
+    <div class="doctor-carousel">
+      <button class="doctor-arrow" type="button" aria-label="Bác sĩ trước" (click)="moveDoctorPage(-1)">‹</button>
+      <div class="doctor-grid">
+        <article *ngFor="let doctor of visibleDoctors">
+          <img [src]="figma(doctor.image)" [alt]="doctor.name" />
+          <div><h3>{{ doctor.name }}</h3><strong>{{ doctor.role }}</strong><p>{{ doctor.school }}</p></div>
+        </article>
+      </div>
+      <button class="doctor-arrow" type="button" aria-label="Bác sĩ tiếp theo" (click)="moveDoctorPage(1)">›</button>
+    </div>
+    <div class="doctor-dots" aria-label="Chọn nhóm bác sĩ">
+      <button *ngFor="let page of [0, 1]" type="button" [class.active]="doctorPage() === page" [attr.aria-label]="'Xem nhóm bác sĩ ' + (page + 1)" [attr.aria-current]="doctorPage() === page ? 'true' : null" (click)="doctorPage.set(page)"></button>
+    </div>
+  </section>
+
+  <section class="feedback-section">
+    <div class="content-width">
+      <h2 class="section-title">Khách hàng <span>nói gì về chúng tôi?</span></h2>
+      <div class="testimonial-grid">
+        <article *ngFor="let testimonial of testimonials">
+          <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
+          <p>“{{ testimonial.quote }}”</p>
+          <strong>{{ testimonial.name }}</strong>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="image-preview" *ngIf="previewImage" role="dialog" aria-modal="true" aria-label="Xem ảnh không gian" (click)="closePreview()">
+  <button class="preview-close" type="button" aria-label="Đóng ảnh" (click)="closePreview()">×</button>
+  <button class="preview-arrow previous" type="button" aria-label="Ảnh trước" (click)="$event.stopPropagation(); movePreview(-1)">‹</button>
+  <figure (click)="$event.stopPropagation()">
+    <img [src]="previewImage" [alt]="activeGallery.title + ' - ảnh ' + ((previewImageIndex() ?? 0) + 1)" />
+    <figcaption>{{ (previewImageIndex() ?? 0) + 1 }}/{{ activeGallery.images.length }}</figcaption>
+  </figure>
+  <button class="preview-arrow next" type="button" aria-label="Ảnh tiếp theo" (click)="$event.stopPropagation(); movePreview(1)">›</button>
+</div>

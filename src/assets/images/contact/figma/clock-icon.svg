@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Broken / Time / Clock Circle" clip-path="url(#clip0_0_412)">
+<path id="Vector" d="M6 4V6L7.25 7.25" stroke="var(--stroke-0, #3044FF)" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M3.5 1.66891C4.23543 1.24349 5.08928 1 6 1C8.76142 1 11 3.23858 11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6C1 5.08928 1.24349 4.23543 1.66891 3.5" stroke="var(--stroke-0, #3044FF)" stroke-linecap="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_412">
+<rect width="12" height="12" fill="white"/>
+</clipPath>
+</defs>
+</svg>

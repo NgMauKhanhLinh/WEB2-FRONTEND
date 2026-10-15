@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="pet">
+<path id="Vector" d="M3.85875 15.3542C3.64875 18.0033 5.55625 20.1667 8.09375 20.1667H12.285C15.1375 20.1667 17.0975 17.7558 16.625 14.8042C16.1263 11.7058 13.2737 9.16667 10.2725 9.16667C7.0175 9.16667 4.13 11.9533 3.85875 15.3542Z" stroke="var(--stroke-0, #00355F)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" opacity="0.34" d="M9.16125 6.875C10.3694 6.875 11.3488 5.84899 11.3488 4.58333C11.3488 3.31768 10.3694 2.29167 9.16125 2.29167C7.95313 2.29167 6.97375 3.31768 6.97375 4.58333C6.97375 5.84899 7.95313 6.875 9.16125 6.875Z" fill="var(--fill-0, #D9D9D9)" stroke="var(--stroke-0, #00355F)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" opacity="0.34" d="M15.1375 7.975C16.104 7.975 16.8875 7.15419 16.8875 6.14167C16.8875 5.12914 16.104 4.30833 15.1375 4.30833C14.171 4.30833 13.3875 5.12914 13.3875 6.14167C13.3875 7.15419 14.171 7.975 15.1375 7.975Z" fill="var(--fill-0, #D9D9D9)" stroke="var(--stroke-0, #00355F)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" opacity="0.34" d="M18.375 11.6417C19.0999 11.6417 19.6875 11.0261 19.6875 10.2667C19.6875 9.50727 19.0999 8.89167 18.375 8.89167C17.6501 8.89167 17.0625 9.50727 17.0625 10.2667C17.0625 11.0261 17.6501 11.6417 18.375 11.6417Z" fill="var(--fill-0, #D9D9D9)" stroke="var(--stroke-0, #00355F)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" opacity="0.34" d="M3.47375 9.80833C4.44025 9.80833 5.22375 8.98752 5.22375 7.975C5.22375 6.96248 4.44025 6.14167 3.47375 6.14167C2.50725 6.14167 1.72375 6.96248 1.72375 7.975C1.72375 8.98752 2.50725 9.80833 3.47375 9.80833Z" stroke="var(--stroke-0, #00355F)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_6" opacity="0" d="M20.5 0.5V21.5H0.5V0.5H20.5Z" stroke="var(--stroke-0, #00355F)"/>
+</g>
+</svg>

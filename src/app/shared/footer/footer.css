@@ -1,0 +1,393 @@
+:host {
+  display: block;
+}
+
+.site-footer {
+  --footer-background: #e5f6fd;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--footer-background);
+  color: #20262e;
+}
+
+.site-footer.footer-white {
+  --footer-background: #fff;
+}
+
+.footer-content {
+  display: grid;
+  width: min(1202px, calc(100% - 48px));
+  min-height: 490px;
+  grid-template-columns: minmax(220px, 1.75fr) minmax(145px, 0.9fr) minmax(155px, 0.9fr) minmax(190px, 1.15fr) minmax(190px, 1fr);
+  align-items: start;
+  gap: clamp(18px, 2.3vw, 42px);
+  margin: 0 auto;
+  padding: 86px 0 74px;
+}
+
+.footer-brand-block,
+.mobile-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-logo img {
+  display: block;
+  width: 202px;
+  height: 78px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.footer-brand-block h2,
+.mobile-brand-block h2 {
+  margin: 0;
+  color: #0d47a1;
+  font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.brand-description {
+  margin: 0;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.social-icon {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 5px;
+  background: #fff;
+  color: #475569;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.social-zalo {
+  font-size: 8px;
+}
+
+.social-icon svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.social-icon .social-dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+.footer-column h2 {
+  margin: 8px 0 14px;
+  color: #0d47a1;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.footer-column ul,
+.mobile-section ul {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-link {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  padding: 7px 0;
+  border: 0;
+  background: transparent;
+  color: rgb(0 0 0 / 87%);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: left;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.footer-link:hover,
+.footer-legal a:hover,
+.account-footer-content a:hover {
+  color: #0d47a1;
+}
+
+.general-column address {
+  margin-top: 8px;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.general-column address p {
+  margin: 12px 0;
+}
+
+.general-column address a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.general-column address a:hover {
+  color: #0d47a1;
+}
+
+.footer-legal,
+.account-footer-content {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 8px max(24px, calc((100% - 1373px) / 2));
+  background: #b3e5fc;
+  color: rgb(0 0 0 / 60%);
+  font-size: 12px;
+}
+
+.footer-legal p,
+.account-footer-content p {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.footer-legal nav,
+.account-footer-content nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-legal a,
+.account-footer-content a {
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mobile-sections {
+  display: none;
+}
+
+.footer-account {
+  min-height: 36px;
+  background: #b3e5fc;
+}
+
+.account-footer-content {
+  min-height: 36px;
+  justify-content: center;
+  padding-block: 6px;
+}
+
+.account-footer-content nav {
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .footer-content {
+    width: auto;
+    min-height: auto;
+    grid-template-columns: minmax(250px, 1.4fr) minmax(200px, 1fr);
+    gap: 36px 48px;
+    padding: 52px 32px 40px;
+  }
+
+  .footer-brand-block {
+    grid-column: 1;
+  }
+
+  .general-column {
+    grid-column: 1;
+  }
+
+  .support-column {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .footer-legal {
+    align-items: flex-start;
+    padding: 14px 32px;
+  }
+}
+
+@media (max-width: 680px) {
+  .footer-content {
+    display: none;
+  }
+
+  .mobile-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 20px 30px;
+  }
+
+  .mobile-section {
+    border-bottom: 1px solid #0d47a1;
+  }
+
+  .mobile-section-toggle {
+    display: flex;
+    width: 100%;
+    min-height: 38px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: #0d47a1;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .mobile-section-toggle span {
+    font-size: 20px;
+    transition: transform 150ms ease;
+  }
+
+  .mobile-section-toggle span.rotated {
+    transform: rotate(180deg);
+  }
+
+  .mobile-section ul {
+    gap: 0;
+    padding: 2px 14px 8px;
+  }
+
+  .mobile-section li {
+    min-height: 34px;
+    border-bottom: 1px solid #c7ddea;
+  }
+
+  .mobile-section li:last-child {
+    border-bottom: 0;
+  }
+
+  .mobile-section .footer-link {
+    min-height: 34px;
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .mobile-brand-block {
+    align-items: center;
+    gap: 8px;
+    padding: 26px 0 8px;
+    text-align: center;
+  }
+
+  .mobile-brand-block .footer-logo img {
+    width: 88px;
+    height: 40px;
+  }
+
+  .mobile-brand-block h2 {
+    font-size: 15px;
+    line-height: 1.25;
+  }
+
+  .brand-description {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .mobile-contact-social {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .mobile-contact-social .social-links {
+    gap: 10px;
+    margin: 0;
+  }
+
+  .mobile-contact-social .social-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 16px;
+  }
+
+  .phone-pill {
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 5px;
+    background: #fff176;
+    color: #20262e;
+    font-size: 11px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .footer-legal {
+    min-height: 24px;
+    justify-content: center;
+    padding: 4px 10px;
+  }
+
+  .footer-legal p {
+    overflow: hidden;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .footer-legal nav {
+    display: none;
+  }
+
+  .account-footer-content {
+    min-height: 36px;
+    justify-content: center;
+    padding-inline: 12px;
+    font-size: 11px;
+  }
+
+  .account-footer-content nav {
+    display: none;
+  }
+}

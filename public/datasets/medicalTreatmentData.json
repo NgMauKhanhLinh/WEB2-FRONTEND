@@ -1,0 +1,244 @@
+{
+  "medicalAssets": {
+    "heroBg": "/assets/images/medical/hero-bg.svg",
+    "heroMain": "/assets/images/medical/hero-main.png",
+    "heroPaw": "/assets/images/medical/hero-paw.png",
+    "servicesTitleShape": "/assets/images/medical/services-title-shape.png",
+    "servicesDecor": "/assets/images/medical/service-image-74.png",
+    "serviceCardMask": "/assets/images/medical/service-card-mask.png",
+    "ctaPrice": "/assets/images/medical/cta-price.png",
+    "ctaBook": "/assets/images/medical/cta-book.png",
+    "statsBg": "/assets/images/medical/stats-bg.svg",
+    "whyMain": "/assets/images/medical/why-main-australian-cattle-dog.jpg",
+    "whyPaw": "/assets/images/medical/why-paw.svg",
+    "whyGroupLeft": "/assets/images/medical/why-group-left.svg",
+    "whyGroupRight": "/assets/images/medical/why-group-right.svg",
+    "whyVector": "/assets/images/medical/why-vector.svg",
+    "whyVector1": "/assets/images/medical/why-vector-1.svg",
+    "whyVector2": "/assets/images/medical/why-vector-2.svg",
+    "whyVector3": "/assets/images/medical/why-vector-3.svg",
+    "whyVector4": "/assets/images/medical/why-vector-4.svg",
+    "whyImage88": "/assets/images/medical/why-image-88.png",
+    "doctorsBg": "/assets/images/medical/doctors-bg.svg",
+    "doctorsShape": "/assets/images/medical/doctors-shape.png",
+    "doctorsUnderline": "/assets/images/medical/doctors-underline.svg",
+    "faqMain": "/assets/images/medical/faq-main.png",
+    "faqTopLeft": "/assets/images/medical/faq-top-left.png",
+    "faqTopRight": "/assets/images/medical/faq-top-right.png",
+    "faqIcon": "/assets/images/medical/faq-icon.png",
+    "faqOrnament": "/assets/images/medical/faq-ornament.svg"
+  },
+  "medicalDoctorPages": [
+    [
+      {
+        "name": "Bs. Trần Văn Nhân",
+        "role": "Kinh nghiệm 20 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-01.png"
+      },
+      {
+        "name": "Bs. Võ Công Nam",
+        "role": "Kinh nghiệm 14 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-02.png"
+      },
+      {
+        "name": "Bs. Nguyễn Thu Hồng",
+        "role": "Kinh nghiệm 5 năm",
+        "school": "Tốt nghiệp Trường Đại học Công Nghệ TPHCM",
+        "image": "/assets/images/medical/doctor-03.png"
+      },
+      {
+        "name": "Bs. Trần Phương Trâm",
+        "role": "Kinh nghiệm 7 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-04.png"
+      }
+    ],
+    [
+      {
+        "name": "Bs. Nguyễn Quang Huy",
+        "role": "Kinh nghiệm 14 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-05.png"
+      },
+      {
+        "name": "Bs. Hoàng Khánh Yên",
+        "role": "Kinh nghiệm 7 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-06.png"
+      },
+      {
+        "name": "Bs. Nguyễn Thanh Ngân",
+        "role": "Kinh nghiệm 5 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-07.png"
+      },
+      {
+        "name": "Bs. Trần Song Thư",
+        "role": "Kinh nghiệm 7 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-08.png"
+      }
+    ],
+    [
+      {
+        "name": "Bs. Đỗ Nhất Tâm",
+        "role": "Kinh nghiệm 7 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-09.png"
+      },
+      {
+        "name": "Bs. Huỳnh Gia Khánh",
+        "role": "Kinh nghiệm 7 năm",
+        "school": "Tốt nghiệp Trường đại học Công Nghệ TPHCM",
+        "image": "/assets/images/medical/doctor-10.png"
+      },
+      {
+        "name": "Bs. Nguyễn Phương Nhi",
+        "role": "Kinh nghiệm 5 năm",
+        "school": "Tốt nghiệp Trường đại học Công Nghệ TPHCM",
+        "image": "/assets/images/medical/doctor-11.png"
+      },
+      {
+        "name": "Bs. Nguyễn Minh Anh",
+        "role": "Kinh nghiệm 10 năm",
+        "school": "Tốt nghiệp Trường Đại Học Nông Lâm, ĐHQG TPHCM",
+        "image": "/assets/images/medical/doctor-12.png"
+      }
+    ]
+  ],
+  "medicalFaqs": [
+    {
+      "id": 1,
+      "question": "Bao lâu nên khám tổng quát cho chó mèo một lần?",
+      "answer": "1–2 lần/năm với thú cưng trưởng thành, thường xuyên hơn với thú cưng già hoặc có bệnh nền."
+    },
+    {
+      "id": 2,
+      "question": "Khám tổng quát có bao gồm tiêm phòng không?",
+      "answer": "Tiêm phòng là dịch vụ riêng. Bác sĩ sẽ kiểm tra sức khỏe và tư vấn lịch tiêm phù hợp cho từng bé."
+    },
+    {
+      "id": 3,
+      "question": "Khám tổng quát có phát hiện bệnh tiềm ẩn không?",
+      "answer": "Có. Khám lâm sàng kết hợp xét nghiệm và chẩn đoán hình ảnh giúp phát hiện sớm nhiều bệnh lý tiềm ẩn."
+    },
+    {
+      "id": 4,
+      "question": "Bao lâu thì cần tiêm phòng và tẩy giun một lần?",
+      "answer": "Lịch tiêm và tẩy giun phụ thuộc độ tuổi, cân nặng và tiền sử sức khỏe. Bác sĩ sẽ lập lịch riêng cho thú cưng."
+    },
+    {
+      "id": 5,
+      "question": "Khi nào nên triệt sản cho chó mèo là tốt nhất?",
+      "answer": "Thời điểm phù hợp thường từ 6 tháng tuổi, nhưng cần được bác sĩ đánh giá thể trạng trước khi thực hiện."
+    }
+  ],
+  "medicalServices": [
+    {
+      "title": "Khám & Điều trị",
+      "price": "Từ 30.000 đ",
+      "description": "Chẩn đoán và điều trị hệ hô hấp, hệ tiêu hóa, hệ tuần hoàn, lông da, mắt và tai.",
+      "image": "/assets/images/medical/service-treatment.png"
+    },
+    {
+      "title": "Xét nghiệm",
+      "price": "Từ 50.000 đ",
+      "description": "Xét nghiệm máu, virus, nước tiểu, da, kháng sinh,...",
+      "image": "/assets/images/medical/service-test.png"
+    },
+    {
+      "title": "Siêu âm",
+      "price": "Từ 100.000 đ",
+      "description": "Các phương pháp chẩn đoán hình ảnh hoặc làm xét nghiệm: Siêu âm, X-Quang.",
+      "image": "/assets/images/medical/service-ultrasound.png"
+    },
+    {
+      "title": "Tiêm phòng",
+      "price": "Từ 100.000 đ",
+      "description": "Thú cưng cần được tiêm phòng và tái chủng định kì theo hướng dẫn của bác sĩ.",
+      "image": "/assets/images/medical/service-vaccine.png"
+    },
+    {
+      "title": "Phẫu thuật",
+      "price": "Từ 200.000 đ",
+      "description": "Theo yêu cầu hoặc điều trị: triệt sản, cắt đuôi và nối xương, sỏi niệu, mổ bướu...",
+      "image": "/assets/images/medical/service-surgery.png"
+    },
+    {
+      "title": "Cấp cứu 24/7",
+      "price": "Từ 150.000 đ",
+      "description": "Dịch vụ cấp cứu 24/7, kể cả ngày lễ. Cả 2 hình thức: tại cửa hàng và tại nhà.",
+      "image": "/assets/images/medical/service-emergency.png"
+    }
+  ],
+  "medicalStats": [
+    [
+      "5+",
+      "Năm kinh nghiệm"
+    ],
+    [
+      "10.000+",
+      "Ca khám và những bé thú cưng khỏe mạnh"
+    ],
+    [
+      "15+",
+      "Y bác sĩ giàu kinh nghiệm"
+    ],
+    [
+      "98%",
+      "Khách hàng hài lòng"
+    ]
+  ],
+  "medicalWhyItems": [
+    {
+      "title": "Cấp cứu 24/7",
+      "description": "Sẵn sàng tiếp nhận và xử lý các ca cấp cứu bất cứ lúc nào",
+      "icon": "/assets/images/medical/why-icon-emergency.svg",
+      "tone": "blue"
+    },
+    {
+      "title": "Bác sĩ chuyên môn cao",
+      "description": "Đội ngũ bác sĩ được đào tạo bài bản, giàu kinh nghiệm",
+      "icon": "/assets/images/medical/why-icon-doctor.svg",
+      "tone": "green"
+    },
+    {
+      "title": "Chăm sóc tận tâm",
+      "description": "Đội ngũ tận tâm đảm bảo mỗi thú cưng đều nhận được tình yêu thương và sự quan tâm xứng đáng",
+      "icon": "/assets/images/medical/why-icon-care.svg",
+      "tone": "red"
+    },
+    {
+      "title": "Trang thiết bị hiện đại",
+      "description": "Máy siêu âm, X-quang, xét nghiệm máu tiên tiến nhất",
+      "icon": "/assets/images/medical/why-icon-modern.png",
+      "tone": "purple"
+    },
+    {
+      "title": "Chi phí minh bạch",
+      "description": "Sẵn sàng tiếp nhận và xử lý các ca cấp cứu bất cứ lúc nào",
+      "icon": "/assets/images/medical/why-icon-cost.png",
+      "tone": "blue"
+    },
+    {
+      "title": "Dịch vụ đa dạng, toàn diện",
+      "description": "Cung cấp giải pháp chăm sóc sức khỏe trọn gói từ tiêm phòng, triệt sản, điều trị bệnh lý đến phẫu thuật ngoại khoa",
+      "icon": "/assets/images/medical/why-icon-service.png",
+      "tone": "green"
+    },
+    {
+      "title": "Quy trình chuẩn, an toàn tuyệt đối",
+      "description": "Tuân thủ nghiêm ngặt quy trình vệ sinh, khử khuẩn, hạn chế tối đa tình trạng lây nhiễm chéo giữa các thú cưng",
+      "icon": "/assets/images/medical/why-icon-safe.png",
+      "tone": "red"
+    },
+    {
+      "title": "Hồ sơ bệnh án điện tử",
+      "description": "Toàn bộ lịch sử tiêm phòng, kết quả xét nghiệm, đơn thuốc của bé được lưu trữ trực tuyến",
+      "icon": "/assets/images/medical/why-icon-record.png",
+      "tone": "purple"
+    }
+  ]
+}
