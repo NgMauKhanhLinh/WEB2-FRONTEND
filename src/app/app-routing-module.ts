@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'cua-hang', loadComponent: petClinicPage, data: { title: 'Cửa hàng thú cưng', summary: 'Sản phẩm chất lượng được lựa chọn dành riêng cho thú cưng.' } },
   { path: 'products', redirectTo: 'san-pham' },
   { path: 'san-pham', loadComponent: petClinicPage, data: { title: 'Sản phẩm cho thú cưng', summary: 'Khám phá thức ăn, phụ kiện và sản phẩm chăm sóc.' } },
-  { path: 'product-details/:productId/write-review', loadComponent: petClinicPage, data: { title: 'Viết đánh giá', summary: 'Chia sẻ trải nghiệm của bạn về sản phẩm.' } },
+  { path: 'product-details/:productId/write-review', loadComponent: petClinicPage, data: { title: 'Viết đánh giá', summary: 'Chia sẻ trải nghiệm của bạn về sản phẩm.' }, canActivate: [authGuard] },
   { path: 'product-details/:productId', loadComponent: petClinicPage, data: { title: 'Chi tiết sản phẩm', summary: 'Thông tin sản phẩm và hướng dẫn lựa chọn.' } },
   { path: 'product-details', redirectTo: 'san-pham' },
   { path: 'cart', loadComponent: petClinicPage, data: { title: 'Giỏ hàng', summary: 'Kiểm tra các sản phẩm bạn đã chọn.' } },
