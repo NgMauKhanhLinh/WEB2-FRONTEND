@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthModalComponent } from './auth-modal/auth-modal';
+import { authGuard } from './guards/auth.guard';
 
 const petClinicPage = () => import('./pet-clinic-page/pet-clinic-page').then((module) => module.PetClinicPageComponent);
 const petManagementPage = () => import('./pet-management/pet-management').then((module) => module.PetManagementComponent);
@@ -48,14 +49,14 @@ const routes: Routes = [
   { path: 'dich-vu/kham-dieu-tri', loadComponent: petClinicPage, data: { title: 'Khám và điều trị', summary: 'Chăm sóc sức khỏe thú cưng cùng đội ngũ bác sĩ tận tâm.' } },
   { path: 'dich-vu', redirectTo: 'dich-vu/kham-dieu-tri' },
   { path: 'checkout', loadComponent: petClinicPage, data: { title: 'Thanh toán', summary: 'Hoàn tất đơn hàng của bạn.' } },
-  { path: 'thong-tin-nguoi-dung', loadComponent: () => import('./user-profile/user-profile').then((module) => module.UserProfileComponent) },
-  { path: 'thu-cung-cua-toi/them-moi', loadComponent: petManagementPage },
-  { path: 'thu-cung-cua-toi/:id/chinh-sua', loadComponent: petManagementPage },
-  { path: 'thu-cung-cua-toi/:id', loadComponent: petManagementPage },
-  { path: 'thu-cung-cua-toi', loadComponent: petManagementPage },
-  { path: 'lich-su-dat-lich', loadComponent: petClinicPage, data: { title: 'Lịch sử đặt lịch', summary: 'Theo dõi lịch hẹn chăm sóc thú cưng.' } },
-  { path: 'don-hang-cua-toi/:orderId', loadComponent: petClinicPage, data: { title: 'Chi tiết đơn hàng', summary: 'Thông tin và trạng thái đơn hàng.' } },
-  { path: 'don-hang-cua-toi', loadComponent: petClinicPage, data: { title: 'Đơn hàng của tôi', summary: 'Theo dõi các đơn hàng của bạn.' } },
+  { path: 'thong-tin-nguoi-dung', loadComponent: () => import('./user-profile/user-profile').then((module) => module.UserProfileComponent) , canActivate: [authGuard] },
+  { path: 'thu-cung-cua-toi/them-moi', loadComponent: petManagementPage , canActivate: [authGuard] },
+  { path: 'thu-cung-cua-toi/:id/chinh-sua', loadComponent: petManagementPage , canActivate: [authGuard] },
+  { path: 'thu-cung-cua-toi/:id', loadComponent: petManagementPage , canActivate: [authGuard] },
+  { path: 'thu-cung-cua-toi', loadComponent: petManagementPage , canActivate: [authGuard] },
+  { path: 'lich-su-dat-lich', loadComponent: petClinicPage, data: { title: 'Lịch sử đặt lịch', summary: 'Theo dõi lịch hẹn chăm sóc thú cưng.' , canActivate: [authGuard] } },
+  { path: 'don-hang-cua-toi/:orderId', loadComponent: petClinicPage, data: { title: 'Chi tiết đơn hàng', summary: 'Thông tin và trạng thái đơn hàng.' , canActivate: [authGuard] } },
+  { path: 'don-hang-cua-toi', loadComponent: petClinicPage, data: { title: 'Đơn hàng của tôi', summary: 'Theo dõi các đơn hàng của bạn.' , canActivate: [authGuard] } },
   { path: '**', loadComponent: petClinicPage, data: { title: 'Không tìm thấy trang', summary: 'Đường dẫn này không tồn tại hoặc đã được thay đổi.' } },
 ];
 
