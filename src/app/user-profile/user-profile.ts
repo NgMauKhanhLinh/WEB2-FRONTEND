@@ -284,7 +284,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   private persistProfile(profile: UserProfileRecord): void {
     this.profile = { ...profile };
-    localStorage.setItem(this.profileStorageKey(this.profile.userId), JSON.stringify(this.profile));
+    if (this.profile.userId) {
+      localStorage.setItem(this.profileStorageKey(this.profile.userId), JSON.stringify(this.profile));
+    }
     this.auth.updateCurrentUser({
       fullName: this.profile.fullName,
       email: this.profile.email,
@@ -301,7 +303,15 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private loadStored<T>(key: string, fallback: T): T {
     try {
       const stored = localStorage.getItem(key);
-      return stored ? { ...fallback as object, ...JSON.parse(stored) } as T : structuredClone(fallback);
+      if (!stored) return structuredClone(fallback);
+      const parsed = JSON.parse(stored) as T;
+      if (Array.isArray(fallback)) {
+        return (Array.isArray(parsed) ? parsed : structuredClone(fallback)) as T;
+      }
+      if (fallback && typeof fallback === 'object' && parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        return { ...fallback as object, ...parsed as object } as T;
+      }
+      return parsed;
     } catch {
       return structuredClone(fallback);
     }
