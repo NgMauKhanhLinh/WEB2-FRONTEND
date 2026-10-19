@@ -1,8 +1,7 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, delay, map, of, tap, throwError } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
 
-// Định nghĩa kiểu dữ liệu User trả về từ Backend
 export interface User {
   id: string;
   fullName: string;
@@ -11,7 +10,6 @@ export interface User {
   systemRole: 'ADMIN' | 'USER';
 }
 
-// Định nghĩa dữ liệu trả về từ API Login thành công
 export interface LoginResponse {
   access_token: string;
   user: User;
@@ -34,154 +32,89 @@ interface OtpVerificationResponse {
   reset_token?: string;
 }
 
+interface StoredSession {
+  authenticated: boolean;
+  createdAt: number;
+  expiresAt: number | null;
+  remember: boolean;
+}
+
 const AUTH_SESSION_KEY = 'drPetAuthSession';
 const REMEMBER_LOGIN_MS = 30 * 24 * 60 * 60 * 1000;
 
-@Injectable({
-  providedIn: 'root' // Service này có thể inject ở bất cứ đâu trong dự án
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  // Base URL khớp với cấu hình chạy trên cùng máy (Localhost) của backend
   private readonly baseUrl = 'http://localhost:8080/api/v1';
-
-  // Quản lý trạng thái đăng nhập toàn cục bằng Angular Signal (Thay thế cho useAuth Context của React)
   private readonly currentUserSignal = signal<User | null>(null);
   private readonly tokenSignal = signal<string | null>(null);
 
-  // Expose các giá trị ra ngoài dưới dạng Read-Only Signals để các Component lắng nghe giao diện công khai
-  currentUser = computed(() => this.currentUserSignal());
-  isAuthenticated = computed(() => !!this.currentUserSignal());
+  readonly currentUser = computed(() => this.currentUserSignal());
+  readonly isAuthenticated = computed(() => Boolean(this.currentUserSignal()));
 
   constructor(private readonly http: HttpClient) {
-    // Tự động kiểm tra lại trạng thái đăng nhập từ LocalStorage khi khởi tạo ứng dụng
-    this.autoLogin();
+    this.restoreSession();
   }
 
-  /**
-   * Hàm gọi API Đăng nhập (POST /api/v1/auth/login)
-   * @param credentials chứa identifier (SĐT/Email) và password
-   */
-  login(credentials: { identifier: string; password: string; remember?: boolean }): Observable<LoginResponse> {
-    const url = `${this.baseUrl}/auth/login`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  loginPetClinic(credentials: { loginId: string; password: string; remember?: boolean }): Observable<LoginResponse> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': '69420',
+    });
 
-    return this.http.post<LoginResponse>(url, credentials, { headers }).pipe(
-      map((response) => this.unwrapResponse(response)),
-      tap((response) => {
-        // Cập nhật trạng thái local state nội bộ thông qua Signal
-        this.tokenSignal.set(response.access_token);
-        this.currentUserSignal.set(response.user);
-
-        // Lưu thông tin đăng nhập nếu người dùng chọn "Ghi nhớ đăng nhập" (Remember me)
-        if (credentials.remember) {
-          localStorage.setItem('accessToken', response.access_token);
-          localStorage.setItem('userData', JSON.stringify(response.user));
-        }
-      }),
-      catchError((error) => {
-        // Xử lý và ném lỗi từ Backend (ví dụ: Sai mật khẩu, Tài khoản không tồn tại) về cho Component hứng
-        const errorMessage = error?.error?.EM || error?.error?.message || error?.message || 'Đăng nhập thất bại. Vui lòng thử lại!';
-        return throwError(() => new Error(errorMessage));
-      })
-    );
-  }
-
-  // loginPetClinic(credentials: { loginId: string; password: string; remember?: boolean }): Observable<LoginResponse> {
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-  //   return this.http.post<LoginResponse | ApiResponse<LoginResponse>>(`${this.baseUrl}/login`, {
-  //     login_id: credentials.loginId,
-  //     password: credentials.password,
-  //     remember_me: credentials.remember ?? false,
-  //   }, { headers }).pipe(
-  //     map((response) => {
-  //       const unwrapped = this.unwrapResponse(response);
-  //       return { ...unwrapped, user: this.normalizeUser(unwrapped.user) };
-  //     }),
-  //     tap((response) => {
-  //       this.persistPetClinicLogin(response, Boolean(credentials.remember));
-  //     }),
-  //     catchError((error) => {
-  //       const errorMessage = error?.error?.EM || error?.error?.message || error?.message || 'Đăng nhập thất bại. Vui lòng thử lại!';
-  //       return throwError(() => new Error(errorMessage));
-  //     })
-  //   );
-  // }
-    loginPetClinic(credentials: { loginId: string; password: string; remember?: boolean }): Observable<LoginResponse> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    
-    // ================= BẮT ĐẦU ĐOẠN MOCK TÀI KHOẢN ADMIN ĐỂ KIỂM THỬ =================
-    const inputId = String(credentials.loginId ?? '').trim();
-    const inputPassword = String(credentials.password ?? '');
-
-    // Nếu nhập đúng tài khoản kiểm thử này, hệ thống tự động xử lý offline
-    if (inputId === 'admin@test.com' && inputPassword === 'admin123') {
-      
-      // 1. Tạo dữ liệu Admin giả lập khớp cấu trúc Interface hệ thống yêu cầu
-      const mockAdminResponse: LoginResponse = {
-        access_token: 'mock-jwt-token-petclinic-admin-2026',
-        user: {
-          id: 'admin-uuid-1111-2222',
-          fullName: 'Quản trị viên Hệ thống',
-          email: 'admin@test.com',
-          phone: '0987654321',
-          systemRole: 'ADMIN' // Gắn quyền ADMIN cho giao diện kiểm tra
-        }
-      };
-
-      // 2. Kích hoạt lưu trữ Session & Signals y hệt luồng đăng nhập thật thành công
-      this.persistPetClinicLogin(mockAdminResponse, Boolean(credentials.remember));
-
-      // 3. Trả về Observable thành công kèm độ trễ mạng giả lập 300ms (Không gọi API thật nữa)
-      return of(mockAdminResponse).pipe(delay(300));
-    }
-    // ================= END MOCK CODE ===============================================
-
-    // Giữ nguyên luồng gọi HTTP thật phía dưới dành cho các tài khoản khác khi nối API backend sau này
-    return this.http.post<LoginResponse | ApiResponse<LoginResponse>>(`${this.baseUrl}/login`, {
-      login_id: credentials.loginId,
-      password: credentials.password,
-      remember_me: credentials.remember ?? false,
-    }, { headers }).pipe(
+    return this.http.post<LoginResponse | ApiResponse<LoginResponse>>(
+      `${this.baseUrl}/login`,
+      {
+        login_id: credentials.loginId.trim(),
+        password: credentials.password,
+        remember_me: Boolean(credentials.remember),
+      },
+      { headers, withCredentials: true },
+    ).pipe(
       map((response) => {
-        const unwrapped = this.unwrapResponse(response);
-        return { ...unwrapped, user: this.normalizeUser(unwrapped.user) };
+        const result = this.unwrapResponse(response);
+        if (!result?.access_token || !result?.user) {
+          throw new Error('Máy chủ không trả về token hoặc thông tin người dùng hợp lệ.');
+        }
+        return { ...result, user: this.normalizeUser(result.user) };
       }),
-      tap((response) => {
-        this.persistPetClinicLogin(response, Boolean(credentials.remember));
-      }),
-      catchError((error) => {
-        const errorMessage = error?.error?.EM || error?.error?.message || error?.message || 'Đăng nhập thất bại. Vui lòng thử lại!';
-        return throwError(() => new Error(errorMessage));
-      })
+      tap((response) => this.persistSession(response, Boolean(credentials.remember))),
+      catchError((error) => throwError(() => this.toAuthError(error, 'Đăng nhập thất bại. Vui lòng thử lại.'))),
     );
   }
 
+  /** Compatibility wrapper for components using the older login method. */
+  login(credentials: { identifier: string; password: string; remember?: boolean }): Observable<LoginResponse> {
+    return this.loginPetClinic({
+      loginId: credentials.identifier,
+      password: credentials.password,
+      remember: credentials.remember,
+    });
+  }
 
   register(data: RegisterRequest): Observable<unknown> {
     return this.postAuthRequest('/register', {
-      full_name: data.fullName,
-      phone: data.phone || undefined,
-      email: data.email || undefined,
+      full_name: data.fullName.trim(),
+      phone: data.phone.trim() || undefined,
+      email: data.email.trim() || undefined,
       password: data.password,
     });
   }
 
   verifyRegisterOtp(data: { loginId: string; otpCode: string }): Observable<unknown> {
     return this.postAuthRequest('/verify-register-otp', {
-      login_id: data.loginId,
-      otp_code: data.otpCode,
+      login_id: data.loginId.trim(),
+      otp_code: data.otpCode.trim(),
     });
   }
 
   forgotPassword(email: string): Observable<unknown> {
-    return this.postAuthRequest('/forgot-password', { email });
+    return this.postAuthRequest('/forgot-password', { email: email.trim() });
   }
 
   verifyForgotOtp(data: { email: string; otpCode: string }): Observable<OtpVerificationResponse> {
     return this.postAuthRequest<OtpVerificationResponse>('/verify-otp', {
-      email: data.email,
-      otp_code: data.otpCode,
+      email: data.email.trim(),
+      otp_code: data.otpCode.trim(),
     });
   }
 
@@ -199,125 +132,159 @@ export class AuthService {
     });
   }
 
-  updateCurrentUser(updates: Partial<User>): void {
-    const currentUser = this.currentUserSignal();
-    if (!currentUser) return;
-    const updatedUser = { ...currentUser, ...updates };
-    this.currentUserSignal.set(updatedUser);
-    const storage = localStorage.getItem('accessToken') ? localStorage : sessionStorage;
-    if (storage.getItem('accessToken')) {
-      storage.setItem('userData', JSON.stringify(updatedUser));
-    }
-  }
-
-  /**
-   * Hàm Đăng xuất - Xóa sạch trạng thái và bộ nhớ cache trình duyệt
-   */
+  /** Clears client-side credentials. The caller may separately invoke the backend logout endpoint. */
   logout(): void {
-    this.tokenSignal.set(null);
-    this.currentUserSignal.set(null);
-    for (const storage of [localStorage, sessionStorage]) {
-      storage.removeItem(AUTH_SESSION_KEY);
-      storage.removeItem('accessToken');
-      storage.removeItem('userData');
-      storage.removeItem('isAuthenticated');
-    }
+    this.clearSession();
   }
 
-  /**
-   * Hàm tự động khôi phục phiên đăng nhập khi F5 lại trang web
-   */
-  private autoLogin(): void {
-    for (const storage of [localStorage, sessionStorage]) {
-      const savedSession = storage.getItem(AUTH_SESSION_KEY);
-      const savedToken = storage.getItem('accessToken');
-      const savedUser = storage.getItem('userData');
-
-      if (savedSession) {
-        const session = JSON.parse(savedSession) as { authenticated?: boolean; expiresAt?: number | null };
-        if (!session.authenticated || (session.expiresAt && session.expiresAt <= Date.now())) {
-          storage.removeItem(AUTH_SESSION_KEY);
-          storage.removeItem('accessToken');
-          storage.removeItem('userData');
-          continue;
-        }
-      }
-
-      if (savedToken && savedUser) {
-        this.tokenSignal.set(savedToken);
-        this.currentUserSignal.set(this.normalizeUser(JSON.parse(savedUser)));
-        return;
-      }
-    }
+  logoutRemote(): Observable<unknown> {
+    return this.postAuthRequest('/logout', {}).pipe(
+      catchError((error) => {
+        // Local logout must still be possible when the server is unreachable.
+        return throwError(() => this.toAuthError(error, 'Không thể kết nối máy chủ để đăng xuất.'));
+      }),
+    );
   }
 
-  /**
-   * Hàm lấy Token hiện tại phục vụ cho việc đính kèm vào các API cần quyền bảo mật (Interceptor)
-   */
+  updateCurrentUser(updates: Partial<User>): void {
+    const current = this.currentUserSignal();
+    if (!current) return;
+    const updated = { ...current, ...updates };
+    this.currentUserSignal.set(updated);
+    const storage = this.getActiveStorage();
+    if (storage.getItem('accessToken')) storage.setItem('userData', JSON.stringify(updated));
+  }
+
   getAccessToken(): string | null {
-    return this.tokenSignal() || localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+    return this.tokenSignal() || this.safeStorageGet(localStorage, 'accessToken') || this.safeStorageGet(sessionStorage, 'accessToken');
   }
 
-  private persistPetClinicLogin(response: LoginResponse, remember: boolean): void {
-    this.tokenSignal.set(response.access_token);
-    this.currentUserSignal.set(response.user);
-
+  private persistSession(response: LoginResponse, remember: boolean): void {
+    this.clearSession();
     const storage = remember ? localStorage : sessionStorage;
-    for (const candidate of [localStorage, sessionStorage]) {
-      candidate.removeItem(AUTH_SESSION_KEY);
-      candidate.removeItem('accessToken');
-      candidate.removeItem('userData');
-      candidate.removeItem('isAuthenticated');
-    }
-
-    storage.setItem(AUTH_SESSION_KEY, JSON.stringify({
+    const session: StoredSession = {
       authenticated: true,
       createdAt: Date.now(),
       expiresAt: remember ? Date.now() + REMEMBER_LOGIN_MS : null,
       remember,
-    }));
+    };
+    storage.setItem(AUTH_SESSION_KEY, JSON.stringify(session));
     storage.setItem('accessToken', response.access_token);
     storage.setItem('userData', JSON.stringify(response.user));
+    this.tokenSignal.set(response.access_token);
+    this.currentUserSignal.set(response.user);
+  }
+
+  private restoreSession(): void {
+    for (const storage of [localStorage, sessionStorage]) {
+      const token = this.safeStorageGet(storage, 'accessToken');
+      const userData = this.safeStorageGet(storage, 'userData');
+      const rawSession = this.safeStorageGet(storage, AUTH_SESSION_KEY);
+      if (!token || !userData) {
+        if (rawSession) this.removeSessionFrom(storage);
+        continue;
+      }
+      try {
+        const session = rawSession ? JSON.parse(rawSession) as StoredSession : null;
+        if (session && (!session.authenticated || (session.expiresAt !== null && session.expiresAt <= Date.now()))) {
+          this.removeSessionFrom(storage);
+          continue;
+        }
+        const user = this.normalizeUser(JSON.parse(userData));
+        if (!user.id && !user.email && !user.phone) {
+          this.removeSessionFrom(storage);
+          continue;
+        }
+        this.tokenSignal.set(token);
+        this.currentUserSignal.set(user);
+        return;
+      } catch {
+        this.removeSessionFrom(storage);
+      }
+    }
+  }
+
+  private clearSession(): void {
+    this.removeSessionFrom(localStorage);
+    this.removeSessionFrom(sessionStorage);
+    this.tokenSignal.set(null);
+    this.currentUserSignal.set(null);
+  }
+
+  private removeSessionFrom(storage: Storage): void {
+    storage.removeItem(AUTH_SESSION_KEY);
+    storage.removeItem('accessToken');
+    storage.removeItem('access_token');
+    storage.removeItem('userData');
+    storage.removeItem('isAuthenticated');
+  }
+
+  private getActiveStorage(): Storage {
+    return localStorage.getItem('accessToken') ? localStorage : sessionStorage;
+  }
+
+  private safeStorageGet(storage: Storage, key: string): string | null {
+    try { return storage.getItem(key); } catch { return null; }
+  }
+
+  refreshAccessToken(): Observable<string> {
+    return this.http.post<LoginResponse | ApiResponse<LoginResponse> | { access_token?: string; DT?: { access_token?: string } }>(
+      `${this.baseUrl}/refresh`,
+      {},
+      { withCredentials: true },
+    ).pipe(
+      map((response: any) => {
+        const payload = response && typeof response === 'object' && 'DT' in response ? response.DT : response;
+        const token = payload?.access_token;
+        if (!token) throw new Error('Không thể làm mới phiên đăng nhập.');
+        return String(token);
+      }),
+      tap((token) => {
+        this.tokenSignal.set(token);
+        const storage = this.getActiveStorage();
+        storage.setItem('accessToken', token);
+      }),
+      catchError((error) => throwError(() => this.toAuthError(error, 'Phiên đăng nhập đã hết hạn.'))),
+    );
   }
 
   private postAuthRequest<T = unknown>(path: string, body: object): Observable<T> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.post<T | ApiResponse<T>>(`${this.baseUrl}${path}`, body, { headers }).pipe(
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': '69420',
+    });
+    return this.http.post<T | ApiResponse<T>>(`${this.baseUrl}${path}`, body, {
+      headers,
+      withCredentials: true,
+    }).pipe(
       map((response) => this.unwrapResponse(response)),
-      catchError((error) => {
-        const errorMessage = error?.error?.EM || error?.error?.message || error?.message || 'Yêu cầu xác thực thất bại.';
-        return throwError(() => new Error(errorMessage));
-      })
+      catchError((error) => throwError(() => this.toAuthError(error, 'Yêu cầu xác thực thất bại.'))),
     );
   }
 
   private normalizeUser(value: unknown): User {
     const user = value && typeof value === 'object' ? value as Record<string, unknown> : {};
+    const role = String(user['systemRole'] ?? user['role_code'] ?? user['roleCode'] ?? user['role'] ?? '').toUpperCase();
     return {
       id: String(user['id'] ?? user['user_id'] ?? user['userId'] ?? ''),
       fullName: String(user['fullName'] ?? user['full_name'] ?? ''),
       email: String(user['email'] ?? ''),
       phone: String(user['phone'] ?? ''),
-      systemRole: user['systemRole'] === 'ADMIN' || user['role_code'] === 'ADMIN' ? 'ADMIN' : 'USER',
+      systemRole: role.includes('ADMIN') ? 'ADMIN' : 'USER',
     };
   }
 
   private unwrapResponse<T>(response: T | ApiResponse<T>): T {
-    if (
-      response &&
-      typeof response === 'object' &&
-      'EC' in response &&
-      response.EC !== undefined &&
-      response.EC !== 0
-    ) {
-      throw new Error(response.EM || 'Yêu cầu xác thực thất bại.');
+    if (response && typeof response === 'object' && 'EC' in response && response.EC !== undefined && response.EC !== 0) {
+      throw new Error(response.EM || 'Yêu cầu không thành công.');
     }
-
     if (response && typeof response === 'object' && 'DT' in response && response.DT !== undefined) {
       return response.DT;
     }
-
     return response as T;
+  }
+
+  private toAuthError(error: any, fallback: string): Error {
+    return new Error(error?.error?.EM || error?.error?.message || error?.message || fallback);
   }
 }

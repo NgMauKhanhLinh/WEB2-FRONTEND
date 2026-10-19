@@ -93,4 +93,51 @@ describe('AuthService', () => {
     expect(localStorage.getItem('accessToken')).toBe('access-token');
     expect(sessionStorage.getItem('accessToken')).toBeNull();
   });
+
+  it('keeps a non-remembered session in sessionStorage only', () => {
+    service.loginPetClinic({
+      loginId: '0912345678',
+      password: 'Password1',
+      remember: false,
+    }).subscribe();
+
+    const request = http.expectOne('http://localhost:8080/api/v1/login');
+    request.flush({
+      EC: 0,
+      DT: {
+        access_token: 'temporary-token',
+        user: { user_id: 'user-2', full_name: 'Nguyen Van B', phone: '0912345678' },
+      },
+    });
+
+    expect(sessionStorage.getItem('accessToken')).toBe('temporary-token');
+    expect(localStorage.getItem('accessToken')).toBeNull();
+  });
+
+  it('refreshes the access token using the backend refresh endpoint', () => {
+    let refreshedToken = '';
+    service.refreshAccessToken().subscribe((token) => refreshedToken = token);
+
+    const request = http.expectOne('http://localhost:8080/api/v1/refresh');
+    expect(request.request.method).toBe('POST');
+    expect(request.request.withCredentials).toBe(true);
+    request.flush({ EC: 0, DT: { access_token: 'refreshed-token' } });
+
+    expect(refreshedToken).toBe('refreshed-token');
+  });
+
+  it('clears local and session credentials on logout', () => {
+    localStorage.setItem('accessToken', 'old-local-token');
+    localStorage.setItem('access_token', 'legacy-token');
+    sessionStorage.setItem('accessToken', 'old-session-token');
+    localStorage.setItem('userData', JSON.stringify({ user_id: 'user-1' }));
+
+    service.logout();
+
+    expect(service.isAuthenticated()).toBe(false);
+    expect(localStorage.getItem('accessToken')).toBeNull();
+    expect(localStorage.getItem('access_token')).toBeNull();
+    expect(sessionStorage.getItem('accessToken')).toBeNull();
+    expect(localStorage.getItem('userData')).toBeNull();
+  });
 });

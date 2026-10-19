@@ -1,17 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
+import { of } from 'rxjs';
 import { AuthService } from '../../services/auth-service';
 import { NavbarComponent } from './navbar';
 
 describe('NavbarComponent', () => {
   const authService = {
     logout: vi.fn(),
+    logoutRemote: vi.fn(() => of({})),
     isAuthenticated: vi.fn(() => false),
     currentUser: vi.fn(() => null),
   };
 
   beforeEach(async () => {
     authService.logout.mockClear();
+    authService.logoutRemote.mockClear();
     await TestBed.configureTestingModule({
       imports: [NavbarComponent],
       providers: [

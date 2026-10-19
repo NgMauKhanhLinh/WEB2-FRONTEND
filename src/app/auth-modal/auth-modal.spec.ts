@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { AuthModalComponent } from './auth-modal';
 import { AuthService } from '../services/auth-service';
@@ -31,7 +31,8 @@ describe('AuthModalComponent', () => {
       imports: [AuthModalComponent],
       providers: [
         provideHttpClient(),
-        { provide: Router, useValue: { navigate: vi.fn().mockResolvedValue(true) } },
+        { provide: Router, useValue: { navigate: vi.fn().mockResolvedValue(true), navigateByUrl: vi.fn().mockResolvedValue(true) } },
+        { provide: ActivatedRoute, useValue: { snapshot: { queryParamMap: { get: () => null } } } },
         { provide: AuthService, useValue: authService },
       ],
     }).compileComponents();
