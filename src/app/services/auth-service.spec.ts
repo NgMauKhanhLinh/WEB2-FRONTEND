@@ -93,7 +93,7 @@ describe('AuthService', () => {
     expect(localStorage.getItem('accessToken')).toBe('access-token');
     expect(sessionStorage.getItem('accessToken')).toBeNull();
   });
-}
+
   it('keeps a non-remembered session in sessionStorage only', () => {
     service.loginPetClinic({
       loginId: '0912345678',
