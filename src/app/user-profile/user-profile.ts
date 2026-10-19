@@ -86,7 +86,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       finalize(() => this.isSaving = false),
     ).subscribe({
       next: (saved) => {
-        this.persistProfile({ ...this.profile, ...saved });
+        this.persistProfile({ ...this.profile, ...saved, userId: saved.userId || userId });
         this.showMessage('Đã lưu thông tin người dùng.');
       },
       error: (error: Error) => {
@@ -260,7 +260,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     };
     this.profileService.getProfile(userId).subscribe({
       next: (profile) => {
-        this.profile = { ...this.profile, ...profile };
+        this.profile = { ...this.profile, ...profile, userId: profile.userId || userId };
         this.persistProfile(this.profile);
         finish();
       },
