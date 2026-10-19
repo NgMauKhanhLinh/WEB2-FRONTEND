@@ -9,41 +9,14 @@ import { SidebarComponent } from '../shared/sidebar/sidebar';
 const PROFILE_KEY = 'userProfile';
 const ADDRESSES_KEY = 'userAddresses';
 
-const DEFAULT_PROFILE: UserProfileRecord = {
-  userId: '',
-  fullName: 'Nguyễn Văn A',
-  email: 'example@gmail.com',
-  phone: '0901 234 567',
+const emptyProfile = (userId = ''): UserProfileRecord => ({
+  userId,
+  fullName: '',
+  email: '',
+  phone: '',
   gender: '',
   birthDate: '',
-};
-
-const DEFAULT_ADDRESSES: UserAddressRecord[] = [
-  {
-    id: 'address-1',
-    name: 'Nguyễn Văn A',
-    phone: '0901 234 567',
-    email: 'example@gmail.com',
-    country: 'Việt Nam',
-    address: 'Số 123, Đường Lê Lợi',
-    ward: 'Phường Bến Nghé',
-    district: 'Quận 1',
-    city: 'TP. Hồ Chí Minh',
-    isDefault: true,
-  },
-  {
-    id: 'address-2',
-    name: 'Nguyễn Văn A',
-    phone: '0901 234 567',
-    email: '',
-    country: 'Việt Nam',
-    address: '456 Nguyễn Huệ',
-    ward: 'Phường Bến Thành',
-    district: 'Quận 1',
-    city: 'TP. Hồ Chí Minh',
-    isDefault: false,
-  },
-];
+});
 
 type AddressModalMode = 'add' | 'edit';
 
@@ -55,8 +28,8 @@ type AddressModalMode = 'add' | 'edit';
   styleUrl: './user-profile.css',
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-  profile = this.loadStored(PROFILE_KEY, DEFAULT_PROFILE);
-  addresses = this.loadStored(ADDRESSES_KEY, DEFAULT_ADDRESSES);
+  profile = emptyProfile();
+  addresses: UserAddressRecord[] = [];
   readonly defaultAvatar = '/assets/images/profile/user-avatar.png';
   avatarPreview = '';
   message = '';
@@ -81,13 +54,13 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const user = this.auth.currentUser();
     if (!user) return;
-    this.profile = {
-      ...this.profile,
-      userId: user.id,
-      fullName: user.fullName || this.profile.fullName,
-      email: user.email || this.profile.email,
-      phone: user.phone || this.profile.phone,
-    };
+    this.profile = this.loadStored(this.profileStorageKey(user.id), {
+      ...emptyProfile(user.id),
+      fullName: user.fullName,
+      email: user.email,
+      phone: user.phone,
+    });
+    this.addresses = this.loadStored(this.addressesStorageKey(user.id), []);
     this.loadRemoteData(user.id);
   }
 
@@ -311,7 +284,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   private persistProfile(profile: UserProfileRecord): void {
     this.profile = { ...profile };
-    localStorage.setItem(PROFILE_KEY, JSON.stringify(this.profile));
+    localStorage.setItem(this.profileStorageKey(this.profile.userId), JSON.stringify(this.profile));
     this.auth.updateCurrentUser({
       fullName: this.profile.fullName,
       email: this.profile.email,
@@ -320,7 +293,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   private persistAddresses(): void {
-    localStorage.setItem(ADDRESSES_KEY, JSON.stringify(this.addresses));
+    if (this.profile.userId) {
+      localStorage.setItem(this.addressesStorageKey(this.profile.userId), JSON.stringify(this.addresses));
+    }
   }
 
   private loadStored<T>(key: string, fallback: T): T {
@@ -330,6 +305,14 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     } catch {
       return structuredClone(fallback);
     }
+  }
+
+  private profileStorageKey(userId: string): string {
+    return `${PROFILE_KEY}:${userId}`;
+  }
+
+  private addressesStorageKey(userId: string): string {
+    return `${ADDRESSES_KEY}:${userId}`;
   }
 
   private emptyAddress(): UserAddressRecord {
