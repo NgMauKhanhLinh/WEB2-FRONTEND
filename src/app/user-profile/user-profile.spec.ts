@@ -49,6 +49,7 @@ describe('UserProfileComponent', () => {
     component.profile.fullName = 'Linh';
     component.openAddressForm();
     expect(component.addressForm.name).toBe('Linh');
+    component.addressForm.phone = '0901234567';
     component.addressForm.address = '12 Nguyễn Huệ';
     component.saveAddress();
     fixture.detectChanges();
