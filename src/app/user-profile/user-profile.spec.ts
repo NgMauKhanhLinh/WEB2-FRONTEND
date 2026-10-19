@@ -39,18 +39,21 @@ describe('UserProfileComponent', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.textContent).toContain('Danh sách địa chỉ');
     expect(element.textContent).toContain('Đổi mật khẩu');
-    expect(element.querySelectorAll('.address-card').length).toBe(2);
+    expect(element.querySelectorAll('.address-card').length).toBe(0);
+    expect(element.textContent).toContain('Bạn chưa lưu địa chỉ nào.');
   });
 
   it('opens address editor with profile defaults and saves local addresses', () => {
     const component = fixture.componentInstance;
+    component.profile.userId = 'user-1';
+    component.profile.fullName = 'Linh';
     component.openAddressForm();
-    expect(component.addressForm.name).toBe(component.profile.fullName);
+    expect(component.addressForm.name).toBe('Linh');
     component.addressForm.address = '12 Nguyễn Huệ';
     component.saveAddress();
     fixture.detectChanges();
     expect(component.addresses.at(-1)?.address).toBe('12 Nguyễn Huệ');
-    expect(localStorage.getItem('userAddresses')).toContain('12 Nguyễn Huệ');
+    expect(localStorage.getItem('userAddresses:user-1')).toContain('12 Nguyễn Huệ');
   });
 
   it('loads the API profile when a user session is available', () => {
