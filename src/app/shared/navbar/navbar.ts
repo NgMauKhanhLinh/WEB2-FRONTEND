@@ -129,6 +129,7 @@ export class NavbarComponent {
 
   logout(): void {
     this.closeOverlays();
+    this.auth.logoutRemote().subscribe({ error: () => undefined });
     this.auth.logout();
     void this.router.navigateByUrl('/');
   }
