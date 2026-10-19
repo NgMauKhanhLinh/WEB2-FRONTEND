@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth-service';
 
 const AUTH_RETRY = new HttpContextToken<boolean>(() => false);
 
-const AUTH_ENDPOINTS_WITHOUT_REFRESH = [
+const AUTH_ENDPOINTS_WITHOUT_BEARER = [
   '/login',
   '/register',
   '/verify-register-otp',
@@ -19,11 +19,15 @@ const AUTH_ENDPOINTS_WITHOUT_REFRESH = [
   '/verify-otp',
   '/reset-password',
   '/refresh',
+];
+
+const AUTH_ENDPOINTS_WITHOUT_REFRESH = [
+  ...AUTH_ENDPOINTS_WITHOUT_BEARER,
   '/logout',
 ];
 
 const isAuthEndpointUrl = (url: string): boolean =>
-  AUTH_ENDPOINTS_WITHOUT_REFRESH.some((path) => url.includes(path));
+  AUTH_ENDPOINTS_WITHOUT_BEARER.some((path) => url.includes(path));
 
 const isAuthExpired = (error: unknown): boolean => {
   if (error instanceof HttpErrorResponse) {
@@ -44,7 +48,7 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
   const refreshAndRetry = (error: unknown) => {
     if (!isAuthExpired(error)) return throwError(() => error);
 
-    const isAuthEndpoint = isAuthEndpointUrl(request.url);
+    const isAuthEndpoint = AUTH_ENDPOINTS_WITHOUT_REFRESH.some((path) => request.url.includes(path));
     const alreadyRetried = request.context.get(AUTH_RETRY);
     if (isAuthEndpoint || alreadyRetried || !auth.getAccessToken()) {
       return throwError(() => error);
