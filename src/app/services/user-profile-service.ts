@@ -38,7 +38,7 @@ export class UserProfileService {
   constructor(private readonly http: HttpClient) {}
 
   getProfile(userId: string): Observable<UserProfileRecord> {
-    return this.http.get<ApiEnvelope<Record<string, unknown>>>(`${this.baseUrl}/users/${encodeURIComponent(userId)}`).pipe(
+    return this.http.get<ApiEnvelope<Record<string, unknown>>>(`${this.baseUrl}/users/${encodeURIComponent(userId)}`, { withCredentials: true }).pipe(
       map((response) => this.normalizeProfile(this.unwrap(response))),
     );
   }
@@ -51,11 +51,11 @@ export class UserProfileService {
       avatar_url: profile.avatarUrl || null,
       gender: profile.gender || null,
       birth_date: profile.birthDate || null,
-    }).pipe(map((response) => this.normalizeProfile(this.unwrap(response))));
+    }, { withCredentials: true }).pipe(map((response) => this.normalizeProfile(this.unwrap(response))));
   }
 
   getAddresses(userId: string): Observable<UserAddressRecord[]> {
-    return this.http.get<ApiEnvelope<Array<Record<string, unknown>>>>(`${this.baseUrl}/users/${encodeURIComponent(userId)}/addresses`).pipe(
+    return this.http.get<ApiEnvelope<Array<Record<string, unknown>>>>(`${this.baseUrl}/users/${encodeURIComponent(userId)}/addresses`, { withCredentials: true }).pipe(
       map((response) => {
         const addresses = this.unwrap(response);
         if (!Array.isArray(addresses)) throw new Error('Dữ liệu địa chỉ không hợp lệ.');
@@ -65,17 +65,17 @@ export class UserProfileService {
   }
 
   createAddress(userId: string, address: UserAddressRecord): Observable<UserAddressRecord> {
-    return this.http.post<ApiEnvelope<Record<string, unknown>>>(`${this.baseUrl}/users/${encodeURIComponent(userId)}/addresses`, this.addressPayload(address))
+    return this.http.post<ApiEnvelope<Record<string, unknown>>>(`${this.baseUrl}/users/${encodeURIComponent(userId)}/addresses`, this.addressPayload(address), { withCredentials: true })
       .pipe(map((response) => this.normalizeAddress(this.unwrap(response))));
   }
 
   updateAddress(addressId: string, address: UserAddressRecord): Observable<UserAddressRecord> {
-    return this.http.put<ApiEnvelope<Record<string, unknown>>>(`${this.baseUrl}/addresses/${encodeURIComponent(addressId)}`, this.addressPayload(address))
+    return this.http.put<ApiEnvelope<Record<string, unknown>>>(`${this.baseUrl}/addresses/${encodeURIComponent(addressId)}`, this.addressPayload(address), { withCredentials: true })
       .pipe(map((response) => this.normalizeAddress(this.unwrap(response))));
   }
 
   deleteAddress(addressId: string): Observable<unknown> {
-    return this.http.delete<ApiEnvelope<unknown>>(`${this.baseUrl}/addresses/${encodeURIComponent(addressId)}`)
+    return this.http.delete<ApiEnvelope<unknown>>(`${this.baseUrl}/addresses/${encodeURIComponent(addressId)}`, { withCredentials: true })
       .pipe(map((response) => this.unwrap(response)));
   }
 
