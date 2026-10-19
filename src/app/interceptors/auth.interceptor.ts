@@ -19,6 +19,7 @@ const AUTH_ENDPOINTS_WITHOUT_REFRESH = [
   '/verify-otp',
   '/reset-password',
   '/refresh',
+  '/logout',
 ];
 
 const isAuthEndpointUrl = (url: string): boolean =>
