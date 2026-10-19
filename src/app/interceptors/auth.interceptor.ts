@@ -67,7 +67,7 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
     mergeMap((event) => {
       // The React client treats EC=-999 as an expired session even when HTTP status is 200.
       if (event instanceof HttpResponse && (event.body as { EC?: number } | null)?.EC === -999) {
-        return refreshAndRetry(new HttpErrorResponse({
+        return throwError(() => new HttpErrorResponse({
           status: 401,
           statusText: 'Unauthorized',
           url: request.url,
