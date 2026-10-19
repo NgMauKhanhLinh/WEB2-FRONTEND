@@ -2,10 +2,11 @@ import { inject } from '@angular/core';
 import {
   HttpErrorResponse,
   HttpInterceptorFn,
+  HttpResponse,
 } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { HttpContextToken } from '@angular/common/http';
-import { catchError, switchMap, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { catchError, mergeMap, of, switchMap, throwError } from 'rxjs';
 import { AuthService } from '../services/auth-service';
 
 const AUTH_RETRY = new HttpContextToken<boolean>(() => false);
@@ -23,6 +24,13 @@ const AUTH_ENDPOINTS_WITHOUT_REFRESH = [
 const isAuthEndpointUrl = (url: string): boolean =>
   AUTH_ENDPOINTS_WITHOUT_REFRESH.some((path) => url.includes(path));
 
+const isAuthExpired = (error: unknown): boolean => {
+  if (error instanceof HttpErrorResponse) {
+    return error.status === 401 || error.error?.EC === -999;
+  }
+  return false;
+};
+
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
   const auth = inject(AuthService);
   const router = inject(Router);
@@ -32,30 +40,42 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
     ? request.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
     : request;
 
+  const refreshAndRetry = (error: unknown) => {
+    if (!isAuthExpired(error)) return throwError(() => error);
+
+    const isAuthEndpoint = isAuthEndpointUrl(request.url);
+    const alreadyRetried = request.context.get(AUTH_RETRY);
+    if (isAuthEndpoint || alreadyRetried || !auth.getAccessToken()) {
+      return throwError(() => error);
+    }
+
+    return auth.refreshAccessToken().pipe(
+      switchMap((newToken) => next(request.clone({
+        setHeaders: { Authorization: `Bearer ${newToken}` },
+        context: request.context.set(AUTH_RETRY, true),
+        withCredentials: true,
+      }))),
+      catchError((refreshError: unknown) => {
+        auth.logout();
+        void router.navigate(['/login'], { queryParams: { reason: 'session-expired' } });
+        return throwError(() => refreshError);
+      }),
+    );
+  };
+
   return next(requestWithToken).pipe(
-    catchError((error: unknown) => {
-      if (!(error instanceof HttpErrorResponse) || error.status !== 401) {
-        return throwError(() => error);
+    mergeMap((event) => {
+      // The React client treats EC=-999 as an expired session even when HTTP status is 200.
+      if (event instanceof HttpResponse && (event.body as { EC?: number } | null)?.EC === -999) {
+        return refreshAndRetry(new HttpErrorResponse({
+          status: 401,
+          statusText: 'Unauthorized',
+          url: request.url,
+          error: event.body,
+        }));
       }
-
-      const isAuthEndpoint = isAuthEndpointUrl(request.url);
-      const alreadyRetried = request.context.get(AUTH_RETRY);
-      if (isAuthEndpoint || alreadyRetried || !auth.getAccessToken()) {
-        return throwError(() => error);
-      }
-
-      return auth.refreshAccessToken().pipe(
-        switchMap((newToken) => next(request.clone({
-          setHeaders: { Authorization: `Bearer ${newToken}` },
-          context: request.context.set(AUTH_RETRY, true),
-          withCredentials: true,
-        }))),
-        catchError((refreshError: unknown) => {
-          auth.logout();
-          void router.navigate(['/login'], { queryParams: { reason: 'session-expired' } });
-          return throwError(() => refreshError);
-        }),
-      );
+      return of(event);
     }),
+    catchError((error: unknown) => refreshAndRetry(error)),
   );
 };
