@@ -1,0 +1,83 @@
+@if (open) {
+  <div class="pricing-backdrop" (click)="close()" (keydown.escape)="close()">
+    <section
+      class="pricing-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="pricing-title"
+      (click)="$event.stopPropagation()"
+    >
+      <button type="button" class="pricing-close" aria-label="Đóng bảng giá" (click)="close()">
+        ×
+      </button>
+      <header class="pricing-heading">
+        <h2 id="pricing-title">Bảng giá dịch vụ <span>Dr.Pet’s House</span></h2>
+        <p>Chi phí tham khảo theo cân nặng của thú cưng</p>
+      </header>
+      @if (errorMessage()) {
+        <p class="pricing-error" role="alert">
+          {{ errorMessage() }} Đang hiển thị bảng giá tham khảo.
+        </p>
+      }
+      @if (isLoading()) {
+        <p class="pricing-loading" role="status">Đang cập nhật bảng giá...</p>
+      }
+      <div class="pricing-table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th class="service-heading">
+                <label for="pricing-filter">Loại dịch vụ</label>
+                <select
+                  id="pricing-filter"
+                  [value]="selectedFilter()"
+                  (change)="selectFilter($any($event.target).value)"
+                >
+                  @for (filter of filters; track filter) {
+                    <option [value]="filter.value">{{ filter.label }}</option>
+                  }
+                </select>
+              </th>
+              @for (column of columns(); track column) {
+                <th [class]="column.tone">{{ column.label }}</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of rows(); track row) {
+              <tr>
+                <th scope="row">
+                  <span
+                    class="service-mark"
+                    [style.color]="row.iconColor"
+                    [style.background]="row.background"
+                    aria-hidden="true"
+                    >✦</span
+                  >
+                  {{ row.title }}
+                </th>
+                @for (price of row.prices; track price; let index = $index) {
+                  <td>
+                    <span
+                      class="price-pill"
+                      [class.contact-price]="price === 'Liên hệ'"
+                      [class]="columns()[index].tone"
+                      >{{ price }}</span
+                    >
+                  </td>
+                }
+              </tr>
+            }
+            @if (!rows().length) {
+              <tr>
+                <td class="empty-pricing" colspan="10">
+                  Chưa có dữ liệu giá cho nhóm dịch vụ này.
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+}

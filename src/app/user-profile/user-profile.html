@@ -1,0 +1,232 @@
+<main class="profile-page">
+  <section class="profile-layout">
+    <app-sidebar></app-sidebar>
+    <div class="profile-content">
+      <header class="profile-title">
+        <div>
+          <p class="eyebrow">Tài khoản của tôi</p>
+          <h1>Thông tin người dùng</h1>
+          <p>
+            {{
+              isLoading
+                ? 'Đang đồng bộ hồ sơ...'
+                : 'Quản lý thông tin cá nhân và tài khoản của bạn.'
+            }}
+          </p>
+        </div>
+      </header>
+
+      <form class="profile-card" (ngSubmit)="saveProfile()">
+        <section class="avatar-panel">
+          <div class="avatar-wrap">
+            <img [src]="avatarPreview || profile.avatarUrl || defaultAvatar" alt="Ảnh đại diện" />
+            <label class="avatar-edit" for="avatar-file" aria-label="Đổi ảnh đại diện">📷</label>
+            <input id="avatar-file" type="file" accept="image/*" (change)="chooseAvatar($event)" />
+          </div>
+          <h3>{{ profile.fullName || 'Người dùng' }}</h3>
+          <p class="avatar-email">{{ profile.email }}</p>
+          <button class="button button-secondary" type="button" (click)="showPasswordModal = true">
+            Đổi mật khẩu
+          </button>
+        </section>
+
+        <section class="profile-fields">
+          <h2>Hồ sơ của tôi</h2>
+          <p class="profile-card-intro">Cập nhật thông tin để quản lý lịch hẹn thuận tiện hơn.</p>
+          <div class="field-grid">
+            <label
+              >Họ và tên<input
+                name="fullName"
+                autocomplete="name"
+                [(ngModel)]="profile.fullName"
+                required
+            /></label>
+            <label
+              >Email<input
+                name="email"
+                type="email"
+                autocomplete="email"
+                [(ngModel)]="profile.email"
+            /></label>
+            <label
+              >Số điện thoại<input
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                [(ngModel)]="profile.phone"
+            /></label>
+            <label
+              >Giới tính
+              <select name="gender" [(ngModel)]="profile.gender">
+                <option value="">Chưa chọn</option>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+                <option value="other">Khác</option>
+              </select>
+            </label>
+            <label
+              >Ngày sinh<input name="birthDate" type="date" [(ngModel)]="profile.birthDate"
+            /></label>
+          </div>
+          <div class="profile-actions">
+            <button class="button button-primary" type="submit" [disabled]="isSaving">
+              {{ isSaving ? 'Đang lưu...' : 'Lưu' }}
+            </button>
+          </div>
+        </section>
+      </form>
+
+      <section class="addresses-card">
+        <header class="addresses-header">
+          <h2>Danh sách địa chỉ</h2>
+          <button class="button button-secondary" type="button" (click)="openAddressForm()">
+            + Thêm địa chỉ mới
+          </button>
+        </header>
+        @if (!addresses.length) {
+          <p class="address-empty">Bạn chưa lưu địa chỉ nào.</p>
+        }
+        @for (address of addresses; track address) {
+          <article class="address-card">
+            <div class="address-main">
+              <div class="address-recipient">
+                <strong>{{ address.name }}</strong>
+                @if (address.isDefault) {
+                  <span class="default-badge">Mặc định</span>
+                }
+              </div>
+              <p>
+                {{ address.phone }}
+                @if (address.email) {
+                  <span> · {{ address.email }}</span>
+                }
+              </p>
+              <p>{{ addressLabel(address) }}</p>
+            </div>
+            <div class="address-actions">
+              <button type="button" (click)="openAddressForm(address)">Thay đổi</button>
+              @if (!address.isDefault) {
+                <button type="button" (click)="setDefaultAddress(address)">Đặt làm mặc định</button>
+              }
+              @if (!address.isDefault) {
+                <button type="button" class="delete-action" (click)="deleteAddress(address)">
+                  Xóa
+                </button>
+              }
+            </div>
+          </article>
+        }
+      </section>
+    </div>
+  </section>
+
+  @if (message) {
+    <div class="message-toast" [class.error-toast]="messageType === 'error'" role="status">
+      {{ message }}
+    </div>
+  }
+
+  @if (showAddressModal) {
+    <div class="modal-backdrop" (click)="showAddressModal = false">
+      <section
+        class="profile-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="address-title"
+        (click)="$event.stopPropagation()"
+      >
+        <header>
+          <h2 id="address-title">
+            {{ addressModalMode === 'add' ? 'Thêm địa chỉ' : 'Cập nhật địa chỉ' }}
+          </h2>
+          <button type="button" aria-label="Đóng" (click)="showAddressModal = false">×</button>
+        </header>
+        <form (ngSubmit)="saveAddress()">
+          <label
+            >Người nhận<input name="addressName" [(ngModel)]="addressForm.name" required
+          /></label>
+          <label
+            >Số điện thoại<input
+              name="addressPhone"
+              type="tel"
+              [(ngModel)]="addressForm.phone"
+              required
+          /></label>
+          <label
+            >Email<input name="addressEmail" type="email" [(ngModel)]="addressForm.email"
+          /></label>
+          <label>Địa chỉ<input name="street" [(ngModel)]="addressForm.address" required /></label>
+          <div class="field-grid">
+            <label>Phường / xã<input name="ward" [(ngModel)]="addressForm.ward" /></label>
+            <label>Quận / huyện<input name="district" [(ngModel)]="addressForm.district" /></label>
+            <label>Tỉnh / thành phố<input name="city" [(ngModel)]="addressForm.city" /></label>
+            <label>Quốc gia<input name="country" [(ngModel)]="addressForm.country" /></label>
+          </div>
+          <label class="default-checkbox"
+            ><input name="isDefault" type="checkbox" [(ngModel)]="addressForm.isDefault" /> Đặt làm
+            địa chỉ mặc định</label
+          >
+          <footer>
+            <button class="button button-light" type="button" (click)="showAddressModal = false">
+              Hủy</button
+            ><button class="button button-primary" type="submit">Lưu địa chỉ</button>
+          </footer>
+        </form>
+      </section>
+    </div>
+  }
+
+  @if (showPasswordModal) {
+    <div class="modal-backdrop" (click)="showPasswordModal = false">
+      <section
+        class="profile-modal password-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="password-title"
+        (click)="$event.stopPropagation()"
+      >
+        <header>
+          <h2 id="password-title">Đổi mật khẩu</h2>
+          <button type="button" aria-label="Đóng" (click)="showPasswordModal = false">×</button>
+        </header>
+        <form (ngSubmit)="changePassword()">
+          <label
+            >Mật khẩu hiện tại<input
+              name="oldPassword"
+              type="password"
+              autocomplete="current-password"
+              [(ngModel)]="passwordForm.oldPassword"
+              required
+          /></label>
+          <label
+            >Mật khẩu mới<input
+              name="newPassword"
+              type="password"
+              autocomplete="new-password"
+              [(ngModel)]="passwordForm.newPassword"
+              required
+              minlength="8"
+          /></label>
+          <label
+            >Xác nhận mật khẩu mới<input
+              name="confirmPassword"
+              type="password"
+              autocomplete="new-password"
+              [(ngModel)]="passwordForm.confirmPassword"
+              required
+          /></label>
+          @if (passwordError) {
+            <p class="form-error" role="alert">{{ passwordError }}</p>
+          }
+          <footer>
+            <button class="button button-light" type="button" (click)="showPasswordModal = false">
+              Hủy</button
+            ><button class="button button-primary" type="submit" [disabled]="isChangingPassword">
+              {{ isChangingPassword ? 'Đang lưu...' : 'Lưu' }}
+            </button>
+          </footer>
+        </form>
+      </section>
+    </div>
+  }
+</main>

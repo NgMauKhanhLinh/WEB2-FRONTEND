@@ -1,0 +1,548 @@
+{
+  "FEATURED_PRODUCTS": [
+    {
+      "id": 1,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  1",
+      "price": 20000,
+      "originalPrice": 32000,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 2,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  2",
+      "price": 27000,
+      "originalPrice": 43200,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 3,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  3",
+      "price": 34000,
+      "originalPrice": 54400,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 4,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  4",
+      "price": 41000,
+      "originalPrice": 65600,
+      "rating": 4.5
+    },
+    {
+      "id": 5,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  5",
+      "price": 48000,
+      "originalPrice": 76800,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 6,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  6",
+      "price": 55000,
+      "originalPrice": 88000,
+      "rating": 4.5
+    },
+    {
+      "id": 7,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  7",
+      "price": 62000,
+      "originalPrice": 99200,
+      "rating": 4.5
+    },
+    {
+      "id": 8,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  8",
+      "price": 69000,
+      "originalPrice": 110400,
+      "rating": 4.5
+    },
+    {
+      "id": 9,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  9",
+      "price": 76000,
+      "originalPrice": 121600,
+      "rating": 4.5
+    },
+    {
+      "id": 10,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  10",
+      "price": 83000,
+      "originalPrice": 132800,
+      "rating": 4.5
+    },
+    {
+      "id": 11,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  11",
+      "price": 90000,
+      "originalPrice": 144000,
+      "rating": 4.5
+    },
+    {
+      "id": 12,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  12",
+      "price": 97000,
+      "originalPrice": 155200,
+      "rating": 4.5,
+      "discountPercent": 56
+    }
+  ],
+  "PRODUCT_CATEGORIES": [
+    {
+      "label": "Thức ăn",
+      "image": "/assets/images/home/category1.png",
+      "slug": "thuc-an",
+      "count": 12
+    },
+    {
+      "label": "Đồ dùng thiết yếu",
+      "image": "/assets/images/home/category2.png",
+      "slug": "do-dung-thiet-yeu",
+      "count": 8
+    },
+    {
+      "label": "Chăm sóc sức khỏe",
+      "image": "/assets/images/home/category3.png",
+      "slug": "cham-soc-suc-khoe",
+      "count": 15
+    },
+    {
+      "label": "Đồ chơi",
+      "image": "/assets/images/home/category4.png",
+      "slug": "do-choi",
+      "count": 6
+    },
+    {
+      "label": "Phụ kiện",
+      "image": "/assets/images/home/category5.png",
+      "slug": "phu-kien",
+      "count": 20
+    }
+  ],
+  "PRODUCT_PRICE_RANGES": [
+    {
+      "label": "20.000đ - 50.000đ",
+      "min": 20000,
+      "max": 50000
+    },
+    {
+      "label": "50.000đ - 100.000đ",
+      "min": 50000,
+      "max": 100000
+    },
+    {
+      "label": "100.000đ - 200.000đ",
+      "min": 100000,
+      "max": 200000
+    },
+    {
+      "label": "200.000đ trở lên",
+      "min": 200000,
+      "max": null
+    }
+  ],
+  "SHOP_PRODUCTS": [
+    {
+      "id": 1,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  1",
+      "price": 20000,
+      "originalPrice": 32000,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 2,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  2",
+      "price": 27000,
+      "originalPrice": 43200,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 3,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  3",
+      "price": 34000,
+      "originalPrice": 54400,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 4,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  4",
+      "price": 41000,
+      "originalPrice": 65600,
+      "rating": 4.5
+    },
+    {
+      "id": 5,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  5",
+      "price": 48000,
+      "originalPrice": 76800,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 6,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  6",
+      "price": 55000,
+      "originalPrice": 88000,
+      "rating": 4.5
+    },
+    {
+      "id": 7,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  7",
+      "price": 62000,
+      "originalPrice": 99200,
+      "rating": 4.5
+    },
+    {
+      "id": 8,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  8",
+      "price": 69000,
+      "originalPrice": 110400,
+      "rating": 4.5
+    },
+    {
+      "id": 9,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  9",
+      "price": 76000,
+      "originalPrice": 121600,
+      "rating": 4.5
+    },
+    {
+      "id": 10,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  10",
+      "price": 83000,
+      "originalPrice": 132800,
+      "rating": 4.5
+    },
+    {
+      "id": 11,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  11",
+      "price": 90000,
+      "originalPrice": 144000,
+      "rating": 4.5
+    },
+    {
+      "id": 12,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  12",
+      "price": 97000,
+      "originalPrice": 155200,
+      "rating": 4.5,
+      "discountPercent": 56
+    },
+    {
+      "id": 13,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  13",
+      "price": 104000,
+      "originalPrice": 166400,
+      "rating": 4.5
+    },
+    {
+      "id": 14,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  14",
+      "price": 111000,
+      "originalPrice": 177600,
+      "rating": 4.5
+    },
+    {
+      "id": 15,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  15",
+      "price": 118000,
+      "originalPrice": 188800,
+      "rating": 4.5
+    },
+    {
+      "id": 16,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  16",
+      "price": 125000,
+      "originalPrice": 200000,
+      "rating": 4.5
+    },
+    {
+      "id": 17,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  17",
+      "price": 132000,
+      "originalPrice": 211200,
+      "rating": 4.5
+    },
+    {
+      "id": 18,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  18",
+      "price": 139000,
+      "originalPrice": 222400,
+      "rating": 4.5
+    },
+    {
+      "id": 19,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  19",
+      "price": 146000,
+      "originalPrice": 233600,
+      "rating": 4.5
+    },
+    {
+      "id": 20,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  20",
+      "price": 153000,
+      "originalPrice": 244800,
+      "rating": 4.5
+    },
+    {
+      "id": 21,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  21",
+      "price": 160000,
+      "originalPrice": 256000,
+      "rating": 4.5
+    },
+    {
+      "id": 22,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  22",
+      "price": 167000,
+      "originalPrice": 267200,
+      "rating": 4.5
+    },
+    {
+      "id": 23,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  23",
+      "price": 174000,
+      "originalPrice": 278400,
+      "rating": 4.5
+    },
+    {
+      "id": 24,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  24",
+      "price": 181000,
+      "originalPrice": 289600,
+      "rating": 4.5
+    },
+    {
+      "id": 25,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  25",
+      "price": 188000,
+      "originalPrice": 300800,
+      "rating": 4.5
+    },
+    {
+      "id": 26,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  26",
+      "price": 195000,
+      "originalPrice": 312000,
+      "rating": 4.5
+    },
+    {
+      "id": 27,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  27",
+      "price": 22000,
+      "originalPrice": 35200,
+      "rating": 4.5
+    },
+    {
+      "id": 28,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  28",
+      "price": 29000,
+      "originalPrice": 46400,
+      "rating": 4.5
+    },
+    {
+      "id": 29,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  29",
+      "price": 36000,
+      "originalPrice": 57600,
+      "rating": 4.5
+    },
+    {
+      "id": 30,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  30",
+      "price": 43000,
+      "originalPrice": 68800,
+      "rating": 4.5
+    },
+    {
+      "id": 31,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  31",
+      "price": 50000,
+      "originalPrice": 80000,
+      "rating": 4.5
+    },
+    {
+      "id": 32,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  32",
+      "price": 57000,
+      "originalPrice": 91200,
+      "rating": 4.5
+    },
+    {
+      "id": 33,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  33",
+      "price": 64000,
+      "originalPrice": 102400,
+      "rating": 4.5
+    },
+    {
+      "id": 34,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  34",
+      "price": 71000,
+      "originalPrice": 113600,
+      "rating": 4.5
+    },
+    {
+      "id": 35,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  35",
+      "price": 78000,
+      "originalPrice": 124800,
+      "rating": 4.5
+    },
+    {
+      "id": 36,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  36",
+      "price": 85000,
+      "originalPrice": 136000,
+      "rating": 4.5
+    },
+    {
+      "id": 37,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  37",
+      "price": 92000,
+      "originalPrice": 147200,
+      "rating": 4.5
+    },
+    {
+      "id": 38,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  38",
+      "price": 99000,
+      "originalPrice": 158400,
+      "rating": 4.5
+    },
+    {
+      "id": 39,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  39",
+      "price": 106000,
+      "originalPrice": 169600,
+      "rating": 4.5
+    },
+    {
+      "id": 40,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  40",
+      "price": 113000,
+      "originalPrice": 180800,
+      "rating": 4.5
+    },
+    {
+      "id": 41,
+      "categoryIdx": 0,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  41",
+      "price": 120000,
+      "originalPrice": 192000,
+      "rating": 4.5
+    },
+    {
+      "id": 42,
+      "categoryIdx": 1,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  42",
+      "price": 127000,
+      "originalPrice": 203200,
+      "rating": 4.5
+    },
+    {
+      "id": 43,
+      "categoryIdx": 2,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  43",
+      "price": 134000,
+      "originalPrice": 214400,
+      "rating": 4.5
+    },
+    {
+      "id": 44,
+      "categoryIdx": 3,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  44",
+      "price": 141000,
+      "originalPrice": 225600,
+      "rating": 4.5
+    },
+    {
+      "id": 45,
+      "categoryIdx": 4,
+      "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  45",
+      "price": 148000,
+      "originalPrice": 236800,
+      "rating": 4.5
+    }
+  ],
+  "SHOP_PROMOTION_PAGES": [
+    [
+      {
+        "image": "/assets/images/shop/promo-banner-1.png",
+        "productId": 1
+      },
+      {
+        "image": "/assets/images/shop/promo-banner-2.png",
+        "productId": 2
+      }
+    ],
+    [
+      {
+        "image": "/assets/images/shop/promo-banner-3.png",
+        "productId": 3
+      },
+      {
+        "image": "/assets/images/shop/promo-banner-4.png",
+        "productId": 4
+      }
+    ]
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "HOME_BLOG_POSTS": [
+    {
+      "author": "John Deo",
+      "date": "Aug 23, 2021",
+      "highlighted": false
+    },
+    {
+      "author": "John Doe",
+      "date": "Aug 23, 2021",
+      "highlighted": true
+    },
+    {
+      "author": "John Doe",
+      "date": "Aug 23, 2021",
+      "highlighted": false
+    },
+    {
+      "author": "John Doe",
+      "date": "Aug 23, 2021",
+      "highlighted": false
+    }
+  ],
+  "HOME_BLOG_POST_TITLE": "8 Figma design systems that you can download for free today.",
+  "HOME_DOCTORS": [
+    {
+      "image": "/assets/images/home/doctor-1.png",
+      "name": "BS. Nguyễn Minh Anh"
+    },
+    {
+      "image": "/assets/images/home/doctor-2.png",
+      "name": "BS. Trần Quốc Huy"
+    },
+    {
+      "image": "/assets/images/home/doctor-3.png",
+      "name": "BS. Lê Khánh Linh"
+    },
+    {
+      "image": "/assets/images/home/doctor-4.png",
+      "name": "BS. Phạm Đức Thành"
+    }
+  ],
+  "HOME_FEATURED_BLOG": {
+    "author": "John Doe",
+    "date": "May 23, 2022",
+    "title": "Chăm sóc thú cưng đúng cách để luôn khỏe mạnh và vui vẻ.",
+    "description": "Tìm hiểu các nguyên tắc dinh dưỡng, vệ sinh và theo dõi sức khỏe giúp thú cưng phát triển toàn diện."
+  },
+  "HOME_FEATURES": [
+    [
+      "Đặt lịch khám nhanh chóng",
+      "Mua sắm sản phẩm đa dạng"
+    ],
+    [
+      "Quản lý hồ sơ số hóa",
+      "Tư vấn chăm sóc chuyên sâu"
+    ],
+    [
+      "Theo dõi bệnh án trọn đời",
+      "Kết nối cứu trợ và Nhận nuôi"
+    ]
+  ],
+  "HOME_SERVICES": [
+    {
+      "image": "/assets/images/home/service-1.png",
+      "title": "Khám & Điều trị",
+      "description": "Đội ngũ bác sĩ chuyên khoa cùng trang thiết bị hiện đại, chẩn đoán chính xác, điều trị tận tâm và hỗ trợ cấp cứu cho bé yêu 24/7.",
+      "href": "/dich-vu/kham-dieu-tri"
+    },
+    {
+      "image": "/assets/images/home/service-2.png",
+      "title": "Grooming & Spa",
+      "description": "Dịch vụ tắm sấy, cắt tỉa lông và chăm sóc vệ sinh giúp thú cưng luôn sạch sẽ, khỏe mạnh và thoải mái.",
+      "href": "/dich-vu/grooming-spa"
+    },
+    {
+      "image": "/assets/images/home/service-3.png",
+      "title": "Pet Shop",
+      "description": "Cung cấp đa dạng sản phẩm dành cho thú cưng như thức ăn, phụ kiện, đồ chơi và sản phẩm chăm sóc sức khỏe từ nhiều thương hiệu uy tín.",
+      "href": "/cua-hang"
+    }
+  ]
+}

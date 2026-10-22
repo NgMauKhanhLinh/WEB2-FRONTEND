@@ -1,0 +1,682 @@
+<ng-container *ngIf="pageKind === 'home'; else contentPage">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Trung tâm chăm sóc thú cưng</p>
+      <img class="hero-logo" src="/assets/images/home/hero-logo.png" alt="Dr. Pet's House" />
+      <p class="hero-summary">
+        Dịch vụ y tế chu đáo, không gian spa thư giãn và những sản phẩm chất lượng cho người bạn bốn chân của bạn.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" routerLink="/dat-lich">Đặt lịch ngay</a>
+        <a class="button button-light" routerLink="/cua-hang">Mua sắm ngay</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="/assets/images/home/hero-pets.png" alt="Chó và mèo được chăm sóc tại Dr. Pet's House" />
+    </div>
+  </section>
+
+  <section class="about section-wrap">
+    <img class="about-image" src="/assets/images/home/about-team.png" alt="Đội ngũ Dr. Pet's House" />
+    <div class="about-copy">
+      <p class="eyebrow">Câu chuyện của chúng tôi</p>
+      <h1>Chăm sóc thú cưng toàn diện</h1>
+      <p>
+        Dr. Pet's House ra đời với sứ mệnh mang đến một hệ sinh thái chăm sóc thú cưng thông minh và tin cậy.
+      </p>
+      <ul>
+        <li *ngFor="let feature of features">{{ feature }}</li>
+      </ul>
+      <a class="text-link" routerLink="/ve-chung-toi">Tìm hiểu thêm về chúng tôi →</a>
+    </div>
+  </section>
+
+  <section class="services-section" id="homepage-services">
+    <img
+      class="services-cat-decoration"
+      src="/assets/images/home/cat-deco.png"
+      alt=""
+      aria-hidden="true"
+    />
+    <div class="section-wrap vertical">
+      <h2 class="services-heading"><span>Dịch vụ</span><br />chúng tôi cung cấp</h2>
+      <p class="section-intro">
+        Dr.Pet’s House mang đến hệ sinh thái chăm sóc thú cưng hiện đại với đầy đủ dịch vụ từ khám chữa bệnh,
+        chăm sóc làm đẹp đến mua sắm sản phẩm chất lượng. Chúng tôi luôn hướng đến sự tiện lợi, an toàn và trải
+        nghiệm tốt nhất cho cả thú cưng và chủ nuôi.
+      </p>
+      <div class="service-grid">
+        <article class="service-card" *ngFor="let service of services">
+          <img [src]="service.image" [alt]="service.title" />
+          <a class="service-card-copy" [routerLink]="service.link">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.text }}</p>
+            <span class="service-card-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="shop-section section-wrap vertical">
+    <h2>Pet shop</h2>
+    <nav class="home-category-list" aria-label="Danh mục sản phẩm">
+      <a
+        class="home-category"
+        *ngFor="let category of categories"
+        routerLink="/san-pham"
+        [queryParams]="{ category: category.name }"
+      >
+        <span class="home-category-icon">
+          <img [src]="category.image" [alt]="category.name" />
+        </span>
+        <strong>{{ category.name }}</strong>
+      </a>
+    </nav>
+    <div class="home-product-grid">
+      <article class="home-product-card" *ngFor="let product of homeProducts()">
+        <div class="home-product-media">
+          <a [routerLink]="['/product-details', product.id]" class="home-product-image">
+            <img [src]="product.image" [alt]="product.name" />
+          </a>
+          <button
+            class="home-product-cart"
+            type="button"
+            [attr.aria-label]="'Thêm ' + product.name + ' vào giỏ hàng'"
+            (click)="addToCart(product.name)"
+          >
+            <img src="/assets/images/home/cart-black.svg" alt="" />
+          </button>
+        </div>
+        <div class="home-product-copy">
+          <span class="home-product-category">{{ product.category }}</span>
+          <a [routerLink]="['/product-details', product.id]">{{ product.name }}</a>
+          <div class="home-product-meta">
+            <span aria-label="Đánh giá 4.5 trên 5">★★★★★</span>
+            <strong>{{ formatPrice(product.price) }}</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+    <a class="button button-primary" routerLink="/san-pham">Xem tất cả sản phẩm</a>
+  </section>
+
+  <section class="doctors-section">
+    <div class="section-wrap vertical">
+      <p class="eyebrow">Đội ngũ chuyên môn</p>
+      <h2>Những người bạn đồng hành của bé</h2>
+      <div class="doctor-grid">
+        <article class="doctor-card" *ngFor="let doctor of doctors">
+          <img [src]="doctor.image" [alt]="doctor.name" />
+          <h3>{{ doctor.name }}</h3>
+          <p>Bác sĩ thú y</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-blog-section">
+    <div class="home-blog-layout">
+      <section class="home-featured-post" aria-labelledby="featured-post-title">
+        <div class="home-blog-heading">
+          <h2>Featured Post</h2>
+        </div>
+        <a class="home-featured-image" routerLink="/blog" aria-label="Đọc bài viết nổi bật">
+          <img [src]="featuredHomePost.image" [alt]="featuredHomePost.title" />
+        </a>
+        <p class="home-post-meta">{{ featuredHomePost.author }} <span>·</span> {{ featuredHomePost.date }}</p>
+        <h3 id="featured-post-title">{{ featuredHomePost.title }}</h3>
+        <p class="home-featured-description">{{ featuredHomePost.description }}</p>
+        <a class="button button-primary home-read-more" routerLink="/blog">ĐỌC THÊM <span aria-hidden="true">→</span></a>
+      </section>
+
+      <section class="home-latest-posts" aria-labelledby="all-posts-title">
+        <div class="home-blog-heading">
+          <h2 id="all-posts-title">All Posts</h2>
+          <a routerLink="/blog">View All <span aria-hidden="true">→</span></a>
+        </div>
+        <article class="home-latest-post" *ngFor="let post of homeBlogPosts">
+          <p class="home-post-meta">{{ post.author }} <span>·</span> {{ post.date }}</p>
+          <a [routerLink]="post.link">{{ post.title }}</a>
+        </article>
+      </section>
+    </div>
+  </section>
+</ng-container>
+
+<ng-template #contentPage>
+  <app-alert
+    *ngIf="notice"
+    class="page-alert"
+    [type]="noticeType"
+    [message]="notice"
+    (closed)="dismissNotice()"
+  ></app-alert>
+
+  <ng-container [ngSwitch]="pageKind">
+    <ng-container *ngSwitchCase="'products'">
+      <section class="page-banner shop-banner">
+        <p class="eyebrow">Dr. Pet's House Pet Shop</p>
+        <h1>Sản phẩm dành cho thú cưng</h1>
+        <p>Lựa chọn sản phẩm chăm sóc chất lượng cho những người bạn bốn chân.</p>
+      </section>
+      <section class="section-wrap catalog-layout">
+        <aside class="catalog-filters">
+          <h2>Danh mục sản phẩm</h2>
+          <button type="button" [class.selected]="selectedCategory === 'all'" (click)="selectedCategory = 'all'">Tất cả sản phẩm</button>
+          <button type="button" *ngFor="let category of categories" [class.selected]="selectedCategory === category.name" (click)="selectedCategory = category.name">{{ category.name }}</button>
+          <h2 class="filter-subtitle">Tìm kiếm</h2>
+          <input aria-label="Tìm sản phẩm" [(ngModel)]="searchQuery" placeholder="Tên sản phẩm..." />
+        </aside>
+        <div class="catalog-results">
+          <div class="catalog-heading">
+            <div><p class="eyebrow">Pet shop</p><h2>{{ title }}</h2></div>
+            <span>{{ visibleProducts.length }} sản phẩm</span>
+          </div>
+          <p class="branch-feedback" *ngIf="productsLoading()">Đang tải sản phẩm...</p>
+          <app-alert *ngIf="productsError()" type="warning" [message]="productsError()"></app-alert>
+          <div class="product-grid">
+            <article class="product-card" *ngFor="let product of visibleProducts">
+              <a [routerLink]="['/product-details', product.id]">
+                <img [src]="product.image" [alt]="product.name" />
+                <span class="product-category">{{ product.category }}</span>
+                <h3>{{ product.name }}</h3>
+              </a>
+              <div class="product-meta"><span>★ {{ product.rating || 'Mới' }}</span><strong>{{ formatPrice(product.price) }}</strong></div>
+              <button class="button button-primary add-button" type="button" (click)="addToCart(product.name)">Thêm vào giỏ</button>
+            </article>
+            <p class="empty-state" *ngIf="visibleProducts.length === 0">Không tìm thấy sản phẩm phù hợp.</p>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'shop'">
+      <section class="page-banner shop-banner">
+        <p class="eyebrow">Dr. Pet's House Pet Shop</p>
+        <h1>Cửa hàng thú cưng</h1>
+        <p>Sản phẩm chất lượng, được lựa chọn để chăm sóc bé mỗi ngày.</p>
+      </section>
+      <section class="section-wrap vertical">
+        <p class="eyebrow">Danh mục nổi bật</p><h2>Tìm sản phẩm phù hợp cho bé</h2>
+        <div class="category-grid">
+          <a class="category-card" *ngFor="let category of categories" [routerLink]="['/san-pham']" [queryParams]="{ category: category.name }">
+            <img [src]="category.image" [alt]="category.name" /><strong>{{ category.name }}</strong>
+          </a>
+        </div>
+        <a class="button button-primary" routerLink="/san-pham">Xem tất cả sản phẩm</a>
+      </section>
+      <section class="section-wrap">
+        <div class="catalog-heading"><h2>Sản phẩm được yêu thích</h2><a class="text-link" routerLink="/san-pham">Xem tất cả →</a></div>
+        <div class="product-grid featured-grid">
+          <article class="product-card" *ngFor="let product of products().slice(0, 4)">
+            <a [routerLink]="['/product-details', product.id]"><img [src]="product.image" [alt]="product.name" /><h3>{{ product.name }}</h3></a>
+            <div class="product-meta"><span>★ {{ product.rating }}</span><strong>{{ formatPrice(product.price) }}</strong></div>
+            <button class="button button-primary add-button" type="button" (click)="addToCart(product.name)">Thêm vào giỏ</button>
+          </article>
+        </div>
+      </section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'product'">
+      <section class="section-wrap product-detail">
+        <div class="product-detail-image"><img [src]="selectedProduct.image" [alt]="selectedProduct.name" /></div>
+        <div class="product-detail-copy">
+          <p class="branch-feedback" *ngIf="productsLoading()">Đang tải thông tin sản phẩm...</p>
+          <app-alert *ngIf="productsError()" type="warning" [message]="productsError()"></app-alert>
+          <p class="eyebrow">{{ selectedProduct.category }}</p>
+          <h1>{{ selectedProduct.name }}</h1>
+          <p class="rating">★ {{ selectedProduct.rating }} <span>(Đánh giá từ khách hàng)</span></p>
+          <strong class="detail-price">{{ formatPrice(selectedProduct.price) }}</strong>
+          <p>{{ selectedProduct.description }}</p>
+          <p *ngIf="selectedProduct.stock > 0"><b>Còn hàng:</b> {{ selectedProduct.stock }}</p>
+          <div class="quantity-control">
+            <button type="button" aria-label="Giảm số lượng" (click)="decreaseCartQuantity()">−</button>
+            <span>{{ cartQuantity }}</span>
+            <button type="button" aria-label="Tăng số lượng" (click)="increaseCartQuantity()">+</button>
+          </div>
+          <button class="button button-primary" type="button" (click)="addToCart(selectedProduct.name)">Thêm vào giỏ hàng</button>
+          <a class="button button-light" routerLink="/cart">Xem giỏ hàng ({{ cartItems().length }})</a>
+          <a class="text-link" [routerLink]="['/product-details', selectedProduct.id, 'write-review']">Viết đánh giá sản phẩm →</a>
+        </div>
+      </section>
+      <section class="section-wrap product-description"><h2>Mô tả sản phẩm</h2><p>{{ selectedProduct.description }}</p></section>
+      <section class="section-wrap product-reviews">
+        <div class="catalog-heading"><h2>Đánh giá sản phẩm</h2><a class="text-link" [routerLink]="['/product-details', selectedProduct.id, 'write-review']">Viết đánh giá →</a></div>
+        <p class="branch-feedback" *ngIf="reviewsLoading()">Đang tải đánh giá...</p><app-alert *ngIf="reviewsError()" type="warning" [message]="reviewsError()"></app-alert><app-alert *ngIf="reviewActionError()" type="error" [message]="reviewActionError()"></app-alert>
+        <article class="product-review-card" *ngFor="let review of productReviews()"><div class="catalog-heading"><strong>{{ review.authorName }}</strong><span>{{ review.createdAt | date:'dd/MM/yyyy' }}</span></div><p class="rating">{{ '★'.repeat(review.rating) }} <span>{{ review.rating }}/5</span></p><p>{{ review.content }}</p><button type="button" class="text-link" [disabled]="likedReviewIds().includes(review.id)" (click)="likeReview(review.id)">{{ likedReviewIds().includes(review.id) ? 'Đã thích' : 'Thích đánh giá' }}</button></article>
+        <p class="branch-feedback" *ngIf="!reviewsLoading() && !reviewsError() && !productReviews().length">Chưa có đánh giá. Hãy là người đầu tiên chia sẻ trải nghiệm của bạn.</p>
+      </section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'review'">
+      <section class="page-banner"><p class="eyebrow">Chia sẻ trải nghiệm</p><h1>Đánh giá sản phẩm</h1><p>Ý kiến của bạn giúp cộng đồng lựa chọn tốt hơn.</p></section>
+      <section class="section-wrap review-form-wrap">
+        <form class="screen-form" (ngSubmit)="submitReviewForm()">
+          <label>Đánh giá của bạn<select name="rating" [(ngModel)]="reviewForm.rating" required><option value="">Chọn số sao</option><option value="5">5 sao - Rất tốt</option><option value="4">4 sao - Tốt</option><option value="3">3 sao - Bình thường</option><option value="2">2 sao - Chưa tốt</option><option value="1">1 sao - Không hài lòng</option></select></label>
+          <label>Nội dung<textarea name="content" [(ngModel)]="reviewForm.content" rows="5" required placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."></textarea></label>
+          <button class="button button-primary" type="submit">Gửi đánh giá</button>
+          <a class="text-link" [routerLink]="['/product-details', selectedProduct.id]">← Quay lại sản phẩm</a>
+        </form>
+      </section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'cart'">
+      <section class="page-banner"><p class="eyebrow">Mua sắm tại Pet Shop</p><h1>Giỏ hàng của bạn</h1><p>Kiểm tra sản phẩm trước khi tiếp tục.</p></section>
+      <section class="section-wrap cart-layout">
+        <div *ngIf="cartItems().length; else emptyCart">
+          <article class="cart-item" *ngFor="let item of cartItems()">
+            <img [src]="item.image" [alt]="item.name" />
+            <div class="cart-item-copy"><span class="product-category">{{ item.category }}</span><h2>{{ item.name }}</h2><strong>{{ formatPrice(item.price) }}</strong></div>
+            <div class="quantity-control"><button type="button" [attr.aria-label]="'Giảm ' + item.name" (click)="updateCartQuantity(item.id, item.quantity - 1)">−</button><span>{{ item.quantity }}</span><button type="button" [attr.aria-label]="'Tăng ' + item.name" (click)="updateCartQuantity(item.id, item.quantity + 1)">+</button></div>
+            <strong>{{ formatPrice(item.price * item.quantity) }}</strong>
+            <button type="button" class="text-link" (click)="updateCartQuantity(item.id, 0)">Xóa</button>
+          </article>
+        </div>
+        <ng-template #emptyCart><div class="cart-summary"><h2>Giỏ hàng đang trống</h2><p>Khám phá sản phẩm và thêm những món đồ cần thiết cho bé.</p><a class="button button-primary" routerLink="/san-pham">Mua sắm ngay</a></div></ng-template>
+        <aside class="cart-summary" *ngIf="cartItems().length"><h2>Tóm tắt đơn hàng</h2><p><span>Tạm tính</span><strong>{{ formatPrice(subtotal) }}</strong></p><p><span>Phí vận chuyển</span><span>Tính tại bước thanh toán</span></p><hr /><p class="total-row"><span>Tổng cộng</span><strong>{{ formatPrice(subtotal) }}</strong></p><a class="button button-primary" routerLink="/checkout">Tiến hành thanh toán</a><button class="text-link" type="button" (click)="clearCart()">Xóa toàn bộ giỏ hàng</button><a class="text-link" routerLink="/san-pham">← Tiếp tục mua sắm</a></aside>
+      </section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'checkout'">
+      <section class="page-banner"><p class="eyebrow">Pet Shop</p><h1>Thanh toán đơn hàng</h1><p>Vui lòng cung cấp thông tin nhận hàng.</p></section>
+      <section class="section-wrap checkout-layout" *ngIf="!checkoutSuccess(); else checkoutSuccessView">
+        <form class="screen-form checkout-form" (ngSubmit)="submitCheckout()">
+          <h2>Thông tin giao hàng</h2>
+          <ng-container *ngIf="authService.isAuthenticated(); else guestDelivery">
+            <p>Địa chỉ đã lưu</p>
+            <p class="branch-feedback" *ngIf="checkoutAddressesLoading()">Đang tải địa chỉ...</p>
+            <app-alert *ngIf="checkoutAddressesError()" type="warning" [message]="checkoutAddressesError()"></app-alert>
+            <label>Chọn địa chỉ<select name="addressId" [ngModel]="checkoutAddressId()" (ngModelChange)="checkoutAddressId.set($event)" required><option value="">Chọn địa chỉ nhận hàng</option><option *ngFor="let address of checkoutAddresses()" [value]="address.id">{{ address.name }} · {{ address.phone }} · {{ address.address }}, {{ address.district }}, {{ address.city }}</option></select></label>
+            <a class="text-link" routerLink="/thong-tin-nguoi-dung">Quản lý địa chỉ nhận hàng →</a>
+          </ng-container>
+          <ng-template #guestDelivery>
+            <p class="branch-feedback">Đặt hàng nhanh với tư cách khách hoặc <a routerLink="/login">đăng nhập</a> để dùng địa chỉ đã lưu.</p>
+            <label>Họ và tên<input name="guestName" [(ngModel)]="checkoutForm.fullName" required autocomplete="name" /></label>
+            <label>Email<input name="guestEmail" [(ngModel)]="checkoutForm.email" type="email" required autocomplete="email" /></label>
+            <label>Số điện thoại<input name="guestPhone" [(ngModel)]="checkoutForm.phone" type="tel" required autocomplete="tel" /></label>
+            <label>Địa chỉ<input name="guestAddress" [(ngModel)]="checkoutForm.address" required autocomplete="street-address" /></label>
+            <div class="field-row">
+              <label>Phường / xã<input name="guestWard" [(ngModel)]="checkoutForm.ward" /></label>
+              <label>Quận / huyện<input name="guestDistrict" [(ngModel)]="checkoutForm.district" required /></label>
+            </div>
+            <label>Tỉnh / thành phố<input name="guestCity" [(ngModel)]="checkoutForm.city" required autocomplete="address-level1" /></label>
+          </ng-template>
+          <label>Ghi chú đơn hàng<textarea name="checkoutNote" [(ngModel)]="checkoutNote" rows="3" placeholder="Hướng dẫn giao hàng hoặc lưu ý khác"></textarea></label>
+          <h2>Phương thức thanh toán</h2>
+          <label class="checkout-radio"><input type="radio" name="paymentMethod" [(ngModel)]="checkoutPaymentMethod" value="cod" /> Thanh toán khi nhận hàng</label>
+          <label class="checkout-radio"><input type="radio" name="paymentMethod" [(ngModel)]="checkoutPaymentMethod" value="online" /> Thanh toán trực tuyến</label>
+          <label *ngIf="checkoutPaymentMethod === 'online'">Nhà cung cấp thanh toán<select name="onlineProvider" [(ngModel)]="checkoutOnlineProvider"><option value="vnpay">VNPay</option><option value="momo">MoMo</option><option value="zalopay">ZaloPay</option></select></label>
+          <app-alert *ngIf="checkoutError()" type="error" [message]="checkoutError()"></app-alert>
+          <button class="button button-primary" type="submit" [disabled]="checkoutSubmitting() || !cartItems().length">{{ checkoutSubmitting() ? 'Đang xử lý...' : 'Xác nhận đơn hàng' }}</button>
+        </form>
+        <aside class="cart-summary">
+          <h2>Đơn hàng</h2>
+          <p *ngFor="let item of cartItems()"><span>{{ item.name }} × {{ item.quantity }}</span><strong>{{ formatPrice(item.price * item.quantity) }}</strong></p>
+          <p *ngIf="!cartItems().length">Chưa có sản phẩm trong giỏ hàng.</p>
+          <hr />
+          <div class="checkout-coupon" *ngIf="authService.isAuthenticated()">
+            <label for="checkout-coupon">Mã giảm giá</label>
+            <div><input id="checkout-coupon" name="coupon" [(ngModel)]="checkoutCoupon" placeholder="Nhập mã" /><button type="button" (click)="applyCheckoutCoupon()">Áp dụng</button></div>
+            <p class="coupon-error" *ngIf="checkoutCouponError()">{{ checkoutCouponError() }}</p>
+            <p class="coupon-success" *ngIf="checkoutCouponMessage()">{{ checkoutCouponMessage() }}</p>
+          </div>
+          <p><span>Tạm tính</span><strong>{{ formatPrice(subtotal) }}</strong></p>
+          <p><span>Giảm giá</span><strong>-{{ formatPrice(checkoutDiscount()) }}</strong></p>
+          <p class="total-row"><span>Tổng cộng</span><strong>{{ formatPrice(checkoutTotal) }}</strong></p>
+          <a class="text-link" routerLink="/cart">← Quay lại giỏ hàng</a>
+        </aside>
+      </section>
+      <ng-template #checkoutSuccessView>
+        <section class="section-wrap checkout-success">
+          <span aria-hidden="true">✓</span>
+          <h2>Đặt hàng thành công</h2>
+          <p *ngIf="checkoutSuccess()?.code">Mã đơn hàng: <strong>{{ checkoutSuccess()?.code }}</strong></p>
+          <p *ngIf="checkoutSuccess()?.id && !checkoutSuccess()?.code">Mã đơn hàng: <strong>#{{ checkoutSuccess()?.id }}</strong></p>
+          <p>Giỏ hàng đã được cập nhật. Bạn có thể theo dõi tình trạng đơn trong tài khoản.</p>
+          <a class="button button-primary" routerLink="/don-hang-cua-toi">Theo dõi đơn hàng</a>
+          <a class="text-link" routerLink="/san-pham">Tiếp tục mua sắm</a>
+        </section>
+      </ng-template>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'booking'">
+      <section class="page-banner"><p class="eyebrow">Chăm sóc bé yêu</p><h1>Đặt lịch khám</h1><p>Chọn dịch vụ, thời gian và thông tin thú cưng của bạn.</p></section>
+      <section class="section-wrap booking-wrap">
+        <div class="booking-steps"><span [class.active]="bookingStep >= 1">01 <b>Dịch vụ</b></span><i></i><span [class.active]="bookingStep >= 2">02 <b>Thời gian</b></span><i></i><span [class.active]="bookingStep >= 3">03 <b>Thông tin</b></span></div>
+        <div class="booking-panel" *ngIf="bookingStep === 1">
+          <h2>Chọn dịch vụ</h2>
+          <nav class="booking-service-types" aria-label="Loại dịch vụ">
+            <button type="button" [class.selected]="selectedBookingServiceType() === 'clinic'" (click)="changeBookingServiceType('clinic')">Khám & Điều trị</button>
+            <button type="button" [class.selected]="selectedBookingServiceType() === 'grooming'" (click)="changeBookingServiceType('grooming')">Grooming & Spa</button>
+          </nav>
+          <p class="branch-feedback" *ngIf="bookingServicesLoading()">Đang tải dịch vụ...</p>
+          <app-alert *ngIf="bookingServicesError()" type="warning" [message]="bookingServicesError()"></app-alert>
+          <button class="booking-service" *ngFor="let service of visibleBookingServices()" [class.selected]="selectedServiceIds().includes(service.id) && !!service.id" type="button" (click)="selectBookingService(service)">
+            <img [src]="service.type === 'grooming' ? '/assets/images/home/service-2.png' : '/assets/images/home/service-1.png'" [alt]="service.name" />
+            <span><b>{{ service.name }}</b><small>{{ service.description || 'Đội ngũ chuyên môn chăm sóc tận tình.' }}</small></span>
+            <strong>{{ formatPrice(service.price) }}<small class="service-select-hint">{{ selectedServiceIds().includes(service.id) ? 'Đã chọn' : 'Chọn dịch vụ' }}</small></strong>
+          </button>
+          <p class="booking-selected-summary" *ngIf="selectedServiceIds().length">Đã chọn {{ selectedServiceIds().length }} dịch vụ.</p>
+          <p class="branch-feedback" *ngIf="!bookingServicesLoading() && bookingServicesError()">Các lựa chọn mẫu chỉ để tham khảo; cần kết nối máy chủ để đặt dịch vụ.</p>
+        </div>
+        <div class="booking-panel" *ngIf="bookingStep === 2">
+          <h2>Chọn chi nhánh, ngày và khung giờ</h2>
+          <app-alert *ngIf="branchesError()" type="warning" [message]="branchesError()"></app-alert>
+          <label class="booking-date">Chi nhánh
+            <select [ngModel]="selectedBranchId()" (ngModelChange)="onBookingBranchChange($event)" name="bookingBranch" required>
+              <option value="">Chọn chi nhánh</option>
+              <option *ngFor="let branch of branches()" [value]="branch.id">{{ branch.name }} - {{ branch.address }}</option>
+            </select>
+          </label>
+          <label class="booking-date">Ngày khám<input type="date" name="bookingDate" [ngModel]="selectedDate" (ngModelChange)="onBookingDateChange($event)" [min]="minBookingDate" /></label>
+          <h3>Khung giờ còn trống</h3>
+          <p class="branch-feedback" *ngIf="bookingSlotsLoading()">Đang tải khung giờ...</p>
+          <app-alert *ngIf="bookingSlotsError()" type="warning" [message]="bookingSlotsError()"></app-alert>
+          <div class="time-grid">
+            <button *ngFor="let slot of bookingSlots()" type="button" [disabled]="!slot.available" [class.selected]="selectedSlotId === slot.id" (click)="selectBookingSlot(slot)">
+              {{ slot.label }}<small *ngIf="slot.doctorName"> · {{ slot.doctorName }}</small>
+            </button>
+          </div>
+          <p class="branch-feedback" *ngIf="!bookingSlotsLoading() && !bookingSlotsError() && selectedDate && !bookingSlots().length">Không có khung giờ phù hợp trong ngày đã chọn.</p>
+        </div>
+        <div class="booking-panel" *ngIf="bookingStep === 3">
+          <h2>Thông tin chủ nuôi và thú cưng</h2>
+          <app-alert *ngIf="bookingSpeciesError()" type="warning" [message]="bookingSpeciesError()"></app-alert>
+          <p class="branch-feedback" *ngIf="bookingSuccess()">Đặt lịch thành công. Bạn có thể theo dõi lịch hẹn trong tài khoản.</p>
+          <form class="screen-form" (ngSubmit)="submitBooking()">
+            <label>Họ và tên chủ nuôi<input name="customerName" [(ngModel)]="bookingForm.customerName" autocomplete="name" required /></label>
+            <label>Số điện thoại<input name="phone" type="tel" [(ngModel)]="bookingForm.phone" autocomplete="tel" required /></label>
+            <label>Tên thú cưng<input name="petName" [(ngModel)]="bookingForm.petName" required /></label>
+            <label>Loài thú cưng<select name="speciesId" [(ngModel)]="bookingForm.speciesId" required><option value="">Chọn loài</option><option *ngFor="let species of bookingSpecies()" [value]="species.id">{{ species.name }}</option></select></label>
+            <label>Ghi chú<textarea name="notes" [(ngModel)]="bookingForm.notes" rows="3"></textarea></label>
+            <fieldset class="booking-payment-options"><legend>Phương thức thanh toán</legend>
+              <label><input type="radio" name="bookingPayment" [(ngModel)]="bookingPaymentMethod" value="store" /> Thanh toán tại phòng khám</label>
+              <label><input type="radio" name="bookingPayment" [(ngModel)]="bookingPaymentMethod" value="online" /> Thanh toán trực tuyến</label>
+            </fieldset>
+            <button class="button button-primary" type="submit" [disabled]="bookingSubmitting() || bookingSuccess()">{{ bookingSubmitting() ? 'Đang gửi...' : bookingSuccess() ? 'Đã gửi yêu cầu' : 'Gửi yêu cầu đặt lịch' }}</button>
+          </form>
+        </div>
+        <div class="booking-controls"><button class="button button-light" type="button" *ngIf="bookingStep > 1" (click)="bookingStep = bookingStep - 1">Quay lại</button><button class="button button-primary" type="button" *ngIf="bookingStep < 3" (click)="continueBooking()">Tiếp tục</button></div>
+      </section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'contact'">
+      <section class="page-banner"><p class="eyebrow">Dr. Pet's House luôn lắng nghe</p><h1>Liên hệ với chúng tôi</h1><p>Chúng tôi luôn sẵn sàng hỗ trợ bạn và thú cưng.</p></section>
+      <section class="section-wrap contact-layout">
+        <form class="screen-form contact-screen-form" (ngSubmit)="submitContact()">
+          <h2>Gửi lời nhắn cho chúng tôi</h2><p>Điền biểu mẫu dưới đây, đội ngũ chăm sóc khách hàng sẽ sớm phản hồi.</p>
+          <label>Tên của bạn<input name="contactName" [(ngModel)]="contactForm.name" required /></label>
+          <label>Giới tính<select name="gender" [(ngModel)]="contactForm.gender"><option value="">Chưa chọn</option><option value="female">Nữ</option><option value="male">Nam</option><option value="other">Khác</option></select></label>
+          <label>Số điện thoại<input name="contactPhone" type="tel" [(ngModel)]="contactForm.phone" required /></label>
+          <label>Địa chỉ email<input name="contactEmail" type="email" [(ngModel)]="contactForm.email" required /></label>
+          <label>Nội dung<textarea name="message" rows="5" [(ngModel)]="contactForm.message" required placeholder="Hãy để lại lời nhắn ở đây..."></textarea></label>
+          <button class="button button-primary" type="submit" [disabled]="contactSubmitting()">{{ contactSubmitting() ? 'Đang gửi...' : 'Gửi cho chúng tôi' }}</button>
+          <app-alert *ngIf="contactError()" type="error" [message]="contactError()"></app-alert>
+          <app-alert *ngIf="contactSubmitted()" type="success" message="Cảm ơn bạn! Dr. Pet's House đã nhận được lời nhắn."></app-alert>
+        </form>
+        <aside id="branches" class="contact-info"><p class="eyebrow">Dr. Pet's House</p><h2>Luôn đồng hành cùng bạn</h2><p>Gọi cho chúng tôi để được hỗ trợ về dịch vụ, lịch khám hoặc sản phẩm.</p><a href="tel:0868686868">☎ 086 8686868</a><a href="mailto:drpetshouse.cskh@gmail.com">✉ drpetshouse.cskh&#64;gmail.com</a><p><b>Giờ hoạt động</b><br />Thứ 2 – Chủ nhật, 08:00 – 20:00</p><a class="button button-light" [href]="googleMapsLink(selectedBranch()?.address ?? '')" target="_blank" rel="noreferrer">Xem chỉ đường</a></aside>
+      </section>
+      <section class="section-wrap branch-directory">
+        <div class="branch-list-panel">
+          <h2>Danh sách chi nhánh</h2>
+          <label class="branch-search"><span class="sr-only">Tìm kiếm chi nhánh</span><input type="search" [ngModel]="branchQuery()" (ngModelChange)="branchQuery.set($event)" name="branchQuery" placeholder="Tìm kiếm chi nhánh..." /><img src="/assets/images/contact/figma/search-icon.svg" alt="" /></label>
+          <p class="branch-feedback" *ngIf="branchesLoading()">Đang tải danh sách chi nhánh...</p>
+          <p class="branch-feedback" *ngIf="branchesError()" role="status">{{ branchesError() }}</p>
+          <button class="branch-card" *ngFor="let branch of visibleBranches()" type="button" [class.active]="branch.id === selectedBranchId()" [attr.aria-pressed]="branch.id === selectedBranchId()" (click)="selectedBranchId.set(branch.id)">
+            <strong>{{ branch.name }}</strong><span>{{ branch.address }}</span><small><b>Mở cửa:</b> {{ branch.hours }}</small><small><b>Liên hệ:</b> {{ branch.phone }}</small>
+          </button>
+          <p class="branch-feedback" *ngIf="!visibleBranches().length">Không tìm thấy chi nhánh phù hợp.</p>
+        </div>
+        <div class="branch-map" *ngIf="selectedBranch() as branch">
+          <iframe [title]="'Google Maps - ' + branch.name" [src]="googleMapsEmbedLink(branch.address)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a [href]="googleMapsLink(branch.address)" target="_blank" rel="noreferrer">Mở Google Maps</a>
+        </div>
+      </section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'about'">
+      <section class="page-banner"><p class="eyebrow">Câu chuyện của chúng tôi</p><h1>Về Dr. Pet's House</h1><p>{{ summary }}</p></section>
+      <section class="section-wrap about-detail"><img src="/assets/images/about/hero-pets.png" alt="Thú cưng tại Dr. Pet's House" /><div><p class="eyebrow">Yêu thương bằng sự tận tâm</p><h2>Chăm sóc toàn diện cho người bạn bốn chân</h2><p>Chúng tôi xây dựng hệ sinh thái thú y hiện đại, nơi sức khỏe và hạnh phúc của thú cưng luôn được đặt lên hàng đầu.</p><p>Từ khám chữa bệnh, chăm sóc làm đẹp đến mua sắm sản phẩm chất lượng, đội ngũ của chúng tôi luôn đồng hành cùng mỗi gia đình.</p><a class="button button-primary" routerLink="/dat-lich">Đặt lịch thăm khám</a></div></section>
+      <section class="services-section"><div class="section-wrap vertical"><p class="eyebrow">Điều chúng tôi cam kết</p><h2>Chăm sóc bằng chuyên môn và yêu thương</h2><div class="feature-grid"><article *ngFor="let feature of features"><span>✓</span><h3>{{ feature }}</h3><p>Chúng tôi luôn nỗ lực mang đến trải nghiệm an toàn, chu đáo và đáng tin cậy cho bạn cùng thú cưng.</p></article></div></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'medical'">
+      <section class="page-banner service-banner"><p class="eyebrow">Chăm sóc sức khỏe thú cưng</p><h1>Khám và điều trị</h1><p>An tâm cho bé, vững lòng cho bạn — đồng hành cùng bác sĩ thú y tận tâm ở mọi giai đoạn.</p><a class="button button-primary" routerLink="/dat-lich">Đặt lịch khám</a></section>
+      <section class="section-wrap service-detail"><img src="/assets/images/about/service-medical.png" alt="Bác sĩ thú y chăm sóc thú cưng" /><div><p class="eyebrow">An tâm cho bé, vững lòng cho bạn</p><h2>Chăm sóc sức khỏe thú cưng chuẩn y khoa</h2><p>Bác sĩ thăm khám, tư vấn và xây dựng phác đồ phù hợp với từng thú cưng. Dịch vụ bao gồm khám tổng quát, tiêm phòng, tư vấn dinh dưỡng và theo dõi sức khỏe.</p><ul><li>Khám sức khỏe tổng quát và tư vấn</li><li>Tiêm phòng, tẩy giun và chăm sóc định kỳ</li><li>Chẩn đoán và điều trị bệnh</li><li>Theo dõi và tư vấn sau thăm khám</li></ul><a class="button button-primary" routerLink="/dat-lich">Đặt lịch khám</a></div></section>
+      <section class="services-section"><div class="section-wrap vertical"><p class="eyebrow">Quy trình tận tâm</p><h2>Chăm sóc đúng nhu cầu của từng bé</h2><div class="feature-grid"><article><span>01</span><h3>Tiếp nhận và lắng nghe</h3><p>Ghi nhận triệu chứng, lịch sử chăm sóc và mối quan tâm của gia đình.</p></article><article><span>02</span><h3>Thăm khám chuyên môn</h3><p>Bác sĩ kiểm tra sức khỏe và trao đổi rõ phương án phù hợp.</p></article><article><span>03</span><h3>Đồng hành sau khám</h3><p>Hướng dẫn theo dõi tại nhà và lịch tái khám khi cần thiết.</p></article></div></div></section>
+      <section class="section-wrap vertical"><h2>Các dịch vụ thú y</h2><div class="service-grid"><article class="service-card" *ngFor="let service of services"><img [src]="service.image" [alt]="service.title" /><div class="service-card-copy"><h3>{{ service.title }}</h3><p>{{ service.text }}</p><a class="text-link" [routerLink]="service.link">Tìm hiểu thêm →</a></div></article></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'grooming'">
+      <section class="page-banner service-banner grooming-banner"><p class="eyebrow">Thư giãn và làm đẹp</p><h1>Grooming & Spa</h1><p>Chăm sóc nhẹ nhàng để bé luôn sạch sẽ, khỏe mạnh và tự tin.</p><a class="button button-primary" routerLink="/dat-lich">Đặt lịch spa</a></section>
+      <section class="section-wrap service-detail"><img src="/assets/images/about/service-grooming.png" alt="Dịch vụ grooming và spa" /><div><p class="eyebrow">Chăm sóc từ trái tim</p><h2>Khoảnh khắc thư giãn dành riêng cho bé</h2><p>Dịch vụ tắm sấy, vệ sinh tai móng và cắt tỉa lông được thực hiện bởi nhân viên giàu kinh nghiệm, sử dụng sản phẩm an toàn cho thú cưng.</p><ul><li>Tắm và sấy lông</li><li>Cắt tỉa, tạo kiểu</li><li>Vệ sinh tai và móng</li><li>Chăm sóc da và lông</li></ul><a class="button button-primary" routerLink="/dat-lich">Đặt lịch spa</a></div></section>
+      <section class="section-wrap vertical"><p class="eyebrow">Dịch vụ được yêu thích</p><h2>Chọn trải nghiệm phù hợp cho bé</h2><div class="feature-grid"><article><h3>Tắm & chăm sóc cơ bản</h3><p>Làm sạch nhẹ nhàng, sấy khô và chăm sóc vệ sinh thường ngày.</p><a class="text-link" routerLink="/dat-lich">Đặt dịch vụ →</a></article><article><h3>Cắt tỉa & tạo kiểu</h3><p>Tư vấn kiểu lông phù hợp với giống, bộ lông và thói quen của bé.</p><a class="text-link" routerLink="/dat-lich">Đặt dịch vụ →</a></article><article><h3>Combo spa toàn diện</h3><p>Kết hợp tắm, vệ sinh tai móng và chăm sóc da lông trong một buổi.</p><a class="text-link" routerLink="/dat-lich">Đặt dịch vụ →</a></article></div></section>
+      <section class="services-section"><div class="section-wrap vertical"><p class="eyebrow">Câu hỏi thường gặp</p><h2>Để buổi spa của bé thoải mái hơn</h2><details class="service-faq"><summary>Bé cần chuẩn bị gì trước buổi grooming?</summary><p>Bạn có thể chia sẻ trước tình trạng sức khỏe, dị ứng hoặc điều bé chưa quen để đội ngũ chăm sóc phù hợp.</p></details><details class="service-faq"><summary>Dr. Pet's House có dùng sản phẩm an toàn không?</summary><p>Đội ngũ lựa chọn sản phẩm chuyên dụng phù hợp với thú cưng và trao đổi với bạn khi bé có nhu cầu đặc biệt.</p></details><details class="service-faq"><summary>Làm thế nào để xem bảng giá?</summary><p>Mở mục Bảng giá dịch vụ ở chân trang để xem và lọc các dịch vụ grooming.</p></details></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'blog'">
+      <section class="page-banner"><p class="eyebrow">Góc chia sẻ Dr. Pet's House</p><h1>Kiến thức chăm sóc thú cưng</h1><p>Tin tức và kinh nghiệm hữu ích từ đội ngũ chuyên gia.</p></section>
+      <section class="section-wrap"><div class="blog-tabs"><a routerLink="/blog">Kiến thức thú cưng</a><a routerLink="/blog/cong-dong">Cộng đồng chia sẻ</a><a routerLink="/blog/so-cuu">Cẩm nang sơ cứu</a></div><article class="featured-post"><img src="/assets/images/blog/featured-vaccine.png" alt="Lịch tiêm phòng cho chó con" /><div><p class="eyebrow">Sức khỏe · 4 Tháng 6, 2024</p><h2>{{ blogPosts[0].title }}</h2><p>Bảo vệ cún cưng khỏi các bệnh nguy hiểm bằng lịch tiêm phòng chuẩn y khoa. Cùng tìm hiểu chi tiết các mũi tiêm và lưu ý quan trọng.</p><a class="button button-primary" routerLink="/blog/vaccine-5-in-1">Đọc bài viết</a></div></article><div class="blog-grid"><article class="blog-card" *ngFor="let post of blogPosts.slice(1)"><a routerLink="/blog/vaccine-5-in-1"><img [src]="post.image" [alt]="post.title" /><p class="eyebrow">{{ post.category }} · {{ post.date }}</p><h3>{{ post.title }}</h3><span class="text-link">Đọc tiếp →</span></a></article></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'blog-detail'">
+      <section class="section-wrap article-layout"><article class="article-body"><a class="text-link" routerLink="/blog">← Tất cả bài viết</a><p class="eyebrow">Sức khỏe thú cưng · 4 Tháng 6, 2024</p><h1>Lịch tiêm phòng 5-trong-1 cần thiết cho chó con từ 2 tháng tuổi</h1><img src="/assets/images/blog/featured-vaccine.png" alt="Lịch tiêm phòng cho chó con" /><p>Việc tiêm phòng đầy đủ cho chó con không chỉ là trách nhiệm mà còn là cách thể hiện tình yêu thương đúng đắn của chủ nuôi dành cho thú cưng của mình.</p><h2>Vì sao cần tiêm từ 2 tháng tuổi?</h2><p>Ở độ tuổi này, kháng thể từ sữa mẹ bắt đầu giảm dần, khiến chó con dễ bị tổn thương trước các tác nhân gây bệnh. Việc tiêm mũi đầu tiên vào tuần thứ 6–8 giúp xây dựng hệ miễn dịch chủ động.</p><h2>Lịch tiêm phòng tham khảo</h2><ol><li>Mũi 1 (6–8 tuần tuổi): khám tổng quát và bắt đầu vắc-xin tổng hợp.</li><li>Mũi 2 (9–11 tuần tuổi): nhắc lại để củng cố miễn dịch.</li><li>Mũi 3 (12–14 tuần tuổi): hoàn tất chu kỳ và trao đổi với bác sĩ về vắc-xin dại.</li></ol></article><aside class="article-aside"><h2>Bài viết liên quan</h2><a *ngFor="let post of blogPosts.slice(1)" routerLink="/blog">{{ post.title }}</a></aside></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'first-aid'">
+      <section class="page-banner"><p class="eyebrow">Cẩm nang an toàn</p><h1>Sơ cứu thú cưng</h1><p>Kiến thức cơ bản giúp bạn bình tĩnh hỗ trợ bé trước khi đến cơ sở thú y.</p></section>
+      <section class="section-wrap"><div class="blog-tabs"><a routerLink="/blog">Kiến thức thú cưng</a><a routerLink="/blog/so-cuu">Cẩm nang sơ cứu</a></div><div class="first-aid-grid"><article><img src="/assets/images/blog/first-aid-choking.png" alt="Sơ cứu thú cưng bị hóc" /><p class="eyebrow">Hướng dẫn an toàn</p><h2>Sơ cứu khi thú cưng bị hóc dị vật</h2><p>Giữ bình tĩnh, quan sát nhịp thở và liên hệ bác sĩ thú y ngay. Không cố lấy dị vật nếu bạn không nhìn thấy rõ hoặc có nguy cơ đẩy dị vật vào sâu hơn.</p><a class="text-link" routerLink="/blog/so-cuu/cho-meo-bi-hoc">Đọc hướng dẫn →</a></article><article><img src="/assets/images/blog/post-placeholder.png" alt="Chuẩn bị túi sơ cứu" /><p class="eyebrow">Chuẩn bị tại nhà</p><h2>Túi sơ cứu cơ bản cho thú cưng</h2><p>Chuẩn bị thông tin liên hệ phòng khám, gạc sạch và vật dụng chăm sóc cơ bản theo hướng dẫn của bác sĩ.</p><a class="text-link" routerLink="/blog/so-cuu/tui-so-cuu">Đọc hướng dẫn →</a></article></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'community'">
+      <section class="page-banner community-banner"><p class="eyebrow">Kết nối người yêu thú cưng</p><h1>Cộng đồng chia sẻ</h1><p>Cùng chia sẻ câu chuyện, kinh nghiệm và tình yêu dành cho các bé.</p></section>
+      <section class="section-wrap community-layout"><div><article class="community-feature"><img src="/assets/images/blog/community-dog-park.png" alt="Cộng đồng vui chơi cùng thú cưng" /><p class="eyebrow">Câu chuyện cộng đồng</p><h2>Mỗi ngày vui khỏe cùng những người bạn bốn chân</h2><p>Cùng nhau tạo nên một cộng đồng tích cực, nơi các gia đình có thể học hỏi và chia sẻ kinh nghiệm chăm sóc thú cưng.</p></article><div class="community-post"><img src="/assets/images/blog/community-author.png" alt="" /><div><b>Chia sẻ từ cộng đồng</b><p>Những khoảnh khắc đáng nhớ và mẹo chăm sóc hữu ích từ các chủ nuôi.</p></div></div></div><aside class="community-aside"><img src="/assets/images/blog/community-title.png" alt="Cộng đồng Dr. Pet's House" /><h2>Cùng chia sẻ yêu thương</h2><a class="button button-primary" routerLink="/lien-he">Tham gia cùng chúng tôi</a></aside></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'policy'">
+      <section class="page-banner"><p class="eyebrow">Hỗ trợ khách hàng</p><h1>{{ policyTitle() }}</h1><p>Thông tin chính sách và hướng dẫn sử dụng dịch vụ Dr. Pet's House.</p></section>
+      <section class="section-wrap policy-layout">
+        <nav class="policy-nav" aria-label="Chính sách liên quan"><h2>CÓ LIÊN QUAN</h2><a *ngFor="let policy of policyLinks" [routerLink]="['/policies', policy.slug]" [class.selected]="policyIsActive(policy.slug)">{{ policy.title }}</a></nav>
+        <article class="policy-article"><h1>{{ policyTitle() }}</h1><p class="policy-meta"><img src="/assets/images/policy/meta-author.svg" alt="" /> Admin <img src="/assets/images/policy/meta-date.svg" alt="" /> 24 Tháng 05, 2026 <img src="/assets/images/policy/meta-read-time.svg" alt="" /> 5 phút đọc</p><p>Dr. Pet’s House luôn mong muốn mang đến trải nghiệm minh bạch, thuận tiện và an toàn cho bạn cùng thú cưng.</p><section *ngFor="let section of policySections()"><h2>{{ section.heading }}</h2><p>{{ section.body }}</p></section><a class="text-link" routerLink="/lien-he">Cần hỗ trợ? Liên hệ với chúng tôi →</a></article>
+      </section>
+      <section class="section-wrap policy-support"><div><h2>Bạn cần hỗ trợ thêm?</h2><p>Liên hệ với Dr. Pet's qua hotline hoặc để lại lời nhắn, đội ngũ chúng tôi sẵn sàng hỗ trợ bạn.</p></div><a class="button button-primary" href="tel:0868686868">Gọi ngay: 0868.686.868</a><a class="button button-light" routerLink="/lien-he">Để lại lời nhắn</a></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'rescue'">
+      <section class="page-banner rescue-banner"><p class="eyebrow">Tìm một người bạn thân</p><h1>Mọi chiếc đuôi đều xứng đáng có một <span>tổ ấm yêu thương</span></h1><p>Cùng Dr. Pet's House tạo cơ hội cho những người bạn đang cần một mái ấm và kết nối với mạng lưới cứu trợ.</p><a class="button button-primary" href="#rescue-pets">Tìm bạn đồng hành</a></section>
+      <section class="section-wrap rescue-layout"><img src="/assets/images/rescue/hero-family.png" alt="Người nhận nuôi ôm chú chó" /><div><p class="eyebrow">Một mái nhà, một cuộc đời đổi thay</p><h2>Cho bé cơ hội được yêu thương</h2><p>Mỗi thú cưng đều xứng đáng có một mái ấm an toàn. Tìm hiểu tình trạng, nhu cầu chăm sóc và gửi yêu cầu nhận nuôi trực tiếp.</p><a class="button button-primary" href="#rescue-pets">Xem hồ sơ đang chờ</a></div></section>
+      <section id="rescue-pets" class="section-wrap vertical">
+        <p class="eyebrow">Đang cần được hỗ trợ</p><h2>Tìm kiếm người bạn bốn chân</h2>
+        <div class="rescue-filters"><input type="search" aria-label="Tìm thú cưng" [ngModel]="rescueKeyword()" (ngModelChange)="rescueKeyword.set($event); rescuePage.set(1)" placeholder="Tìm theo tên, tình trạng..." /><select aria-label="Lọc tình trạng" [ngModel]="rescueStatus()" (ngModelChange)="rescueStatus.set($event); rescuePage.set(1)"><option value="all">Tất cả trạng thái</option><option value="waiting">Còn chờ</option><option value="adopted">Đã có tổ ấm</option></select></div>
+        <app-alert *ngIf="adoptionError()" type="warning" [message]="adoptionError()"></app-alert>
+        <app-alert *ngIf="adoptionSuccess()" type="success" [message]="adoptionSuccess()"></app-alert>
+        <div class="rescue-cards">
+          <article class="rescue-pet-card" *ngFor="let pet of visibleRescuePets()">
+            <div class="rescue-pet-image"><img [src]="pet.image" [alt]="pet.name" /><span [class.adopted]="pet.state === 'adopted'">{{ pet.state === 'adopted' ? 'ĐÃ CÓ TỔ ẤM' : 'CÒN CHỜ' }}</span></div>
+            <h3>{{ pet.name }}</h3><p>{{ pet.description }}</p><div class="rescue-pet-facts"><p><b>Tình trạng</b><br />{{ pet.status }}</p><p><b>Cần hỗ trợ</b><br />{{ pet.need }}</p></div>
+            <button class="button button-primary" type="button" [disabled]="pet.state === 'adopted'" (click)="openAdoptionForm(pet)">{{ pet.state === 'adopted' ? 'Đã có tổ ấm' : 'Gửi yêu cầu nhận nuôi' }}</button>
+          </article>
+          <p class="empty-state" *ngIf="!visibleRescuePets().length">Không tìm thấy hồ sơ phù hợp.</p>
+        </div>
+        <div class="rescue-pagination" *ngIf="rescueTotalPages > 1"><button type="button" [disabled]="rescuePage() <= 1" (click)="changeRescuePage(rescuePage() - 1)">‹ Trước</button><span>Trang {{ rescuePage() }} / {{ rescueTotalPages }}</span><button type="button" [disabled]="rescuePage() >= rescueTotalPages" (click)="changeRescuePage(rescuePage() + 1)">Sau ›</button></div>
+      </section>
+      <section class="section-wrap rescue-partners" *ngIf="authService.isAuthenticated()">
+        <p class="eyebrow">Theo dõi hồ sơ</p><h2>Đơn nhận nuôi của tôi</h2>
+        <p class="branch-feedback" *ngIf="myRequestsLoading()">Đang tải yêu cầu nhận nuôi...</p><app-alert *ngIf="myRequestsError()" type="warning" [message]="myRequestsError()"></app-alert>
+        <div class="rescue-cards" *ngIf="myAdoptionRequests().length">
+          <article class="rescue-partner-card" *ngFor="let request of myAdoptionRequests()"><img [src]="request.petImage" [alt]="request.petName" /><h3>{{ request.petName }}</h3><p><b>Trạng thái:</b> {{ request.statusLabel }}</p><p *ngIf="request.reason">{{ request.reason }}</p><small *ngIf="request.submittedAt">Gửi ngày {{ request.submittedAt | date:'dd/MM/yyyy' }}</small></article>
+        </div>
+        <p class="branch-feedback" *ngIf="!myRequestsLoading() && !myRequestsError() && !myAdoptionRequests().length">Bạn chưa gửi yêu cầu nhận nuôi nào.</p>
+      </section>
+      <section class="section-wrap rescue-partners"><p class="eyebrow">Kết nối hỗ trợ</p><h2>Mạng lưới đối tác cứu trợ</h2><p>Danh sách các đơn vị cứu hộ và trạm tạm trú đang đồng hành trong hành trình vì thú cưng.</p><p class="branch-feedback" *ngIf="rescuePartnersError()">{{ rescuePartnersError() }}</p><div class="rescue-cards"><article class="rescue-partner-card" *ngFor="let partner of rescuePartners()"><img [src]="partner.image" [alt]="partner.name" /><h3>{{ partner.name }}</h3><p>{{ partner.region }}</p><p>{{ partner.description }}</p><a [href]="partner.href" target="_blank" rel="noreferrer">Tìm hiểu thêm →</a></article></div></section>
+      <div class="adoption-modal-backdrop" *ngIf="selectedAdoptionPet() as pet" (click)="closeAdoptionForm()">
+        <section class="adoption-modal" role="dialog" aria-modal="true" [attr.aria-label]="'Yêu cầu nhận nuôi ' + pet.name" (click)="$event.stopPropagation()">
+          <button class="adoption-modal-close" type="button" aria-label="Đóng" (click)="closeAdoptionForm()">×</button><p class="eyebrow">Yêu cầu nhận nuôi</p><h2>Đồng hành cùng {{ pet.name }}</h2>
+          <form class="screen-form" (ngSubmit)="submitAdoptionRequest(adoptionForm)">
+            <label>Họ và tên<input name="fullName" [(ngModel)]="adoptionForm.fullName" required /></label><label>Số điện thoại<input name="phone" type="tel" [(ngModel)]="adoptionForm.phone" required /></label>
+            <label>Giới tính<select name="gender" [(ngModel)]="adoptionForm.gender"><option value="">Chọn giới tính</option><option value="female">Nữ</option><option value="male">Nam</option><option value="other">Khác</option></select></label><label>Năm sinh<input name="birthYear" type="number" [(ngModel)]="adoptionForm.birthYear" /></label>
+            <label class="adoption-modal-wide">Địa chỉ<input name="address" [(ngModel)]="adoptionForm.address" required /></label>
+            <label>Điều kiện nhà ở<input name="housingType" [(ngModel)]="adoptionForm.housingType" /></label><label>Gia đình đồng thuận?<select name="familyConsent" [(ngModel)]="adoptionForm.familyConsent"><option value="">Chọn</option><option value="Có">Có</option><option value="Không">Không</option></select></label>
+            <label>Thú cưng hiện tại<input name="currentPets" [(ngModel)]="adoptionForm.currentPets" /></label><label>Thời gian bé ở một mình<input name="aloneTime" [(ngModel)]="adoptionForm.aloneTime" /></label>
+            <label class="adoption-modal-wide">Lý do nhận nuôi<textarea name="adoptionReason" [(ngModel)]="adoptionForm.adoptionReason" rows="3"></textarea></label>
+            <button class="button button-primary adoption-modal-wide" type="submit" [disabled]="adoptionSubmitting()">{{ adoptionSubmitting() ? 'Đang gửi...' : 'Gửi yêu cầu' }}</button>
+          </form>
+        </section>
+      </div>
+
+
+    </ng-container>
+    <app-sidebar></app-sidebar>
+    <ng-container *ngSwitchCase="'search'">
+      <section class="page-banner"><p class="eyebrow">Khám phá Dr. Pet's House</p><h1>Kết quả tìm kiếm</h1><p>Tìm sản phẩm, dịch vụ và kiến thức chăm sóc thú cưng phù hợp.</p></section>
+      <section class="section-wrap">
+        <form class="search-field" (ngSubmit)="searchProducts()"><label for="global-search">Từ khóa</label><input id="global-search" name="searchQuery" [(ngModel)]="searchQuery" placeholder="Nhập từ khóa..." /><button class="button button-primary" type="submit">Tìm kiếm</button></form>
+        <nav class="search-type-tabs" aria-label="Loại kết quả">
+          <button type="button" [class.selected]="searchType() === 'all'" (click)="searchType.set('all'); searchProducts()">Tất cả</button>
+          <button type="button" [class.selected]="searchType() === 'service'" (click)="searchType.set('service'); searchProducts()">Dịch vụ</button>
+          <button type="button" [class.selected]="searchType() === 'shopping'" (click)="searchType.set('shopping'); searchProducts()">Sản phẩm</button>
+          <button type="button" [class.selected]="searchType() === 'article'" (click)="searchType.set('article'); searchProducts()">Bài viết</button>
+          <label>Sắp xếp<select [ngModel]="searchSort()" (ngModelChange)="searchSort.set($event); searchProducts()" name="searchSort"><option value="relevant">Liên quan nhất</option><option value="newest">Mới nhất</option><option value="priceAsc">Giá tăng dần</option><option value="priceDesc">Giá giảm dần</option></select></label>
+        </nav>
+        <p class="branch-feedback" *ngIf="searchLoading()">Đang tìm kiếm...</p><app-alert *ngIf="searchError()" type="warning" [message]="searchError()"></app-alert>
+        <ng-container *ngIf="searchResults() as results">
+          <h2>Kết quả cho “{{ searchResponse()?.query }}” <small>({{ searchResponse()?.total }} kết quả)</small></h2>
+          <section *ngIf="results.services.length"><h3>Dịch vụ</h3><div class="feature-grid"><article *ngFor="let service of results.services"><h3>{{ service['service_name'] || service['title'] || service['name'] }}</h3><p>{{ service['description'] }}</p><strong>{{ formatMaybePrice(service['price'] || service['base_price'] || 0) }}</strong><a class="text-link" routerLink="/dat-lich">Đặt lịch →</a></article></div></section>
+          <section *ngIf="results.products.length"><h3>Sản phẩm</h3><div class="product-grid"><article class="product-card" *ngFor="let product of results.products"><a [routerLink]="['/product-details', product.id]"><img [src]="product.image" [alt]="product.name" /><h3>{{ product.name }}</h3></a><strong>{{ formatPrice(product.price) }}</strong><button class="button button-primary add-button" type="button" (click)="addToCart(product.name)">Thêm vào giỏ</button></article></div></section>
+          <section *ngIf="results.articles.length"><h3>Bài viết</h3><div class="blog-grid"><article class="blog-card" *ngFor="let post of results.articles"><a [routerLink]="['/blog', post['slug'] || post['post_id']]"><img [src]="post['thumbnail_url'] || '/assets/images/blog/post-placeholder.png'" [alt]="post['title'] || 'Bài viết'" /><h3>{{ post['title'] }}</h3><p>{{ post['excerpt'] }}</p></a></article></div></section>
+        </ng-container>
+        <p class="empty-state" *ngIf="!searchLoading() && !searchError() && !searchResults() && !searchQuery">Nhập từ khóa để tìm sản phẩm, dịch vụ và bài viết.</p>
+        <p class="empty-state" *ngIf="searchResults() && searchResponse()?.total === 0">Không tìm thấy kết quả phù hợp.</p>
+      </section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'profile'">
+      <section class="page-banner"><p class="eyebrow">Tài khoản của tôi</p><h1>Thông tin người dùng</h1><p>Quản lý thông tin và hoạt động tài khoản.</p></section>
+      <section class="section-wrap account-layout"><app-sidebar></app-sidebar><article class="account-card"><div class="profile-heading"><img src="/assets/images/profile/user-avatar.png" alt="" /><div><h2>Hồ sơ của tôi</h2><p>Cập nhật thông tin để quản lý lịch hẹn thuận tiện hơn.</p></div></div><form class="screen-form" (ngSubmit)="noticeType = 'warning'; notice = 'Giao diện hồ sơ đã sẵn sàng; cần kết nối API cập nhật người dùng.'"><label>Họ và tên<input name="fullName" autocomplete="name" /></label><label>Email<input name="email" type="email" autocomplete="email" /></label><label>Số điện thoại<input name="phone" type="tel" autocomplete="tel" /></label><button class="button button-primary" type="submit">Lưu thay đổi</button></form></article></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'pets'">
+      <section class="page-banner"><p class="eyebrow">Hồ sơ chăm sóc</p><h1>Thú cưng của tôi</h1><p>Lưu thông tin để theo dõi sức khỏe và lịch chăm sóc của bé.</p></section>
+      <section class="section-wrap account-layout"><app-sidebar></app-sidebar><div class="account-card"><div class="catalog-heading"><div><p class="eyebrow">Hồ sơ của bé</p><h2>Danh sách thú cưng</h2></div><a class="button button-primary" routerLink="/thu-cung-cua-toi/them-moi">+ Thêm thú cưng</a></div><div class="pet-empty"><img src="/assets/images/pets/buddy.jpg" alt="" /><h3>Bạn chưa thêm hồ sơ thú cưng</h3><p>Tạo hồ sơ để lưu thông tin sức khỏe và quản lý lịch hẹn.</p><a class="text-link" routerLink="/thu-cung-cua-toi/them-moi">Thêm hồ sơ ngay →</a></div></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'pet-form'">
+      <section class="page-banner"><p class="eyebrow">Hồ sơ thú cưng</p><h1>{{ title }}</h1><p>Thông tin giúp chúng tôi chăm sóc bé chu đáo hơn.</p></section>
+      <section class="section-wrap account-layout"><app-sidebar></app-sidebar><div class="account-card form-narrow"><form class="screen-form" (ngSubmit)="noticeType = 'warning'; notice = 'Giao diện hồ sơ thú cưng đã sẵn sàng; cần kết nối API thú cưng để lưu.'"><label>Tên thú cưng<input name="petName" required /></label><label>Loài<select name="species" required><option value="">Chọn loài</option><option>Chó</option><option>Mèo</option><option>Khác</option></select></label><label>Giống<input name="breed" /></label><div class="field-row"><label>Tuổi<input name="age" type="number" min="0" /></label><label>Cân nặng (kg)<input name="weight" type="number" min="0" step="0.1" /></label></div><label>Giới tính<select name="gender"><option value="">Chọn giới tính</option><option>Đực</option><option>Cái</option></select></label><label>Tình trạng sức khỏe<textarea name="health" rows="3"></textarea></label><button class="button button-primary" type="submit">Lưu hồ sơ</button></form></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'pet-detail'">
+      <section class="page-banner"><p class="eyebrow">Hồ sơ chăm sóc</p><h1>Hồ sơ thú cưng</h1><p>Theo dõi thông tin sức khỏe và hoạt động chăm sóc của bé.</p></section>
+      <section class="section-wrap account-layout"><app-sidebar></app-sidebar><article class="account-card pet-detail-card"><img src="/assets/images/pets/buddy.jpg" alt="Thú cưng" /><div><p class="eyebrow">Thông tin thú cưng</p><h2>Hồ sơ của bé</h2><p>Thêm thông tin của bé để theo dõi sức khỏe, lịch khám và các lần chăm sóc.</p><a class="button button-primary" routerLink="/thu-cung-cua-toi/them-moi">Cập nhật thông tin</a><a class="text-link" routerLink="/thu-cung-cua-toi">← Danh sách thú cưng</a></div></article></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'appointments'">
+      <section class="page-banner"><p class="eyebrow">Tài khoản của tôi</p><h1>Lịch sử đặt lịch</h1><p>Theo dõi các lịch hẹn khám và chăm sóc của bé.</p></section>
+      <section class="section-wrap account-layout">
+        <app-sidebar></app-sidebar>
+        <div class="account-card">
+          <h2>Lịch hẹn của bạn</h2>
+          <nav class="appointment-filters" aria-label="Lọc lịch hẹn">
+            <button type="button" *ngFor="let filter of appointmentFilters" [class.selected]="appointmentFilter() === filter.value" (click)="appointmentFilter.set(filter.value)">{{ filter.label }} ({{ appointmentCount(filter.value) }})</button>
+          </nav>
+          <div class="appointment-search-row">
+            <form class="appointment-search" (ngSubmit)="appointmentSearchQuery.set(appointmentSearchInput.trim())">
+              <input name="appointmentSearch" [(ngModel)]="appointmentSearchInput" placeholder="Tìm theo mã, thú cưng hoặc dịch vụ..." />
+              <button type="submit">Tìm kiếm</button>
+              <button type="button" *ngIf="appointmentSearchInput || appointmentSearchQuery()" (click)="appointmentSearchInput = ''; appointmentSearchQuery.set('')">Xóa</button>
+            </form>
+            <label>Sắp xếp<select name="appointmentSort" [ngModel]="appointmentSortOrder()" (ngModelChange)="appointmentSortOrder.set($event)"><option value="newest">Mới nhất</option><option value="oldest">Cũ nhất</option></select></label>
+          </div>
+          <app-alert *ngIf="appointmentActionMessage()" [type]="appointmentActionMessage()!.type" [message]="appointmentActionMessage()!.text" (closed)="appointmentActionMessage.set(null)"></app-alert>
+          <p class="branch-feedback" *ngIf="appointmentsLoading()">Đang tải lịch hẹn...</p>
+          <app-alert *ngIf="appointmentsError()" type="warning" [message]="appointmentsError()"></app-alert>
+          <div class="appointment-history-list" *ngIf="filteredAppointments().length; else noAppointments">
+            <article class="appointment-history-item" *ngFor="let appointment of filteredAppointments()">
+              <div>
+                <p class="eyebrow">{{ appointment.code || ('Mã lịch #' + appointment.id) }}</p>
+                <h3>{{ appointment.petName }} · {{ appointment.serviceName }}</h3>
+                <p>{{ appointment.rawDate | date:'dd/MM/yyyy' }} · {{ appointment.startTime }}<span *ngIf="appointment.endTime"> - {{ appointment.endTime }}</span></p>
+                <strong>{{ formatPrice(appointment.price) }}</strong>
+                <div class="appointment-actions">
+                  <button *ngIf="appointment.status === 'pending_payment'" class="button button-primary" type="button" [disabled]="appointmentActionLoadingId() === appointment.id" (click)="appointmentAction(appointment, 'pay')">Xác nhận thanh toán tại phòng khám</button>
+                  <button *ngIf="appointment.canReschedule" class="button button-light" type="button" (click)="appointmentAction(appointment, 'reschedule')">Đổi lịch</button>
+                  <button *ngIf="appointment.canCancel" class="button button-danger-light" type="button" [disabled]="appointmentActionLoadingId() === appointment.id" (click)="appointmentAction(appointment, 'cancel')">Hủy lịch</button>
+                  <button *ngIf="appointment.canRebook" class="button button-primary" type="button" (click)="appointmentAction(appointment, 'rebook')">Đặt lại</button>
+                  <button *ngIf="appointment.canReview && !appointment.reviewed" class="button button-light" type="button" (click)="appointmentAction(appointment, 'review')">Đánh giá</button>
+                </div>
+              </div>
+              <span class="appointment-status">{{ appointment.statusLabel }}</span>
+            </article>
+          </div>
+          <ng-template #noAppointments><div class="empty-state" *ngIf="!appointmentsLoading() && !appointmentsError()"><p>{{ appointments().length ? 'Không tìm thấy lịch hẹn phù hợp.' : 'Bạn chưa có lịch hẹn nào.' }}</p><a class="button button-primary" routerLink="/dat-lich">Đặt lịch khám</a></div></ng-template>
+          <a class="appointment-create-button" routerLink="/dat-lich" aria-label="Đặt lịch mới">+</a>
+        </div>
+      </section>
+      <div class="appointment-review-backdrop" *ngIf="reviewAppointmentId()" (click)="reviewAppointmentId.set('')">
+        <section class="appointment-review-modal" role="dialog" aria-modal="true" aria-labelledby="appointment-review-title" (click)="$event.stopPropagation()">
+          <header><h2 id="appointment-review-title">Đánh giá dịch vụ</h2><button type="button" aria-label="Đóng" (click)="reviewAppointmentId.set('')">×</button></header>
+          <p>Chia sẻ trải nghiệm của bạn để chúng tôi phục vụ tốt hơn.</p>
+          <div class="review-rating-picker" aria-label="Chọn số sao">
+            <button *ngFor="let star of [1,2,3,4,5]" type="button" [attr.aria-label]="star + ' sao'" [attr.aria-pressed]="reviewRating === star" [class.active]="reviewRating >= star" (click)="reviewRating = star">★</button>
+          </div>
+          <label>Nhận xét<textarea name="appointmentReview" [(ngModel)]="reviewComment" rows="4" maxlength="1000"></textarea></label>
+          <footer><button class="button button-light" type="button" (click)="reviewAppointmentId.set('')">Đóng</button><button class="button button-primary" type="button" [disabled]="!reviewRating || appointmentActionLoadingId() === reviewAppointmentId()" (click)="submitAppointmentReview()">{{ appointmentActionLoadingId() === reviewAppointmentId() ? 'Đang gửi...' : 'Gửi đánh giá' }}</button></footer>
+        </section>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'orders'">
+
+      <section class="page-banner"><p class="eyebrow">Tài khoản của tôi</p><h1>Đơn hàng của tôi</h1><p>Theo dõi tình trạng đơn hàng của bạn.</p></section>
+      <section class="section-wrap account-layout"><app-sidebar></app-sidebar><div class="account-card">
+        <h2>Lịch sử mua hàng</h2>
+        <p class="branch-feedback" *ngIf="ordersLoading()">Đang tải đơn hàng...</p>
+        <app-alert *ngIf="ordersError()" type="warning" [message]="ordersError()"></app-alert>
+        <div class="order-history-list" *ngIf="orders().length; else noOrders">
+          <article class="order-history-item" *ngFor="let order of orders()">
+            <div><p class="eyebrow">{{ order.code || ('Đơn hàng #' + order.id) }}</p><h3>{{ order.items.length }} sản phẩm · {{ formatPrice(order.total) }}</h3><p>{{ order.createdAt | date:'dd/MM/yyyy HH:mm' }} · {{ order.paymentMethod }}</p></div>
+            <span class="appointment-status">{{ order.statusLabel }}</span>
+            <a class="text-link" [routerLink]="['/don-hang-cua-toi', order.id]">Chi tiết →</a>
+          </article>
+        </div>
+        <ng-template #noOrders><div class="empty-state" *ngIf="!ordersLoading() && !ordersError()"><p>Bạn chưa có đơn hàng nào.</p><a class="button button-primary" routerLink="/san-pham">Khám phá cửa hàng</a></div></ng-template>
+      </div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'order-detail'">
+      <section class="page-banner"><p class="eyebrow">Đơn hàng của tôi</p><h1>Chi tiết đơn hàng</h1><p>Thông tin chi tiết và trạng thái đơn hàng.</p></section>
+      <section class="section-wrap account-layout"><app-sidebar></app-sidebar><article class="account-card order-detail-card">
+        <a class="text-link" routerLink="/don-hang-cua-toi">← Quay lại đơn hàng</a>
+        <p class="branch-feedback" *ngIf="orderDetailLoading()">Đang tải chi tiết đơn hàng...</p>
+        <app-alert *ngIf="orderDetailError()" type="warning" [message]="orderDetailError()"></app-alert>
+        <ng-container *ngIf="selectedOrder() as order">
+          <div class="catalog-heading"><div><p class="eyebrow">{{ order.code || ('Đơn hàng #' + order.id) }}</p><h2>Chi tiết đơn hàng</h2></div><span class="appointment-status">{{ order.statusLabel }}</span></div>
+          <p>Ngày đặt: {{ order.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+          <p>Người nhận: {{ order.recipientName }} · {{ order.recipientPhone }}</p>
+          <p>Địa chỉ giao hàng: {{ order.shippingAddress }}</p>
+          <div class="order-history-list"><article class="order-history-item" *ngFor="let item of order.items"><div><h3>{{ item.name }} × {{ item.quantity }}</h3><strong>{{ formatPrice(item.price * item.quantity) }}</strong></div><img *ngIf="item.image" [src]="item.image" [alt]="item.name" /></article></div>
+          <p class="total-row"><span>Tổng cộng</span><strong>{{ formatPrice(order.total) }}</strong></p>
+        </ng-container>
+      </article></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'first-aid-detail'">
+      <section class="page-banner"><p class="eyebrow">Cẩm nang sơ cứu</p><h1>Sơ cứu thú cưng khi bị hóc dị vật</h1><p>Hướng dẫn xử lý an toàn và thời điểm cần đến bác sĩ thú y.</p></section>
+      <section class="section-wrap article-layout"><article class="article-body"><a class="text-link" routerLink="/blog/so-cuu">← Cẩm nang sơ cứu</a><img src="/assets/images/blog/first-aid-choking.png" alt="Sơ cứu chó mèo bị hóc" /><h2>Nhận biết dấu hiệu nguy hiểm</h2><p>Ho sặc, khó thở, cào miệng hoặc kích động có thể là dấu hiệu dị vật mắc lại. Hãy giữ bình tĩnh và liên hệ cơ sở thú y để được hướng dẫn.</p><h2>Ưu tiên an toàn</h2><p>Không đưa tay sâu vào họng khi không nhìn thấy dị vật. Nếu bé khó thở hoặc tím tái, hãy đưa đến cơ sở thú y gần nhất ngay lập tức.</p></article><aside class="article-aside"><app-alert type="warning" message="Sơ cứu không thay thế việc thăm khám thú y." [dismissible]="false"></app-alert><a class="button button-primary" routerLink="/lien-he">Liên hệ hỗ trợ</a></aside></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'community'">
+      <section class="page-banner"><p class="eyebrow">Cộng đồng chia sẻ</p><h1>{{ title }}</h1><p>{{ summary }}</p></section><section class="section-wrap community-layout"><img src="/assets/images/blog/community-dog-park.png" alt="Cộng đồng thú cưng" /><div><h2>Cùng nhau xây dựng cộng đồng yêu thương</h2><p>Chia sẻ câu chuyện và kinh nghiệm chăm sóc thú cưng cùng các gia đình khác.</p><a class="button button-primary" routerLink="/lien-he">Kết nối cùng chúng tôi</a></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'generic'">
+      <section class="page-banner"><p class="eyebrow">Dr. Pet's House</p><h1>{{ title }}</h1><p>{{ summary }}</p></section>
+      <section class="generic-content section-wrap"><img src="/assets/images/about/hero-pets.png" alt="Thú cưng tại Dr. Pet's House" /><div><p class="eyebrow">Luôn đồng hành cùng bạn</p><h2>{{ title }}</h2><p>Đội ngũ Dr. Pet's House sẵn sàng tư vấn giải pháp phù hợp, an toàn và tận tâm cho từng thú cưng.</p><a class="button button-primary" routerLink="/dat-lich">Đặt lịch ngay</a></div></section>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'not-found'">
+      <section class="not-found"><div class="not-found-art"><img src="/assets/images/not-found/sleeping-pet.png" alt="Chú chó đang ngủ" /><img src="/assets/images/not-found/tennis-ball.png" alt="" /></div><p class="eyebrow">Lạc đường rồi!</p><h1>404</h1><h2>Không tìm thấy trang</h2><p>Đường dẫn này không tồn tại hoặc đã được thay đổi. Hãy để chúng tôi đưa bạn về đúng nơi nhé!</p><a class="button button-primary" routerLink="/">Về trang chủ</a></section>
+    </ng-container>
+  </ng-container>
+</ng-template>

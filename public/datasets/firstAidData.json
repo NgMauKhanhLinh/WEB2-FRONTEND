@@ -1,0 +1,144 @@
+{
+  "FIRST_AID_CATEGORIES": [
+    {
+      "id": "all",
+      "label": "Tất cả"
+    },
+    {
+      "id": "accident",
+      "label": "Tai nạn"
+    },
+    {
+      "id": "poisoning",
+      "label": "Ngộ độc"
+    },
+    {
+      "id": "breathing",
+      "label": "Khó thở"
+    },
+    {
+      "id": "injury",
+      "label": "Chấn thương"
+    }
+  ],
+  "FIRST_AID_DETAILS": {
+    "dog-choking": {
+      "id": "dog-choking",
+      "category": "accident",
+      "categoryLabel": "Tai nạn",
+      "title": "Sơ cứu khi chó bị hóc dị vật",
+      "heroTitle": "Sơ cứu khi chó bị hóc dị vật: Phản ứng nhanh trong 60 giây",
+      "description": "Khi chó có dấu hiệu nghẹt thở, khó thở hoặc liên tục dùng chân cào vào miệng, rất có thể chúng đang bị hóc dị vật. Đây là tình huống đe dọa tính mạng cần được xử lý bình tĩnh và chính xác ngay lập tức.",
+      "image": "/assets/images/blog/first-aid-choking.png",
+      "steps": [
+        {
+          "title": "Kiểm tra khoang miệng",
+          "description": "Mở rộng miệng chó bằng hai tay. Sử dụng đèn pin để quan sát kỹ phần cuống họng. Nếu thấy dị vật ở gần, hãy cố gắng lấy ra bằng tay hoặc nhíp."
+        },
+        {
+          "title": "Nghiêng người hoặc dốc ngược",
+          "description": "Với chó nhỏ, hãy giữ chân sau và dốc ngược chúng. Với chó lớn, hãy giữ chúng ở tư thế xe cút kít để trọng lực giúp dị vật rơi ra."
+        },
+        {
+          "title": "Nghiệm pháp Heimlich",
+          "description": "Đặt nắm tay ở vùng bụng ngay dưới xương sườn. Thực hiện 5 lần đẩy mạnh và nhanh về phía trước và hướng lên trên để tạo áp lực tống dị vật ra ngoài."
+        }
+      ],
+      "video": {
+        "title": "Xem video hướng dẫn chi tiết",
+        "description": "Trực quan hóa các thao tác giúp bạn bình tĩnh và thực hiện chính xác hơn. Video được thực hiện bởi các bác sĩ thú y giàu kinh nghiệm tại Dr. Pet's House.",
+        "highlights": [
+          "Cách đặt tay đúng vị trí",
+          "Lực đẩy an toàn cho từng giống chó"
+        ]
+      }
+    }
+  },
+  "FIRST_AID_POSTS": [
+    {
+      "id": "dog-choking",
+      "category": "accident",
+      "categoryLabel": "Tai nạn",
+      "variant": "urgent",
+      "urgent": true,
+      "image": "/assets/images/blog/first-aid-choking.png",
+      "title": "Sơ cứu khi chó bị hóc dị vật",
+      "description": "Nhận biết dấu hiệu khó thở, nôn mửa và cách thực hiện nghiệm pháp ép vùng ngực an toàn."
+    },
+    {
+      "id": "cat-chocolate-poisoning",
+      "category": "poisoning",
+      "categoryLabel": "Ngộ độc",
+      "variant": "image",
+      "image": "/assets/images/blog/post-placeholder.png",
+      "title": "Xử lý mèo bị ngộ độc thực phẩm",
+      "description": "Các bước cần làm ngay khi mèo nuốt phải chocolate, cây độc hoặc hóa chất tẩy rửa."
+    },
+    {
+      "id": "cat-burn",
+      "category": "accident",
+      "categoryLabel": "Tai nạn",
+      "variant": "image",
+      "image": "/assets/images/blog/post-placeholder.png",
+      "title": "Sơ cứu vết bỏng chó mèo",
+      "description": "Cách làm dịu vết bỏng bằng nước sạch và băng gạc tạm thời trước khi gặp bác sĩ."
+    },
+    {
+      "id": "paw-open-wound",
+      "category": "injury",
+      "categoryLabel": "Chấn thương",
+      "variant": "text",
+      "title": "Cấp cứu vết thương hở do cắn nhau",
+      "description": "Cách cầm máu, sát trùng cơ bản và băng bó vết thương để tránh nhiễm trùng nghiêm trọng."
+    },
+    {
+      "id": "dog-open-wound",
+      "category": "injury",
+      "categoryLabel": "Chấn thương",
+      "variant": "text",
+      "title": "Cấp cứu vết thương hở do cắn nhau",
+      "description": "Cách cầm máu, sát trùng cơ bản và băng bó vết thương để tránh nhiễm trùng nghiêm trọng."
+    },
+    {
+      "id": "pet-heatstroke",
+      "category": "breathing",
+      "categoryLabel": "Khó thở",
+      "variant": "urgent",
+      "urgent": true,
+      "image": "/assets/images/blog/first-aid-choking.png",
+      "title": "Xử lý khi thú cưng bị sốc nhiệt",
+      "description": "Hạ nhiệt đúng cách, giữ đường thở thông thoáng và đưa thú cưng tới cơ sở thú y."
+    },
+    {
+      "id": "chemical-poisoning",
+      "category": "poisoning",
+      "categoryLabel": "Ngộ độc",
+      "variant": "text",
+      "title": "Sơ cứu khi thú cưng liếm hóa chất",
+      "description": "Cô lập hóa chất, làm sạch vùng tiếp xúc và lưu lại bao bì để bác sĩ xử lý chính xác."
+    },
+    {
+      "id": "pet-fracture",
+      "category": "injury",
+      "categoryLabel": "Chấn thương",
+      "variant": "image",
+      "image": "/assets/images/blog/post-placeholder.png",
+      "title": "Cố định tạm thời khi nghi gãy xương",
+      "description": "Hạn chế di chuyển và cố định chi đúng cách trong lúc đưa thú cưng đi cấp cứu."
+    }
+  ],
+  "FIRST_AID_STEPS": [
+    {
+      "title": "Kiểm tra khoang miệng",
+      "description": "Mở rộng miệng chó bằng hai tay. Sử dụng đèn pin để quan sát kỹ phần cuống họng. Nếu thấy dị vật ở gần, hãy cố gắng lấy ra bằng tay hoặc nhíp."
+    },
+    {
+      "title": "Nghiêng người hoặc dốc ngược",
+      "description": "Với chó nhỏ, hãy giữ chân sau và dốc ngược chúng. Với chó lớn, hãy giữ chúng ở tư thế xe cút kít để trọng lực giúp dị vật rơi ra."
+    },
+    {
+      "title": "Nghiệm pháp Heimlich",
+      "description": "Đặt nắm tay ở vùng bụng ngay dưới xương sườn. Thực hiện 5 lần đẩy mạnh và nhanh về phía trước và hướng lên trên để tạo áp lực tống dị vật ra ngoài."
+    }
+  ]
+}

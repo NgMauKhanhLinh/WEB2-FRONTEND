@@ -1,0 +1,37 @@
+{
+  "DEFAULT_USER_ADDRESSES": [
+    {
+      "id": "address-1",
+      "name": "Nguyễn Văn A",
+      "recipient": "Nguyễn Văn A",
+      "phone": "0901 234 567",
+      "email": "example@gmail.com",
+      "country": "Việt Nam",
+      "address": "Số 123, Đường Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "city": "TP. Hồ Chí Minh",
+      "isDefault": true
+    },
+    {
+      "id": "address-2",
+      "name": "Nguyễn Văn A",
+      "recipient": "Nguyễn Văn A",
+      "phone": "0901 234 567",
+      "email": "",
+      "country": "Việt Nam",
+      "address": "456 Nguyễn Huệ, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
+      "city": "TP. Hồ Chí Minh",
+      "isDefault": false
+    }
+  ],
+  "DEFAULT_USER_PROFILE": {
+    "fullName": "Nguyễn Văn A",
+    "email": "example@gmail.com",
+    "phone": "0901 234 567",
+    "gender": "",
+    "birthDate": ""
+  },
+  "PROFILE_STORAGE_KEYS": {
+    "profile": "userProfile",
+    "addresses": "userAddresses"
+  }
+}

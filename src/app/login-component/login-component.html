@@ -1,0 +1,66 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Đăng nhập</h1>
+    <p>Đăng nhập để quản lý hồ sơ và lịch chăm sóc thú cưng.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+        <label for="account">Số điện thoại hoặc email</label>
+        <input
+          id="account"
+          type="text"
+          formControlName="account"
+          autocomplete="username"
+          placeholder="Nhập số điện thoại hoặc email"
+        />
+        @if (loginForm.get('account')?.touched && loginForm.get('account')?.invalid) {
+          <div class="error-text">
+            @if (loginForm.get('account')?.errors?.['required']) {
+              <small>Vui lòng nhập số điện thoại hoặc email.</small>
+            }
+            @if (loginForm.get('account')?.errors?.['account']) {
+              <small>Số điện thoại hoặc email chưa đúng định dạng.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          autocomplete="current-password"
+          placeholder="Nhập mật khẩu"
+        />
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+          <div class="error-text">
+            @if (loginForm.get('password')?.errors?.['required']) {
+              <small>Mật khẩu không được để trống.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <label class="remember-option">
+        <input type="checkbox" formControlName="remember" />
+        Ghi nhớ đăng nhập
+      </label>
+
+      @if (errorMessage) {
+        <div class="alert-error">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <button type="submit" [disabled]="isLoading" class="btn-submit">
+        {{ isLoading ? 'Đang đăng nhập...' : 'Đăng nhập' }}
+      </button>
+    </form>
+
+    <div class="auth-links">
+      <a routerLink="/login">Mở giao diện xác thực đầy đủ</a>
+    </div>
+  </div>
+</div>

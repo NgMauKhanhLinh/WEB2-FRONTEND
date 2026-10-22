@@ -1,0 +1,572 @@
+{
+  "SEARCH_DEMAND_TYPES": [
+    {
+      "id": "all",
+      "label": "Tất cả"
+    },
+    {
+      "id": "service",
+      "label": "Dịch vụ"
+    },
+    {
+      "id": "shopping",
+      "label": "Mua sắm"
+    },
+    {
+      "id": "article",
+      "label": "Bài viết"
+    }
+  ],
+  "SEARCH_EMPTY_STATE": {
+    "summary": "Tìm thấy 0 kết quả phù hợp",
+    "title": "Không tìm thấy kết quả phù hợp",
+    "description": "Hãy thử điều chỉnh bộ lọc hiện tại! Bạn cũng có thể dùng từ khóa khác hoặc quay về trang chủ để khám phá thêm.",
+    "retryLabel": "Thử từ khóa khác",
+    "retryQuery": "tắm",
+    "homeLabel": "Về trang chủ",
+    "homeHref": "/"
+  },
+  "SEARCH_FILTER_GROUPS": [
+    {
+      "id": "serviceGroups",
+      "title": "Nhóm dịch vụ",
+      "appliesTo": [
+        "all",
+        "service"
+      ],
+      "options": [
+        {
+          "id": "all-services",
+          "label": "Tất cả dịch vụ",
+          "count": 0
+        },
+        {
+          "id": "spa-grooming",
+          "label": "Spa & Grooming",
+          "count": 0
+        },
+        {
+          "id": "clinic",
+          "label": "Khám & Điều trị",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "id": "productCategories",
+      "title": "Danh mục",
+      "appliesTo": [
+        "all",
+        "shopping"
+      ],
+      "options": [
+        {
+          "id": "all-categories",
+          "label": "Tất cả danh mục",
+          "count": 0
+        },
+        {
+          "id": "thuc-an",
+          "label": "Thức ăn",
+          "count": 0
+        },
+        {
+          "id": "do-dung-thiet-yeu",
+          "label": "Đồ dùng thiết yếu",
+          "count": 0
+        },
+        {
+          "id": "cham-soc-suc-khoe",
+          "label": "Chăm sóc sức khỏe",
+          "count": 0
+        },
+        {
+          "id": "do-choi",
+          "label": "Đồ chơi",
+          "count": 0
+        },
+        {
+          "id": "phu-kien",
+          "label": "Phụ kiện",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "id": "priceRanges",
+      "title": "Khoảng giá",
+      "appliesTo": [
+        "all",
+        "service",
+        "shopping"
+      ],
+      "options": [
+        {
+          "id": "20-50",
+          "label": "20.000đ - 50.000đ",
+          "count": null
+        },
+        {
+          "id": "50-100",
+          "label": "50.000đ - 100.000đ",
+          "count": null
+        },
+        {
+          "id": "100-200",
+          "label": "100.000đ - 200.000đ",
+          "count": null
+        },
+        {
+          "id": "200-plus",
+          "label": "200.000đ trở lên",
+          "count": null
+        }
+      ]
+    },
+    {
+      "id": "firstAid",
+      "title": "Cẩm nang",
+      "appliesTo": [
+        "all",
+        "article"
+      ],
+      "options": [
+        {
+          "id": "all-first-aid",
+          "label": "Tất cả cẩm nang",
+          "count": 0
+        },
+        {
+          "id": "accident",
+          "label": "Tai nạn",
+          "count": 0
+        },
+        {
+          "id": "poisoning",
+          "label": "Ngộ độc",
+          "count": 0
+        },
+        {
+          "id": "breathing",
+          "label": "Khó thở",
+          "count": 0
+        },
+        {
+          "id": "injury",
+          "label": "Chấn thương",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "id": "knowledge",
+      "title": "Kiến thức",
+      "appliesTo": [
+        "all",
+        "article"
+      ],
+      "options": [
+        {
+          "id": "all-knowledge",
+          "label": "Tất cả kiến thức",
+          "count": 0
+        },
+        {
+          "id": "health",
+          "label": "Sức khỏe",
+          "count": 0
+        },
+        {
+          "id": "nutrition",
+          "label": "Dinh dưỡng",
+          "count": 0
+        },
+        {
+          "id": "psychology",
+          "label": "Tâm lý",
+          "count": 0
+        },
+        {
+          "id": "grooming",
+          "label": "Vệ sinh & Làm đẹp",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": "Cộng đồng",
+      "appliesTo": [
+        "all",
+        "article"
+      ],
+      "options": [
+        {
+          "id": "all-community",
+          "label": "Tất cả thẻ",
+          "count": 0
+        },
+        {
+          "id": "moment",
+          "label": "Khoảnh khắc",
+          "count": 0
+        },
+        {
+          "id": "qa",
+          "label": "Hỏi đáp",
+          "count": 0
+        },
+        {
+          "id": "tips",
+          "label": "Mẹo vặt",
+          "count": 0
+        },
+        {
+          "id": "experience",
+          "label": "Kinh nghiệm",
+          "count": 0
+        }
+      ]
+    }
+  ],
+  "SEARCH_RESULTS": {
+    "services": [
+      {
+        "id": 1,
+        "title": "Tắm & Sấy khô",
+        "description": "Sử dụng các dòng sữa tắm cao cấp, phù hợp với từng loại da và màu lông của bé.",
+        "price": "Từ 50.000đ",
+        "image": "/assets/images/grooming/service-bath-55474c.png",
+        "mask": "/assets/images/grooming/service-card-mask.png",
+        "groupId": "spa-grooming",
+        "priceValue": 50
+      },
+      {
+        "id": 2,
+        "title": "Massage chuyên sâu",
+        "description": "Kỹ thuật massage nhẹ nhàng giúp pet giải tỏa áp lực, tăng cường sự gắn kết",
+        "price": "Từ 50.000đ",
+        "image": "/assets/images/grooming/service-massage.png",
+        "mask": "/assets/images/grooming/service-card-mask.png",
+        "groupId": "spa-grooming",
+        "priceValue": 150
+      },
+      {
+        "id": 3,
+        "title": "Vệ sinh răng miệng",
+        "description": "Đánh răng loại bỏ mảng bám và xịt thơm miệng khử mùi hôi.",
+        "price": "Từ 30.000đ",
+        "image": "/assets/images/grooming/service-teeth.png",
+        "mask": "/assets/images/grooming/service-card-mask.png",
+        "groupId": "spa-grooming",
+        "priceValue": 100
+      }
+    ],
+    "otherServices": [
+      {
+        "id": 2,
+        "title": "Massage chuyên sâu",
+        "description": "Kỹ thuật massage nhẹ nhàng giúp pet giải tỏa áp lực, tăng cường sự gắn kết",
+        "price": "Từ 50.000đ",
+        "image": "/assets/images/grooming/service-massage.png",
+        "mask": "/assets/images/grooming/service-card-mask.png",
+        "groupId": "spa-grooming",
+        "priceValue": 50
+      },
+      {
+        "id": 3,
+        "title": "Vệ sinh răng miệng",
+        "description": "Đánh răng loại bỏ mảng bám và xịt thơm miệng khử mùi hôi.",
+        "price": "Từ 30.000đ",
+        "image": "/assets/images/grooming/service-teeth.png",
+        "mask": "/assets/images/grooming/service-card-mask.png",
+        "groupId": "spa-grooming",
+        "priceValue": 30
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "categoryIdx": 0,
+        "name": "ten sp",
+        "price": 20000,
+        "originalPrice": 32000,
+        "rating": 4.5,
+        "discountPercent": 56,
+        "categorySlug": "thuc-an"
+      },
+      {
+        "id": 2,
+        "categoryIdx": 1,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  2",
+        "price": 27000,
+        "originalPrice": 43200,
+        "rating": 4.5,
+        "discountPercent": 56,
+        "categorySlug": "do-dung-thiet-yeu"
+      },
+      {
+        "id": 3,
+        "categoryIdx": 2,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  3",
+        "price": 34000,
+        "originalPrice": 54400,
+        "rating": 4.5,
+        "discountPercent": 56,
+        "categorySlug": "cham-soc-suc-khoe"
+      },
+      {
+        "id": 4,
+        "categoryIdx": 3,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  4",
+        "price": 41000,
+        "originalPrice": 65600,
+        "rating": 4.5,
+        "categorySlug": "do-choi"
+      },
+      {
+        "id": 5,
+        "categoryIdx": 4,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  5",
+        "price": 48000,
+        "originalPrice": 76800,
+        "rating": 4.5,
+        "discountPercent": 56,
+        "categorySlug": "phu-kien"
+      },
+      {
+        "id": 6,
+        "categoryIdx": 0,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  6",
+        "price": 55000,
+        "originalPrice": 88000,
+        "rating": 4.5,
+        "categorySlug": "thuc-an"
+      },
+      {
+        "id": 7,
+        "categoryIdx": 1,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  7",
+        "price": 62000,
+        "originalPrice": 99200,
+        "rating": 4.5,
+        "categorySlug": "do-dung-thiet-yeu"
+      },
+      {
+        "id": 8,
+        "categoryIdx": 2,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  8",
+        "price": 69000,
+        "originalPrice": 110400,
+        "rating": 4.5,
+        "categorySlug": "cham-soc-suc-khoe"
+      },
+      {
+        "id": 9,
+        "categoryIdx": 3,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  9",
+        "price": 76000,
+        "originalPrice": 121600,
+        "rating": 4.5,
+        "categorySlug": "do-choi"
+      }
+    ],
+    "suggestedProducts": [
+      {
+        "id": 10,
+        "categoryIdx": 4,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  10",
+        "price": 83000,
+        "originalPrice": 132800,
+        "rating": 4.5
+      },
+      {
+        "id": 11,
+        "categoryIdx": 0,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  11",
+        "price": 90000,
+        "originalPrice": 144000,
+        "rating": 4.5
+      },
+      {
+        "id": 12,
+        "categoryIdx": 1,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  12",
+        "price": 97000,
+        "originalPrice": 155200,
+        "rating": 4.5,
+        "discountPercent": 56
+      },
+      {
+        "id": 13,
+        "categoryIdx": 2,
+        "name": "Sản phẩm hfbsdbjasbds cd cvsab shc  vsdcshc kcsdvgabdjb ác  13",
+        "price": 104000,
+        "originalPrice": 166400,
+        "rating": 4.5
+      }
+    ],
+    "firstAid": [
+      {
+        "id": "cat-burn",
+        "category": "accident",
+        "categoryLabel": "Tai nạn",
+        "variant": "image",
+        "image": "/assets/images/blog/post-placeholder.png",
+        "title": "Sơ cứu vết bỏng chó mèo",
+        "description": "Cách làm dịu vết bỏng bằng nước sạch và băng gạc tạm thời trước khi gặp bác sĩ."
+      },
+      {
+        "id": "paw-open-wound",
+        "category": "injury",
+        "categoryLabel": "Chấn thương",
+        "variant": "text",
+        "title": "Cấp cứu vết thương hở do cắn nhau",
+        "description": "Cách cầm máu, sát trùng cơ bản và băng bó vết thương để tránh nhiễm trùng nghiêm trọng."
+      },
+      {
+        "id": "dog-open-wound",
+        "category": "injury",
+        "categoryLabel": "Chấn thương",
+        "variant": "text",
+        "title": "Cấp cứu vết thương hở do cắn nhau",
+        "description": "Cách cầm máu, sát trùng cơ bản và băng bó vết thương để tránh nhiễm trùng nghiêm trọng."
+      },
+      {
+        "id": "pet-heatstroke",
+        "category": "breathing",
+        "categoryLabel": "Khó thở",
+        "variant": "urgent",
+        "urgent": true,
+        "image": "/assets/images/blog/first-aid-choking.png",
+        "title": "Xử lý khi thú cưng bị sốc nhiệt",
+        "description": "Hạ nhiệt đúng cách, giữ đường thở thông thoáng và đưa thú cưng tới cơ sở thú y."
+      }
+    ],
+    "knowledge": [
+      {
+        "id": "recent-1",
+        "section": "knowledge",
+        "category": "health",
+        "categoryLabel": "Sức khỏe",
+        "title": "Lịch chăm sóc sức khỏe định kỳ cho thú cưng",
+        "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+        "publishedAt": "3 Tháng 6, 2024",
+        "image": "/assets/images/blog/post-placeholder.png"
+      },
+      {
+        "id": "recent-2",
+        "section": "knowledge",
+        "category": "nutrition",
+        "categoryLabel": "Dinh dưỡng",
+        "title": "Chọn khẩu phần phù hợp theo độ tuổi của mèo",
+        "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+        "publishedAt": "3 Tháng 6, 2024",
+        "image": "/assets/images/blog/post-placeholder.png"
+      },
+      {
+        "id": "recent-3",
+        "section": "knowledge",
+        "category": "psychology",
+        "categoryLabel": "Tâm lý",
+        "title": "Giúp thú cưng làm quen với môi trường mới",
+        "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+        "publishedAt": "3 Tháng 6, 2024",
+        "image": "/assets/images/blog/post-placeholder.png"
+      },
+      {
+        "id": "recent-4",
+        "section": "knowledge",
+        "category": "grooming",
+        "categoryLabel": "Vệ sinh & Làm đẹp",
+        "title": "Hướng dẫn vệ sinh tai an toàn tại nhà",
+        "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+        "publishedAt": "3 Tháng 6, 2024",
+        "image": "/assets/images/blog/post-placeholder.png"
+      },
+      {
+        "id": "recent-5",
+        "section": "knowledge",
+        "category": "nutrition",
+        "categoryLabel": "Dinh dưỡng",
+        "title": "Những thực phẩm cần tránh trong khẩu phần của chó",
+        "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+        "publishedAt": "3 Tháng 6, 2024",
+        "image": "/assets/images/blog/post-placeholder.png"
+      }
+    ],
+    "community": [
+      {
+        "id": "quoc-bao-question",
+        "author": "Quốc Bảo",
+        "initials": "QB",
+        "time": "10 giờ trước",
+        "type": "Hỏi đáp",
+        "title": "Cún con bị nấc cụt sau khi ăn có sao không?",
+        "content": "Bé Poodle nhà mình 3 tháng tuổi, cứ ăn xong là bị nấc cụt tầm 5-10 phút. Có cần phải đưa đi bác sĩ không hay là do bé ăn quá nhanh?",
+        "tags": [
+          "#HOIDAP",
+          "#SUCKHOECUN"
+        ],
+        "likes": 62,
+        "comments": 58
+      },
+      {
+        "id": "anh-tu-photo",
+        "author": "Anh Tú",
+        "initials": "AT",
+        "time": "4 giờ trước",
+        "type": "Khoảnh khắc",
+        "content": "Góc ngủ bá đạo của bé Miu nhà em. Mọi người có ảnh dìm hàng boss không ạ?",
+        "image": "/assets/images/blog/community-dog-park.png",
+        "likes": 89,
+        "comments": 12
+      }
+    ]
+  },
+  "SEARCH_SORT_OPTIONS": {
+    "relevant": {
+      "id": "relevant",
+      "label": "Liên quan nhất",
+      "appliesTo": [
+        "all",
+        "service",
+        "shopping",
+        "article"
+      ]
+    },
+    "priceAsc": {
+      "id": "priceAsc",
+      "label": "Giá thấp đến cao",
+      "appliesTo": [
+        "all",
+        "service",
+        "shopping"
+      ]
+    },
+    "priceDesc": {
+      "id": "priceDesc",
+      "label": "Giá cao đến thấp",
+      "appliesTo": [
+        "all",
+        "service",
+        "shopping"
+      ]
+    },
+    "newest": {
+      "id": "newest",
+      "label": "Mới nhất",
+      "appliesTo": [
+        "all",
+        "article"
+      ]
+    }
+  },
+  "SEARCH_SUMMARY": {
+    "total": 21,
+    "service": 3,
+    "shopping": 9,
+    "firstAid": 4,
+    "knowledge": 5
+  }
+}

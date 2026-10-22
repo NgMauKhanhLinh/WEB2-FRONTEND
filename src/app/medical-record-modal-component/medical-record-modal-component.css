@@ -1,0 +1,270 @@
+/* Nền mờ phía sau modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Khung nội dung modal */
+.modal-container {
+  background: #ffffff;
+  width: 550px;
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Header modal */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+}
+
+/* Thân form */
+.modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333333;
+}
+
+.required {
+  color: #ea4335;
+}
+
+/* Ô nhập liệu input thường & textarea */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #cce0f5;
+  border-radius: 8px;
+  background-color: #eef4fa;
+  font-size: 0.95rem;
+  color: #333;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: #1a73e8;
+}
+
+/* ======================================================= */
+/* KHU VỰC SỬA LỖI: Ô BÁC SĨ & Ô NGÀY KHÁM NẰM TRÊN 1 HÀNG */
+/* ======================================================= */
+
+/* Khung bọc dùng chung cho cả ô Bác sĩ và Ngày khám */
+.input-group.custom-input-group {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: row !important; /* Ép buộc icon và input chung 1 hàng ngang */
+  align-items: center !important;
+  border: 1px solid #cce0f5 !important;
+  border-radius: 8px !important;
+  background-color: #eef4fa !important;
+  overflow: hidden;
+}
+
+/* Reset lại input của Bootstrap để không bị giật hàng */
+.input-group.custom-input-group input.form-control {
+  flex: 1 !important;
+  width: auto !important; 
+  background-color: transparent !important; 
+  border: none !important;
+  box-shadow: none !important;
+  padding: 11px 14px 11px 10px !important;
+}
+
+/* CĂN NÚT LỊCH GỐC SANG BÊN TRÁI TUYỆT ĐỐI */
+.input-group.custom-input-group input[type="date"].form-control {
+  padding-left: 40px !important; /* Chừa khoảng trống bên trái cho nút lịch */
+}
+
+/* Di chuyển hoàn toàn nút bấm lịch mặc định của trình duyệt sang lề trái */
+.input-group.custom-input-group input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute !important;
+  left: 12px !important; /* Ghim chặt ở lề trái */
+  right: auto !important; /* Hủy bỏ lề phải mặc định */
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+}
+
+/* Căn giữa tuyệt đối cho icon bác sĩ bên trong thẻ span */
+.input-group.custom-input-group .input-group-text {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 0 0 14px !important;
+}
+
+/* ======================================================= */
+
+/* Vùng Kéo thả file */
+.upload-zone {
+  border: 2px dashed #b1d0f0;
+  border-radius: 8px;
+  background-color: #eef4fa;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.upload-zone.drag-over {
+  background-color: #dbeafe !important;
+  border-color: #1a73e8 !important;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.upload-icon {
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.upload-text {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.upload-text .highlight {
+  color: #1a73e8;
+}
+
+.upload-hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Khung hiển thị file đã chọn thành công */
+.file-preview-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f1f3f4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  border: 1px solid #dadce0;
+}
+
+.file-info {
+  flex: 1;
+  font-size: 0.85rem;
+  display: flex;
+  gap: 4px;
+}
+
+.file-name {
+  color: #333;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.file-size {
+  color: #666;
+}
+
+.remove-file-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #555;
+  cursor: pointer;
+}
+
+/* Footer chứa nút điều hướng */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.btn-cancel {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.btn-submit {
+  background-color: #ffca28;
+  border: none;
+  border-radius: 6px;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 6px rgba(255, 202, 40, 0.3);
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

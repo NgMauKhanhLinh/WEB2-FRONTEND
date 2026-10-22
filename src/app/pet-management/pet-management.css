@@ -1,0 +1,242 @@
+:host{display:block}
+
+.pet-page{
+  width:min(1320px,calc(100% - 40px));
+  padding-right: 70px;
+  margin:44px auto 80px;
+  display:grid;
+  grid-template-columns:260px minmax(0,1fr);
+  gap:34px;
+  align-items:start;
+  max-width: 1320px;
+  margin-left: auto;
+}
+  
+.pet-content{
+    min-width:0}
+    
+.pet-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;margin-bottom:24px}
+  
+.pet-heading h1{margin:10px 0 4px;color:#031635;font-size:28px}.pet-heading p{margin:0;color:#667085}.pet-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:1px solid #c2c6d4;border-radius:24px;background:white;color:#12345b;font-weight:700;text-decoration:none;cursor:pointer}.pet-button.primary{border-color:#ffeb3b;background:#fff176}.pet-button:disabled{opacity:.55;cursor:wait}.pet-status-filters{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px}.pet-status-filters button{flex:none;border:1px solid #c2c6d4;border-radius:22px;background:white;padding:9px 16px;color:#424752;cursor:pointer}.pet-status-filters button.active{border-color:#0d47a1;background:#0d47a1;color:white}.pet-list-tools{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:12px;margin:12px 0 22px}.pet-list-tools input,.pet-list-tools select,.pet-form input,.pet-form select,.pet-form textarea{width:100%;min-height:44px;padding:10px 13px;border:1px solid #cbd5e1;border-radius:10px;background:white;color:#24364b;font:inherit}.pet-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}.pet-card{overflow:hidden;border:1px solid #e2e8f0;border-radius:16px;background:white;box-shadow:0 3px 12px #0f172a0b}.pet-card-image{position:relative;display:grid;place-items:center;height:168px;background:#eff6fa;color:#94a3b8;font-size:48px}.pet-card-image img{width:100%;height:100%;object-fit:cover}.pet-status{position:absolute;top:12px;right:12px;padding:5px 10px;border-radius:20px;background:#dcfce3;color:#15803d;font-size:12px;font-weight:700}.pet-card-info{padding:16px}.pet-card-info h2,.pet-card-info p{margin:0 0 7px}.pet-card-info h2{font-size:18px}.pet-card-info h2 a{color:#12345b;text-decoration:none}.pet-card-info p{color:#667085;font-size:13px}.pet-text-link{color:#0d47a1;font-weight:700;text-decoration:none}.pet-text-link:hover{text-decoration:underline}.pet-card-info .pet-text-link{display:inline-block;margin-top:8px}.pet-feedback{padding:14px 0;color:#475569}.pet-feedback.error{color:#b42318}.pet-detail-card{display:grid;grid-template-columns:minmax(180px,280px) 1fr;gap:24px;padding:22px;border:1px solid #e2e8f0;border-radius:16px;background:white}.pet-detail-card>img{width:100%;max-height:260px;border-radius:12px;object-fit:cover}.pet-detail-card dl{display:grid;grid-template-columns:180px 1fr;gap:12px;margin:0}.pet-detail-card dt{color:#64748b}.pet-detail-card dd{margin:0;color:#172b4d;font-weight:600}.pet-records{margin-top:30px}.pet-records h2{color:#12345b}.pet-record{display:flex;justify-content:space-between;gap:18px;margin:12px 0;padding:16px;border:1px solid #e2e8f0;border-radius:12px}.pet-record h3,.pet-record p{margin:0 0 6px}.pet-record p{color:#64748b}.pet-record a{align-self:center;color:#0d47a1}.pet-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:24px;border:1px solid #e2e8f0;border-radius:16px;background:white}.pet-form label{display:grid;gap:7px;color:#344054;font-weight:600}.pet-form .wide{grid-column:1/-1}.pet-form textarea{resize:vertical}
+
+.pet-form-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:12px}
+.pet-delete{margin-top:16px;border:0;background:none;color:#b42318;font-weight:700;cursor:pointer}.pet-delete:disabled{opacity:.5}@media(max-width:850px){.pet-page{grid-template-columns:1fr}
+.pet-page app-sidebar{order:2}.pet-content{order:1}}@media(max-width:380px){.pet-page{width:calc(100% - 28px);margin-top:25px}.pet-heading{align-items:flex-start;flex-direction:column}.pet-list-tools,.pet-form{grid-template-columns:1fr}.pet-form .wide,.pet-form-actions{grid-column:auto}.pet-detail-card{grid-template-columns:1fr}.pet-detail-card dl{grid-template-columns:130px 1fr}.pet-record{flex-direction:column}.pet-record a{align-self:flex-start}}
+
+.pet-page {
+  display: grid;
+  width: 100%;
+  max-width: 100%; /* Độ rộng tối đa bằng với khung Header của bạn */
+  min-height: calc(100vh - 92px);
+  margin: 0; /* Căn giữa trang đồng bộ với Header */
+  
+  /* THAY ĐỔI: Sử dụng 'auto' để cột 1 tự động bo sát khít khịt theo chiều rộng thực của Sidebar, không bị hở pixel nào */
+  grid-template-columns: auto minmax(0, 1fr); 
+  
+  gap: 24px; /* Khoảng cách đệm an toàn cố định giữa thanh bên và trang chính */
+  align-items: stretch;
+}
+.pet-page>app-sidebar{
+  min-height:calc(100vh - 92px);
+  }
+.pet-content
+{width:100%;
+   max-width: 100%;  
+    min-width: 0;
+    margin: 0 auto 0 0; 
+      background-color: #fff;
+  padding:15px 24px 11px 0;
+  box-sizing:border-box}
+
+.pet-heading.pet-form-heading{justify-content:flex-start;gap:12px;margin:0 0 12px}
+.pet-form-heading h1{margin:0;color:#292d32;font-size:20px;font-weight:700;line-height:1.2}
+.pet-back-link{display:grid;width:20px;height:24px;place-items:center;color:#344054}
+.pet-back-link svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}
+.pet-form{grid-template-columns:minmax(0,1fr);gap:14px;padding:0;border:0;border-radius:0;background:transparent}
+.pet-form-section{min-width:0;padding:16px;border:1px solid #dce2ec;border-radius:16px;background:#fff}
+.pet-form-section-title{display:flex;align-items:center;gap:7px;margin:0;padding:0 0 9px;border-bottom:1px solid #edf0f5;color:#30343a;font-size:13px;font-weight:700;line-height:1.4}
+.pet-form-section-title svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke:#47616a;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.7}
+.basic-form-grid{display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:20px;padding:12px 0 0}
+.avatar-upload{display: flex; flex-direction: column;align-items: center;text-align: center; }
+.avatar-upload-control{
+  display:flex!important;
+  width:82px;
+  height:82px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  overflow:hidden;
+  border:1px dashed #aabbd2;border-radius:50%;background:#e8f2fc;color:#596679;cursor:pointer;font-size:11px;font-weight:400;text-align: center; box-sizing: border-box;}
+.avatar-upload-control img{width:100%;height:100%;object-fit:cover}
+
+.avatar-camera
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;}
+
+.avatar-camera svg{
+  width: 20px; 
+  height: 20px;
+  fill: none;
+  stroke: #414b57;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;}
+
+.avatar-file-input{position:absolute;width:1px;height:1px;min-height:1px;padding:0;border:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;clip-path:inset(50%)}
+.avatar-upload p{width:180px;margin:0;color:#667085;font-size:10px;line-height:1.5; padding: 5px}
+
+
+.basic-fields
+  {display: flex;
+  flex-direction: column;
+  gap: 12px;}
+
+
+.basic-field-row{display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: end; 
+}
+
+.species-select-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 20px; 
+  padding: 0 12px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.species-select-group select {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 8px 0;
+  cursor: pointer;
+  width: 100%;
+}
+.species-select-group.has-custom select {
+  flex: initial;       /* Không cho phép select tự co giãn chiếm hết chỗ nữa */
+  width: 50px;         /* Cố định chiều rộng vừa đủ cho chữ "Khác" + mũi tên */
+  max-width: 50px;
+  padding-left: 0 !important;   
+  padding-right: 0 !important;    
+}
+
+.species-select-group select,
+.species-select-group input {
+  border: 0 !important; /* Xóa bỏ viền mặc định của select và input */
+  outline: none !important;
+  background: transparent !important;
+  height: 100%;
+  padding: 5px 11px;
+  font-size: 11px;
+  box-sizing: border-box;
+}
+
+.divider-line {
+  width: 1px;
+  height: 16px; /* Chiều cao thanh dọc ngắn nằm lọt bên trong khung */
+  background-color: #cbd4e2; /* Màu xám nhạt trùng màu viền elip */
+  flex: none;
+}
+
+.species-select-group.has-custom input {
+  flex: 1;
+  width: auto;
+  padding-left: 8px;
+}
+
+
+
+.pet-field{display:grid;min-width:0;gap:5px;color:#343a40;font-size:11px;font-weight:600;}
+.required-mark{color:#e02424}
+.pet-form .pet-field input,.pet-form .pet-field select,.pet-form .pet-field textarea{box-sizing:border-box;width:100%;min-width:0;min-height:28px;padding:5px 11px;border:1px solid #cbd4e2;border-radius:12px;background:#fff;color:#344054;font-size:11px;font-weight:400;line-height:1.4}
+.pet-form .pet-field input::placeholder,.pet-form .pet-field textarea::placeholder{color:#818b9b;opacity:1}
+.pet-form .pet-field select{padding-right:27px}
+.pet-form .pet-field textarea{min-height:76px;resize:vertical}
+.medical-record-list{display:grid;justify-items:center;gap:12px;padding:16px 0 8px}
+.add-record-button{min-height:36px;padding:0 14px;border:0;border-radius:4px;background:#ffd43b;color:#2f3338;font-size:11px;font-weight:700;cursor:pointer}
+.medical-record-draft{width:100%;padding:12px;border:1px solid #e5e9f0;border-radius:10px;box-sizing:border-box}
+.medical-record-draft-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;color:#344054;font-size:12px}
+.remove-record-button{border:0;background:transparent;color:#a33232;font-size:11px;cursor:pointer}
+.medical-record-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.record-notes-field{grid-column:1/-1}
+
+.health-field-grid{display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Chia đều thành 4 cột bằng nhau */
+  gap: 16px;                            /* Khoảng cách giữa các ô */
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.gender-field{
+  display: flex;
+  flex-direction: row;       /* Đặt nhãn "Giới tính" và các nút radio nằm ngang hoặc dọc */
+  flex-wrap: wrap;           /* Giúp text tự xuống hàng nếu quá chật */
+  align-items: center;
+  gap: 0px;                 /* Khoảng cách giữa nút Đực và Cái */
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-width: 0;
+  width: 100%;  
+}
+
+.gender-field legend{width:100%;margin-bottom:10px;margin-left:20px;padding:05;color:#343a40;font-size:11px;font-weight:600}
+.gender-field label{display:flex;margin-left:20px;align-items:center;gap:2px;color:#475467;font-size:11px;white-space:nowrap}
+.gender-field input{width:13px;height:13px;min-height:13px;margin:0;accent-color:#516ba1}
+
+.weight-input{position:relative}
+.pet-form .pet-field .weight-input input{padding-right:32px;}
+.weight-input>span{position:absolute;top:50%;right:10px;transform:translateY(-50%);color:#475467;font-size:11px;font-weight:400}
+.health-notes-field{padding-top:20px}
+.pet-form .health-notes-field textarea{min-height:76px}
+.pet-form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:0;padding:0 0 0;border-top:1px solid #edf0f5}
+.pet-form-actions .pet-button{min-height:28px;padding:0 18px;border:0;border-radius:4px;background:transparent;color:#333;font-size:11px;font-weight:500}
+
+.btn-save-icon {
+  font-size: 13px;    
+  color: #292d32;     
+  display: inline-block;
+  line-height: 1;
+  flex-shrink: 0;     
+}
+
+
+.pet-form-actions{margin-top:2px}
+.pet-form-actions 
+
+.pet-button.primary{background:#ffd43b;color:#292d32;font-weight:700;gap: 6px;}
+
+@media(max-width:850px){
+  .pet-page{grid-template-columns:minmax(0,1fr);gap:0}
+  .pet-page>app-sidebar{order:2}
+  .pet-content{order:1;width:min(100%,900px);padding:18px 24px 11px}
+  .health-field-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+  .pet-page{width:100%;margin:0;grid-template-columns:minmax(0,1fr);gap:0}
+  .pet-page>app-sidebar{order:2;min-height:auto}
+  .pet-content{order:1;padding:18px 14px 11px}
+  .pet-heading.pet-form-heading{margin-bottom:14px}
+  .pet-form-section{padding:14px;border-radius:13px}
+  .basic-form-grid{grid-template-columns:1fr;gap:14px}
+  .avatar-upload{grid-row:1}
+  .basic-field-row,.medical-record-fields{grid-template-columns:minmax(0,1fr)}
+  .health-field-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}
+  .record-notes-field{grid-column:auto}
+  .pet-form-actions{position:sticky;bottom:0;z-index:1;padding:10px;background:#fff}
+}

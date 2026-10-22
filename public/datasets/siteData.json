@@ -1,0 +1,67 @@
+{
+  "FOOTER_COLUMNS": [
+    {
+      "title": "PRODUCT",
+      "links": [
+        "Pricing",
+        "Overview",
+        "Browse",
+        "Accessibility",
+        "Five"
+      ]
+    },
+    {
+      "title": "Solutions",
+      "links": [
+        "Brainstorming",
+        "Ideation",
+        "Wireframing",
+        "Research"
+      ]
+    },
+    {
+      "title": "Resources",
+      "links": [
+        "Help Center",
+        "Blog",
+        "Tutorials"
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        "About",
+        "Press",
+        "Events",
+        "Careers"
+      ]
+    }
+  ],
+  "FOOTER_LEGAL_LINKS": [
+    "Terms",
+    "Privacy",
+    "Contact"
+  ],
+  "FOOTER_SOCIALS": [
+    {
+      "name": "YouTube",
+      "icon": "/assets/images/footer/youtube.svg"
+    },
+    {
+      "name": "Facebook",
+      "icon": "/assets/images/footer/facebook.svg"
+    },
+    {
+      "name": "Twitter",
+      "icon": "/assets/images/footer/twitter.svg"
+    },
+    {
+      "name": "Instagram",
+      "icon": "/assets/images/footer/instagram.svg"
+    },
+    {
+      "name": "LinkedIn",
+      "icon": "/assets/images/footer/linkedin.svg"
+    }
+  ]
+}

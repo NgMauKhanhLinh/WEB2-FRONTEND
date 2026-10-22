@@ -1,0 +1,353 @@
+<div class="auth-overlay" (mousedown)="onBackdropClick($event)">
+  <section class="auth-dialog" role="dialog" aria-modal="true" [attr.aria-label]="screenHeading">
+    <button class="close-button" type="button" aria-label="Đóng" (click)="close()">
+      <span aria-hidden="true">×</span>
+    </button>
+
+    @if (screen === 'success') {
+      <div class="success-panel">
+        <img class="success-logo" [src]="authView.viewModel.assets.logo" alt="Dr. Pet's House" />
+        <img class="success-pet" [src]="authView.viewModel.assets.successArtwork" alt="" />
+        <div class="success-copy">
+          <span class="success-check" aria-hidden="true">✓</span>
+          <h1>{{ screenHeading }}</h1>
+          <p>{{ screenDescription }}</p>
+          <button class="primary-button" type="button" (click)="openScreen('login')">
+            ĐĂNG NHẬP NGAY <span aria-hidden="true">→</span>
+          </button>
+          <p class="support">Cần hỗ trợ? <a href="tel:0900000000">Liên hệ đội ngũ chăm sóc</a></p>
+        </div>
+      </div>
+    } @else {
+      @if (isSplitScreen) {
+        <div class="split-panel">
+          <aside class="welcome-panel" [class.register-side]="screen === 'register'">
+            <div class="blob"></div>
+            <img class="brand-logo" [src]="authView.viewModel.assets.logo" alt="Dr. Pet's House" />
+            <img
+              class="welcome-pet"
+              [src]="
+                screen === 'login'
+                  ? authView.viewModel.assets.loginArtwork
+                  : authView.viewModel.assets.registerArtwork
+              "
+              alt=""
+            />
+            <div class="welcome-copy">
+              <h2>{{ welcomeContent.heading }}</h2>
+              <p>{{ welcomeContent.description }}</p>
+            </div>
+          </aside>
+          <div class="form-panel">
+            <h1>{{ screenHeading }}</h1>
+            <p class="panel-description">{{ screenDescription }}</p>
+            @if (screen === 'login') {
+              <form [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
+                <label class="field">
+                  <span>Số điện thoại / Email <b>*</b></span>
+                  <input
+                    formControlName="account"
+                    type="text"
+                    autocomplete="username"
+                    placeholder="Nhập số điện thoại hoặc email"
+                  />
+                  @if (fieldError(loginForm, 'account')) {
+                    <small class="field-error">{{ fieldError(loginForm, 'account') }}</small>
+                  }
+                </label>
+                <label class="field">
+                  <span>Mật khẩu <b>*</b></span>
+                  <span class="password-input">
+                    <input
+                      formControlName="password"
+                      [type]="showLoginPassword ? 'text' : 'password'"
+                      autocomplete="current-password"
+                      placeholder="Nhập mật khẩu"
+                    />
+                    <button
+                      type="button"
+                      (click)="showLoginPassword = !showLoginPassword"
+                      [attr.aria-label]="showLoginPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'"
+                    >
+                      {{ showLoginPassword ? 'Ẩn' : 'Hiện' }}
+                    </button>
+                  </span>
+                  @if (fieldError(loginForm, 'password')) {
+                    <small class="field-error">{{ fieldError(loginForm, 'password') }}</small>
+                  }
+                </label>
+                <div class="form-options">
+                  <label class="remember"
+                    ><input type="checkbox" formControlName="remember" /> Ghi nhớ đăng nhập</label
+                  >
+                  <button type="button" class="text-button" (click)="openScreen('forgot')">
+                    Quên mật khẩu?
+                  </button>
+                </div>
+                @if (submitError) {
+                  <p class="submit-error" role="alert">{{ submitError }}</p>
+                }
+                <button class="primary-button" type="submit" [disabled]="submitting">
+                  {{ submitting ? 'ĐANG ĐĂNG NHẬP...' : 'ĐĂNG NHẬP' }}
+                </button>
+                <div class="divider"><span>HOẶC</span></div>
+                <button
+                  class="google-button"
+                  type="button"
+                  disabled
+                  title="Đăng nhập Google chưa được cấu hình"
+                >
+                  <span class="google-mark">G</span> Tiếp tục với Google
+                </button>
+                <p class="switch-copy">
+                  Chưa có tài khoản?
+                  <button type="button" class="text-button" (click)="openScreen('register')">
+                    Đăng ký ngay
+                  </button>
+                </p>
+              </form>
+            }
+            @if (screen === 'register') {
+              <form [formGroup]="registerForm" (ngSubmit)="submitRegister()" novalidate>
+                <label class="field">
+                  <span>Họ và tên <b>*</b></span>
+                  <input formControlName="name" autocomplete="name" placeholder="Nhập họ và tên" />
+                  @if (fieldError(registerForm, 'name')) {
+                    <small class="field-error">{{ fieldError(registerForm, 'name') }}</small>
+                  }
+                </label>
+                <div class="field-row">
+                  <label class="field">
+                    <span>Số điện thoại <b>*</b></span>
+                    <input
+                      formControlName="phone"
+                      type="tel"
+                      autocomplete="tel"
+                      placeholder="0912345678"
+                    />
+                    @if (fieldError(registerForm, 'phone')) {
+                      <small class="field-error">{{ fieldError(registerForm, 'phone') }}</small>
+                    }
+                  </label>
+                  <label class="field">
+                    <span>Email</span>
+                    <input
+                      formControlName="email"
+                      type="email"
+                      autocomplete="email"
+                      placeholder="email@example.com"
+                    />
+                    @if (fieldError(registerForm, 'email')) {
+                      <small class="field-error">{{ fieldError(registerForm, 'email') }}</small>
+                    }
+                  </label>
+                </div>
+                <label class="field">
+                  <span>Mật khẩu <b>*</b></span>
+                  <span class="password-input">
+                    <input
+                      formControlName="password"
+                      [type]="showRegisterPassword ? 'text' : 'password'"
+                      autocomplete="new-password"
+                      placeholder="Tối thiểu 8 ký tự"
+                    />
+                    <button
+                      type="button"
+                      (click)="showRegisterPassword = !showRegisterPassword"
+                      [attr.aria-label]="showRegisterPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'"
+                    >
+                      {{ showRegisterPassword ? 'Ẩn' : 'Hiện' }}
+                    </button>
+                  </span>
+                  <small class="field-hint">Tối thiểu 8 ký tự, gồm 1 chữ hoa và 1 số.</small>
+                  @if (fieldError(registerForm, 'password')) {
+                    <small class="field-error">{{ fieldError(registerForm, 'password') }}</small>
+                  }
+                </label>
+                <label class="field">
+                  <span>Xác nhận mật khẩu <b>*</b></span>
+                  <span class="password-input">
+                    <input
+                      formControlName="confirmPassword"
+                      [type]="showRegisterConfirmation ? 'text' : 'password'"
+                      autocomplete="new-password"
+                      placeholder="Nhập lại mật khẩu"
+                    />
+                    <button
+                      type="button"
+                      (click)="showRegisterConfirmation = !showRegisterConfirmation"
+                      [attr.aria-label]="showRegisterConfirmation ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'"
+                    >
+                      {{ showRegisterConfirmation ? 'Ẩn' : 'Hiện' }}
+                    </button>
+                  </span>
+                  @if (
+                    fieldError(registerForm, 'confirmPassword') || confirmationError(registerForm)
+                  ) {
+                    <small class="field-error">
+                      {{
+                        fieldError(registerForm, 'confirmPassword') ||
+                          confirmationError(registerForm)
+                      }}
+                    </small>
+                  }
+                </label>
+                @if (submitError) {
+                  <p class="submit-error" role="alert">{{ submitError }}</p>
+                }
+                <button class="primary-button" type="submit" [disabled]="submitting">
+                  {{ submitting ? 'ĐANG GỬI OTP...' : 'ĐĂNG KÝ NGAY' }}
+                </button>
+                <div class="divider"><span>HOẶC</span></div>
+                <button
+                  class="google-button"
+                  type="button"
+                  disabled
+                  title="Đăng nhập Google chưa được cấu hình"
+                >
+                  <span class="google-mark">G</span> Tiếp tục với Google
+                </button>
+                <p class="switch-copy">
+                  Đã có tài khoản?
+                  <button type="button" class="text-button" (click)="openScreen('login')">
+                    Đăng nhập ngay
+                  </button>
+                </p>
+              </form>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="recovery-panel">
+          <div class="recovery-art">
+            <div class="recovery-blob"></div>
+            <img class="brand-logo" [src]="authView.viewModel.assets.logo" alt="Dr. Pet's House" />
+            <img [src]="authView.viewModel.assets.recoveryArtwork" alt="" />
+          </div>
+          <div class="recovery-form">
+            <h1>{{ screenHeading }}</h1>
+            <p class="panel-description">{{ screenDescription }}</p>
+            @if (screen === 'forgot') {
+              <form [formGroup]="forgotForm" (ngSubmit)="submitForgotPassword()" novalidate>
+                <label class="field">
+                  <span>Số điện thoại / Email <b>*</b></span>
+                  <input
+                    formControlName="account"
+                    type="text"
+                    autocomplete="username"
+                    placeholder="Nhập email đã đăng ký"
+                  />
+                  @if (fieldError(forgotForm, 'account')) {
+                    <small class="field-error">{{ fieldError(forgotForm, 'account') }}</small>
+                  }
+                </label>
+                @if (submitError) {
+                  <p class="submit-error" role="alert">{{ submitError }}</p>
+                }
+                <button class="primary-button" type="submit" [disabled]="submitting">
+                  {{ submitting ? 'ĐANG GỬI...' : 'GỬI MÃ XÁC NHẬN' }}
+                </button>
+                <button type="button" class="back-button" (click)="openScreen('login')">
+                  ← Quay lại đăng nhập
+                </button>
+              </form>
+            }
+            @if (screen === 'registerOtp' || screen === 'resetOtp') {
+              <form (ngSubmit)="submitOtp()">
+                <div class="otp-inputs">
+                  @for (digit of otp; track digit; let i = $index) {
+                    <input
+                      #otpInput
+                      [value]="digit"
+                      (input)="updateOtp(i, $event)"
+                      (keydown)="handleOtpKeydown(i, $event)"
+                      (paste)="pasteOtp($event)"
+                      [attr.aria-label]="'Số OTP thứ ' + (i + 1)"
+                      inputmode="numeric"
+                      maxlength="1"
+                      autocomplete="one-time-code"
+                    />
+                  }
+                </div>
+                @if (submitError) {
+                  <p class="submit-error" role="alert">{{ submitError }}</p>
+                }
+                <button
+                  class="primary-button"
+                  type="submit"
+                  [disabled]="submitting || otp.join('').length !== 6"
+                >
+                  {{ submitting ? 'ĐANG XÁC NHẬN...' : 'XÁC NHẬN' }}
+                </button>
+                <p class="resend-copy">
+                  Không nhận được mã? <span>Kiểm tra email hoặc tin nhắn của bạn.</span>
+                </p>
+                <button
+                  type="button"
+                  class="back-button"
+                  (click)="openScreen(screen === 'registerOtp' ? 'register' : 'forgot')"
+                >
+                  ← Quay lại
+                </button>
+              </form>
+            }
+            @if (screen === 'reset') {
+              <form [formGroup]="resetForm" (ngSubmit)="submitResetPassword()" novalidate>
+                <label class="field">
+                  <span>Mật khẩu mới <b>*</b></span>
+                  <span class="password-input">
+                    <input
+                      formControlName="password"
+                      [type]="showResetPassword ? 'text' : 'password'"
+                      autocomplete="new-password"
+                      placeholder="Tối thiểu 8 ký tự"
+                    />
+                    <button
+                      type="button"
+                      (click)="showResetPassword = !showResetPassword"
+                      [attr.aria-label]="showResetPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'"
+                    >
+                      {{ showResetPassword ? 'Ẩn' : 'Hiện' }}
+                    </button>
+                  </span>
+                  @if (fieldError(resetForm, 'password')) {
+                    <small class="field-error">{{ fieldError(resetForm, 'password') }}</small>
+                  }
+                </label>
+                <label class="field">
+                  <span>Xác nhận mật khẩu <b>*</b></span>
+                  <span class="password-input">
+                    <input
+                      formControlName="confirmPassword"
+                      [type]="showResetConfirmation ? 'text' : 'password'"
+                      autocomplete="new-password"
+                      placeholder="Nhập lại mật khẩu"
+                    />
+                    <button
+                      type="button"
+                      (click)="showResetConfirmation = !showResetConfirmation"
+                      [attr.aria-label]="showResetConfirmation ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'"
+                    >
+                      {{ showResetConfirmation ? 'Ẩn' : 'Hiện' }}
+                    </button>
+                  </span>
+                  @if (fieldError(resetForm, 'confirmPassword') || confirmationError(resetForm)) {
+                    <small class="field-error">
+                      {{ fieldError(resetForm, 'confirmPassword') || confirmationError(resetForm) }}
+                    </small>
+                  }
+                </label>
+                @if (submitError) {
+                  <p class="submit-error" role="alert">{{ submitError }}</p>
+                }
+                <button class="primary-button" type="submit" [disabled]="submitting">
+                  {{ submitting ? 'ĐANG ĐỔI...' : 'ĐỔI MẬT KHẨU' }}
+                </button>
+              </form>
+            }
+          </div>
+        </div>
+      }
+    }
+  </section>
+</div>

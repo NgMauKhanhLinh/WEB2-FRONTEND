@@ -1,0 +1,46 @@
+@import "./app/pet-clinic-page/pet-clinic-page-extra.css";
+@import "./app/pet-clinic-page/homepage.css";
+
+@font-face {
+  font-family: "Be Vietnam Pro";
+  src: url("/assets/fonts/about/be-vietnam-pro-400.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Be Vietnam Pro";
+  src: url("/assets/fonts/about/be-vietnam-pro-700.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #172a34;
+  font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}

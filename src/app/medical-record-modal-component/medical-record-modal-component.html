@@ -1,0 +1,201 @@
+<div
+  class="modal d-block"
+  tabindex="-1"
+  style="background-color: rgba(0, 0, 0, 0.4)"
+  (click)="onCancel()"
+>
+  <!-- modal-dialog-centered giúp modal luôn căn giữa màn hình theo chiều dọc -->
+  <div
+    class="modal-dialog modal-dialog-centered"
+    style="max-width: 550px"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 12px">
+      <!-- Header -->
+      <div class="modal-header px-4 py-3 border-bottom border-light-subtle">
+        <h2 class="modal-title fs-5 fw-bold text-dark">Thêm bệnh án mới</h2>
+        <button type="button" class="btn-close fs-6 shadow-none" (click)="onCancel()"></button>
+      </div>
+
+      <!-- Form Quản lý dữ liệu -->
+      <form (ngSubmit)="onSubmit()" #recordForm="ngForm">
+        <div class="modal-body p-4 d-flex flex-column gap-3">
+          <!-- Tên bệnh án -->
+          <div class="d-flex flex-column gap-1">
+            <label class="form-label mb-1 fw-semibold text-secondary" style="font-size: 0.9rem">
+              Tên bệnh án <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control border-0 px-3 py-2 bg-light-subtle shadow-none"
+              placeholder="VD: Khám tổng quát tháng 10"
+              [(ngModel)]="currentRecord.condition"
+              name="condition"
+              required
+              style="
+                background-color: #eef4fa !important;
+                border: 1px solid #cce0f5 !important;
+                border-radius: 8px;
+              "
+            />
+          </div>
+
+          <div class="row g-3">
+            <!-- Bác sĩ điều trị -->
+            <div class="col-6">
+              <label class="form-label mb-1 fw-semibold text-secondary" style="font-size: 0.9rem"
+                >Bác sĩ điều trị</label
+              >
+              <div class="input-group custom-input-group">
+                <span class="input-group-text border-0 bg-transparent ps-3 pe-0 text-muted">
+                  <i class="ph-bold ph-stethoscope" style="font-size: 1.1rem; line-height: 1"></i>
+                </span>
+                <input
+                  type="text"
+                  class="form-control border-0 py-2 bg-transparent shadow-none"
+                  placeholder="Tên bác sĩ"
+                  [(ngModel)]="currentRecord.doctor"
+                  name="doctor"
+                  style="font-size: 0.95rem"
+                />
+              </div>
+            </div>
+
+            <!-- Ngày khám -->
+            <div class="col-6">
+              <label class="form-label mb-1 fw-semibold text-secondary" style="font-size: 0.9rem"
+                >Ngày khám</label
+              >
+              <div class="input-group custom-input-group">
+                <input
+                  type="date"
+                  class="form-control border-0 py-2 bg-transparent shadow-none"
+                  [(ngModel)]="currentRecord.date"
+                  name="date"
+                  style="font-size: 0.95rem"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Ghi chú (Triệu chứng / Chẩn đoán ban đầu) -->
+          <div class="d-flex flex-column gap-1">
+            <label class="form-label mb-1 fw-semibold text-secondary" style="font-size: 0.9rem"
+              >Ghi chú (Triệu chứng / Chẩn đoán ban đầu)</label
+            >
+            <textarea
+              class="form-control border-0 px-3 py-2 shadow-none"
+              rows="4"
+              placeholder="Nhập chi tiết các triệu chứng quan sát được hoặc kết luận sơ bộ của bác sĩ..."
+              [(ngModel)]="currentRecord.notes"
+              name="notes"
+              style="
+                background-color: #eef4fa !important;
+                border: 1px solid #cce0f5 !important;
+                border-radius: 8px;
+              "
+            ></textarea>
+          </div>
+
+          <!-- Khu vực Tải lên tài liệu -->
+          <div class="d-flex flex-column gap-1">
+            <label class="form-label mb-1 fw-semibold text-secondary" style="font-size: 0.9rem">
+              Tài liệu đính kèm (Kết quả xét nghiệm, X-quang,...)
+              <span class="text-muted fw-normal ms-1" style="font-size: 0.85rem">
+                ({{ currentRecord.fileRaw ? '1' : '0' }}/1 file)
+              </span>
+            </label>
+
+            <!-- Vùng kéo thả file với định dạng viền nét đứt từ CSS cũ -->
+            <div
+              class="upload-zone p-4 text-center cursor-pointer position-relative"
+              [class.drag-over]="isDragging"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave()"
+              (drop)="onDrop($event)"
+              (click)="fileInput.click()"
+              style="
+                background-color: #eef4fa;
+                border: 2px dashed #b1d0f0;
+                border-radius: 8px;
+                cursor: pointer;
+              "
+            >
+              <div class="d-flex flex-column align-items-center gap-1">
+                <!-- Icon Upload dạng đám mây từ bộ Phosphor Icons Bold -->
+                <i
+                  class="ph-bold ph-cloud-arrow-up text-secondary mb-1"
+                  style="font-size: 2rem"
+                ></i>
+                <p class="m-0 text-dark" style="font-size: 0.95rem">
+                  <strong>Kéo thả file</strong> hoặc
+                  <span class="text-primary text-decoration-none">chọn tệp</span>
+                </p>
+                <p class="m-0 text-muted" style="font-size: 0.8rem">
+                  Hỗ trợ PDF, JPG, PNG, Word, Excel (Tối đa 25MB)
+                </p>
+              </div>
+
+              <input
+                type="file"
+                #fileInput
+                class="d-none"
+                (change)="onFileSelected($event)"
+                accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx"
+              />
+            </div>
+
+            <!-- Khung hiển thị thông báo file đã nạp thành công -->
+            @if (currentRecord.fileName) {
+              <div
+                class="d-flex align-items-center gap-2 p-2 px-3 border border-light-subtle rounded-3 bg-light mt-2"
+              >
+                <!-- Icon File tài liệu lấy từ Bootstrap Icons -->
+                <i class="bi bi-file-earmark-text text-secondary fs-5"></i>
+                <div class="flex-grow-1 d-flex gap-1" style="font-size: 0.85rem">
+                  <span class="text-dark fw-medium text-break">{{ currentRecord.fileName }}</span>
+                  <span class="text-muted">({{ currentRecord.fileSize }})</span>
+                </div>
+                <button
+                  type="button"
+                  class="btn-close shadow-none p-1"
+                  style="font-size: 0.75rem"
+                  (click)="removeFile($event)"
+                ></button>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Footer điều hướng nút bấm -->
+        <div
+          class="modal-footer px-4 py-3 border-top border-light-subtle d-flex justify-content-end align-items-center gap-3"
+        >
+          <button
+            type="button"
+            class="btn btn-link text-dark text-decoration-none shadow-none fw-medium p-0"
+            (click)="onCancel()"
+          >
+            Hủy
+          </button>
+
+          <!-- Nút bấm Lưu ghi chú màu vàng đặc trưng đổ bóng mờ chuẩn thiết kế -->
+          <button
+            type="submit"
+            class="btn border-0 d-flex align-items-center gap-2 px-4 py-2 text-dark shadow-sm"
+            style="
+              background-color: #ffca28;
+              font-size: 0.95rem;
+              font-weight: 600;
+              border-radius: 6px;
+              box-shadow: 0 4px 6px rgba(255, 202, 40, 0.3) !important;
+            "
+          >
+            <!-- Biểu tượng Lưu đĩa mềm từ Phosphor Icons Bold -->
+            <i class="ph-bold ph-floppy-disk fs-5"></i> Lưu ghi chú
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

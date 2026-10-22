@@ -1,0 +1,258 @@
+{
+  "ALL_BLOG_POSTS": [
+    {
+      "id": "recent-1",
+      "section": "knowledge",
+      "category": "health",
+      "categoryLabel": "Sức khỏe",
+      "title": "Lịch chăm sóc sức khỏe định kỳ cho thú cưng",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-2",
+      "section": "knowledge",
+      "category": "nutrition",
+      "categoryLabel": "Dinh dưỡng",
+      "title": "Chọn khẩu phần phù hợp theo độ tuổi của mèo",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-3",
+      "section": "knowledge",
+      "category": "psychology",
+      "categoryLabel": "Tâm lý",
+      "title": "Giúp thú cưng làm quen với môi trường mới",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-4",
+      "section": "knowledge",
+      "category": "grooming",
+      "categoryLabel": "Vệ sinh & Làm đẹp",
+      "title": "Hướng dẫn vệ sinh tai an toàn tại nhà",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-5",
+      "section": "knowledge",
+      "category": "nutrition",
+      "categoryLabel": "Dinh dưỡng",
+      "title": "Những thực phẩm cần tránh trong khẩu phần của chó",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-6",
+      "section": "knowledge",
+      "category": "grooming",
+      "categoryLabel": "Vệ sinh & Làm đẹp",
+      "title": "Tần suất tắm phù hợp cho từng giống thú cưng",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-7",
+      "section": "knowledge",
+      "category": "psychology",
+      "categoryLabel": "Tâm lý",
+      "title": "Vì sao mèo thường trốn khi nhà có khách?",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-8",
+      "section": "knowledge",
+      "category": "health",
+      "categoryLabel": "Sức khỏe",
+      "title": "Các dấu hiệu mất nước thường gặp ở thú cưng",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-9",
+      "section": "knowledge",
+      "category": "care",
+      "categoryLabel": "Chăm sóc",
+      "title": "Chuẩn bị không gian nghỉ ngơi thoải mái cho thú cưng",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-10",
+      "section": "knowledge",
+      "category": "health",
+      "categoryLabel": "Sức khỏe",
+      "title": "Cách theo dõi cân nặng của thú cưng tại nhà",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-11",
+      "section": "knowledge",
+      "category": "nutrition",
+      "categoryLabel": "Dinh dưỡng",
+      "title": "Bổ sung vitamin cho thú cưng đúng cách",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "recent-12",
+      "section": "knowledge",
+      "category": "grooming",
+      "categoryLabel": "Vệ sinh & Làm đẹp",
+      "title": "Chăm sóc móng giúp thú cưng vận động tốt hơn",
+      "excerpt": "Thông tin hữu ích từ chuyên gia giúp bạn chăm sóc thú cưng khỏe mạnh mỗi ngày.",
+      "publishedAt": "3 Tháng 6, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    }
+  ],
+  "BLOG_CATEGORIES": [
+    {
+      "id": "all",
+      "label": "Tất cả"
+    },
+    {
+      "id": "health",
+      "label": "Sức khỏe"
+    },
+    {
+      "id": "nutrition",
+      "label": "Dinh dưỡng"
+    },
+    {
+      "id": "psychology",
+      "label": "Tâm lý"
+    },
+    {
+      "id": "grooming",
+      "label": "Vệ sinh & Làm đẹp"
+    }
+  ],
+  "BLOG_SECTIONS": {
+    "knowledge": {
+      "label": "Kiến thức thú cưng",
+      "href": "/blog/kien-thuc"
+    },
+    "community": {
+      "label": "Cộng đồng chia sẻ",
+      "href": "/blog/cong-dong"
+    },
+    "firstAid": {
+      "label": "Cẩm nang sơ cứu",
+      "href": "/blog/so-cuu"
+    }
+  },
+  "FEATURED_BLOG_POST": {
+    "id": "vaccine-5-in-1",
+    "section": "knowledge",
+    "category": "health",
+    "categoryLabel": "Sức khỏe",
+    "title": "Lịch tiêm phòng 5-trong-1 cần thiết cho chó con từ 2 tháng tuổi",
+    "excerpt": "Bảo vệ cún cưng khỏi các bệnh nguy hiểm bằng lịch tiêm phòng chuẩn y khoa. Cùng tìm hiểu chi tiết các mũi tiêm và lưu ý quan trọng.",
+    "image": "/assets/images/blog/featured-vaccine.png",
+    "author": "BS. Minh Anh",
+    "authorImage": "/assets/images/blog/author-minh-anh.png",
+    "publishedAt": "4 Tháng 6, 2024",
+    "intro": "Việc tiêm phòng đầy đủ cho chó con không chỉ là trách nhiệm mà còn là cách thể hiện tình yêu thương đúng đắn của chủ nuôi dành cho thú cưng của mình.",
+    "description": "Tiêm phòng 5 trong 1 là loại vắc-xin tổng hợp giúp bảo vệ chó con khỏi 5 căn bệnh nguy hiểm thường gặp nhất: Care (Distemper), Parvo, Viêm gan (Hepatitis), Ho cũi chó (Parainfluenza) và Leptospirosis.",
+    "highlightTitle": "Vì sao cần tiêm từ 2 tháng tuổi?",
+    "highlightText": "Ở độ tuổi này, kháng thể từ sữa mẹ bắt đầu giảm dần, khiến chó con trở nên dễ bị tổn thương trước các tác nhân gây bệnh từ môi trường bên ngoài. Việc tiêm mũi đầu tiên vào tuần thứ 6-8 là thời điểm \"vàng\" để xây dựng hệ miễn dịch chủ động.",
+    "schedule": [
+      "Mũi 1 (6-8 tuần tuổi): Bắt đầu vắc-xin 5 trong 1 hoặc 7 trong 1. Kiểm tra sức khỏe tổng quát trước khi tiêm.",
+      "Mũi 2 (9-11 tuần tuổi): Nhắc lại vắc-xin tổng hợp để củng cố miễn dịch.",
+      "Mũi 3 (12-14 tuần tuổi): Mũi nhắc cuối cùng của chu kỳ chó con và tiêm phòng Dại (Rabies)."
+    ],
+    "tags": [
+      "#SucKhoeThuCung",
+      "#TiemPhongCho",
+      "#ChamSocChoCon",
+      "#Vaccine"
+    ]
+  },
+  "QUICK_READ_POSTS": [
+    {
+      "id": "quick-cold",
+      "section": "knowledge",
+      "category": "health",
+      "categoryLabel": "Sức khỏe",
+      "title": "Chó mèo bị cảm lạnh: Dấu hiệu và cách chăm sóc",
+      "publishedAt": "12 Tháng 5, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "quick-winter",
+      "section": "knowledge",
+      "category": "care",
+      "categoryLabel": "Chăm sóc",
+      "title": "Tips Giữ Ấm Cho Thú Cưng Trong Mùa Đông",
+      "publishedAt": "08 Tháng 5, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    },
+    {
+      "id": "quick-puppy",
+      "section": "knowledge",
+      "category": "health",
+      "categoryLabel": "Sức khỏe",
+      "title": "Những Bệnh Nguy Hiểm Trên Chó Con Cần Lưu Ý",
+      "publishedAt": "01 Tháng 5, 2024",
+      "image": "/assets/images/blog/post-placeholder.png"
+    }
+  ],
+  "TRENDING_BLOG_POSTS": [
+    {
+      "id": "trending-1",
+      "section": "knowledge",
+      "category": "nutrition",
+      "categoryLabel": "DINH DƯỠNG",
+      "title": "Chế độ dinh dưỡng cho mèo con: Nên chọn hạt nào?",
+      "image": "/assets/images/blog/trending-placeholder.png"
+    },
+    {
+      "id": "trending-2",
+      "section": "knowledge",
+      "category": "health",
+      "categoryLabel": "SỨC KHỎE",
+      "title": "Cách chăm sóc mèo sơ sinh bị bỏ rơi: Cẩm nang cần biết",
+      "image": "/assets/images/blog/trending-placeholder.png"
+    },
+    {
+      "id": "trending-3",
+      "section": "knowledge",
+      "category": "grooming",
+      "categoryLabel": "VỆ SINH",
+      "title": "5 cách khử mùi khay vệ sinh mèo hiệu quả nhất",
+      "image": "/assets/images/blog/trending-placeholder.png"
+    },
+    {
+      "id": "trending-4",
+      "section": "knowledge",
+      "category": "nutrition",
+      "categoryLabel": "DINH DƯỠNG",
+      "title": "Top 5 loại pate dinh dưỡng giúp mèo tăng cân",
+      "image": "/assets/images/blog/trending-placeholder.png"
+    },
+    {
+      "id": "trending-5",
+      "section": "knowledge",
+      "category": "health",
+      "categoryLabel": "SỨC KHỎE",
+      "title": "Dấu hiệu thú cưng cần được bác sĩ kiểm tra",
+      "image": "/assets/images/blog/trending-placeholder.png"
+    }
+  ]
+}
